@@ -1,0 +1,68 @@
+    .buttonBlue{
+            background-color: #24A0ED;
+            border-radius: 5px;
+            color: white;
+            width: 20%;
+            height: 50px;
+            font-size: 2rem;
+            border: none;
+        }
+    .buttonGray{
+            background-color: rgb(200, 200, 200);
+            border-radius: 5px;
+            color: white;
+            width: 10%;
+            height: 40px;
+            font-size: 1.5rem;
+            border: none;
+        }
+    .navbarElement{
+            color: gray;
+            text-decoration: none;
+            vertical-align: middle;
+            display:inline-block;
+            margin-left: 1%
+        }
+    .mainForm{
+        color: gray;
+        background-color: white;
+        border-radius: 5px;
+        border: none;
+        width: 25%;
+        height: 50%;
+        outline: none;
+        font-size: 1.5rem;
+        }
+    .mainFormBig{
+        color: gray;
+        background-color: white;
+        border-radius: 8px;
+        border-color: gray;
+        border: none;
+        width: 40%;
+        height: 50%;
+        outline: none;
+        font-size: 1.5rem;
+        }
+    .accordion {
+      background-color: #eee;
+      color: #444;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      text-align: left;
+      border: none;
+      outline: none;
+      transition: 0.4s;
+    }
+
+    .active, .accordion:hover {
+      background-color: #ccc;
+    }
+
+    .panel {
+      padding: 0 18px;
+      background-color: white;
+      display: none;
+      overflow: hidden;
+    }

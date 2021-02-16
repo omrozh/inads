@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/styles">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
+</head>
+<body style="font-family: open sans; margin: 0;">
+    <div style="min-height: 100vh; background-color: rgba(250, 250, 0, 0.05); width: 20%; border-right:1px solid rgba(150, 150, 150, .5); float: left">
+        <div style="color: black; margin-left: 25%;">
+            <br>
+            {{ user.email }}
+            <br>
+            <a style="margin-top: 30%" href="/dashboard" class="navbarElement">Dashboard</a>
+            <br>
+            <a style="margin-top: 10%" href="/advertise" class="navbarElement">Start a campaign</a>
+            <br>
+            <a style="margin-top: 10%" href="/load_money" class="navbarElement">Increase Account Balance</a>
+            <br>
+            <a style="margin-top: 10%" href="/account" class="navbarElement">Account</a>
+            <br>
+            {% if user.purpose == "Content Creator" %}
+            <a style="margin-top: 10%" href="/add_domain" class="navbarElement">Add Domain</a>
+            <br>
+            <a style="margin-top: 10%" href="/payout" class="navbarElement">Receive Payout</a>
+            <br>
+            <a style="margin-top: 10%" href="/website_performance" class="navbarElement">Website Performance</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div style="float: left; width: 75%; margin-left: 4%">
+        <h1 style="margin-left: 5%; margin-top: 5%">{{ user.email }}</h1>
+
+        {% if user.purpose == "Content Creator" %}
+            <div style="margin-left: 5%; margin-bottom: 2%">
+                Domains
+            </div>
+            {% for i in domains %}
+                <div style="margin-left: 5%">
+                    {{ i }}
+                    <hr>
+                </div>
+            {% endfor %}
+            <a href="/cancel_subscription" style="text-decoration: none; margin-left: 5%">Cancel Subscription</a>
+        {% endif %}
+        <a href="/logout" style="text-decoration: none; margin-left: 5%">Logout</a>
+    </div>
+</body>
+</html>

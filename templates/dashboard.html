@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>InAds - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/styles">
+</head>
+<body style="font-family: open sans; margin: 0;">
+    <div style="min-height: 100vh; background-color: rgba(250, 250, 0, 0.05); width: 20%; border-right:1px solid rgba(150, 150, 150, .5); float: left">
+        <div style="color: black; margin-left: 25%;">
+            <br>
+            {{ user.email }}
+            <br>
+            <a style="margin-top: 30%" href="/dashboard" class="navbarElement">Dashboard</a>
+            <br>
+            <a style="margin-top: 10%" href="/advertise" class="navbarElement">Start a campaign</a>
+            <br>
+            <a style="margin-top: 10%" href="/load_money" class="navbarElement">Increase Account Balance</a>
+            <br>
+            <a style="margin-top: 10%" href="/account" class="navbarElement">Account</a>
+            <br>
+            {% if user.purpose == "Content Creator" %}
+            <a style="margin-top: 10%" href="/add_domain" class="navbarElement">Add Domain</a>
+            <br>
+            <a style="margin-top: 10%" href="/payout" class="navbarElement">Receive Payout</a>
+            <br>
+            <a style="margin-top: 10%" href="/website_performance" class="navbarElement">Website Performance</a>
+            {% endif %}
+        </div>
+    </div>
+    <div style="float: left; width: 79%">
+        <div style="width: 100%">
+            <h1 style="font-size: 2rem; margin-left: 5%; float: left">Account Balance</h1>
+            <h1 style="font-size: 2rem; margin-right: 5%; float: right">{{ "%.2f" % user.account_balance }} $</h1>
+        </div>
+        <h2 style="margin-top: 10%; margin-left: 5%">Active Campaigns</h2>
+        {% for i in ads %}
+            <div style="margin-left: 10%">
+                <hr>
+                <h3>{{ i.advertiserwebsite }}</h3>
+                <h3>{{ i.keywords }}</h3>
+                <h3>Total number of ad clicks: {{ i.total_clicks }}</h3>
+                <h3>Total number of view: {{ i.total_views }}</h3>
+                <h3>Remaining Budget: {{ "%.2f" % i.budget }} $</h3>
+                <hr>
+            </div>
+        {% endfor %}
+        {% if numberofads < 1 %}
+        <h2 style="margin-left: 5%; margin-top: 10%">You have no campaigns yet. <a href="/advertise" style="color: gray; text-decoration: none">Create One</a></h2>
+        {% endif %}
+    </div>
+</body>
+</html>

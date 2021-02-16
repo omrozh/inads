@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>InAds - EE</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/styles">
+</head>
+<body style="font-family: open sans">
+
+    <div style="width: 100%; color: gray; margin-top: 1%; margin-bottom: 1%">
+        <img src="https://firebasestorage.googleapis.com/v0/b/file-store-6094b.appspot.com/o/files%2F9130410?alt=media&token=709b6728-023d-4c7e-b118-d459bc2794c3" style="height: 5%; width: 5%; margin-left: 3%; vertical-align: middle; display:inline-block;">
+        <a class="navbarElement" style="margin-left: 4%;" href="/"><small>Home Page</small></a>
+        <a class="navbarElement" href="/plans"><small>Plans</small></a>
+        <a class="navbarElement" href="/estimated_earnings"><small>Estimated Earnings</small></a>
+        <a class="navbarElement" href=""><small>About</small></a>
+        <a class="navbarElement" href=""><small>Docs</small></a>
+    </div>
+
+    <h1 style="margin-left: 5%">Calculate your estimated earnings with InAds</h1>
+    <br>
+    <input style="margin-left: 5%" onchange="calculate()" type="number" id="monthlyvis" class="mainForm" placeholder="Number of monthly visitors">
+    <hr style="margin-left: 5%; margin-right: 70%">
+    <br>
+    <input style="margin-left: 5%" type="number" onchange="calculate()" id="monthlyclicks" class="mainForm" placeholder="Average number of ad clicks per month">
+    <hr style="margin-left: 5%; margin-right: 70%">
+    <br>
+    <strong style="margin-left: 5%">*These estimates do not represent the actual numbers. Just an estimate of your earnings.</strong>
+    <br>
+    <h1 style="font-size: 4rem; margin-left: 5%" id="outcome"></h1>
+
+    <script>
+        function calculate(){
+            var visitrev = document.getElementById("monthlyvis").value * 0.01
+            var clickrev = document.getElementById("monthlyclicks").value * 0.20
+            var outcomefinal = visitrev + clickrev
+            document.getElementById("outcome").innerHTML = outcomefinal + " $"
+        }
+    </script>
+</body>
+</html>

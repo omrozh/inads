@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>InAds - Balance</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/styles">
+</head>
+<body style="font-family: open sans; margin: 0;">
+    <div style="min-height: 100vh; background-color: rgba(250, 250, 0, 0.05); width: 20%; border-right:1px solid rgba(150, 150, 150, .5); float: left">
+        <div style="color: black; margin-left: 25%;">
+            <br>
+            {{ user.email }}
+            <br>
+            <a style="margin-top: 30%" href="/dashboard" class="navbarElement">Dashboard</a>
+            <br>
+            <a style="margin-top: 10%" href="/advertise" class="navbarElement">Start a campaign</a>
+            <br>
+            <a style="margin-top: 10%" href="/load_money" class="navbarElement">Increase Account Balance</a>
+            <br>
+            <a style="margin-top: 10%" href="/account" class="navbarElement">Account</a>
+            <br>
+            {% if user.purpose == "Content Creator" %}
+            <a style="margin-top: 10%" href="/add_domain" class="navbarElement">Add Domain</a>
+            <br>
+            <a style="margin-top: 10%" href="/payout" class="navbarElement">Receive Payout</a>
+            <br>
+            <a style="margin-top: 10%" href="/website_performance" class="navbarElement">Website Performance</a>
+            {% endif %}
+        </div>
+    </div>
+    <div style="float: left; width: 75%; margin-left: 4%">
+        <h1 style="margin-left: 10%">Increase your account balance</h1>
+        <form method=post enctype=multipart/form-data style="border-style: solid; border-radius: 5px; border-color: black;">
+            <input style="margin-left: 10%; margin-right:35%; width: 55%" class="mainForm" type=number name=amount placeholder="Amount in USD" pattern="[0-9]">
+            <hr style="margin-left: 10%; margin-right:35%">
+            <input style="margin-left: 10%; margin-right:35%; width: 55%"  class="mainForm" type=password name=password placeholder="Password for confirmation">
+            <hr style="margin-left: 10%; margin-right:35%">
+            <input class="buttonGray" style="margin-left: 40%" type=submit value="Pay">
+        </form>
+        <center>
+            <h2>Current account balance: {{ user.account_balance }} $</h2>
+        </center>
+    </div>
+</body>
+</html>

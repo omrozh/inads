@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>InAds - Register</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/styles">
+</head>
+<body style="font-family: open sans">
+    <div style="width: 100%; color: gray; margin-top: 1%; margin-bottom: 1%; position: fixed">
+        <img src="https://firebasestorage.googleapis.com/v0/b/file-store-6094b.appspot.com/o/files%2F9130410?alt=media&token=709b6728-023d-4c7e-b118-d459bc2794c3" style="height: 5%; width: 5%; margin-left: 3%; vertical-align: middle; display:inline-block;">
+        <a class="navbarElement" style="margin-left: 4%;" href="/"><small>Home Page</small></a>
+        <a class="navbarElement" href="/plans"><small>Plans</small></a>
+        <a class="navbarElement" href="/estimated_earnings"><small>Estimated Earnings</small></a>
+        <a class="navbarElement" href=""><small>About</small></a>
+        <a class="navbarElement" href=""><small>Docs</small></a>
+    </div>
+    <center>
+        <img src="https://firebasestorage.googleapis.com/v0/b/file-store-6094b.appspot.com/o/files%2F9130410?alt=media&token=709b6728-023d-4c7e-b118-d459bc2794c3" style="width: 15%; height: 20%; margin-top: 15%" alt="">
+    </center>
+    <div style="border-color: yellow; border-style: solid; margin-top: 3%">
+        <form id="form-id" method=post enctype=multipart/form-data style="border-style: solid; border-radius: 5px; border-color: black;">
+            <div id="form-mail-registration">
+                <input style="margin-left: 40%; margin-right:35%; float: left" class="mainForm" type=text name=email placeholder="Email">
+                <hr style="margin-left: 40%; margin-right:35%">
+                <input style="margin-left: 40%; margin-right:35%"  class="mainForm" type=password name=password placeholder="Password">
+                <hr style="margin-left: 40%; margin-right:35%">
+                <select style="margin-left: 40%;" size="margin-left: 40%" name="purpose" class="mainForm" id="rgstr">
+                    <option value="Advertiser">Your Purpose</option>
+                    <option value="Content Creator">Content Creator</option>
+                    <option value="Advertiser">Advertiser</option>
+                </select>
+                <hr style="margin-left: 40%; margin-right:35%">
+                <br>
+                <input class="buttonGray" style="margin-left: 40%" type=button onclick="sendForm()" value="Register">
+            </div>
+            <div id="form-credit-registration" hidden="true">
+                <input style="margin-left: 40%; margin-right:35%; float: left" class="mainForm" type=text inputmode="numeric" pattern="[0-9\s]{13,19}" name=credit placeholder="Card Number">
+                <hr style="margin-left: 40%; margin-right:35%">
+                <input style="margin-left: 40%; margin-right:35%; float: left" class="mainForm" type=text name=cvc placeholder="CVC">
+                <hr style="margin-left: 40%; margin-right:35%">
+                <input style="margin-left: 40%; margin-right:0%; float: left; width: 12.5%" class="mainForm" type=text name=month placeholder="Month">
+                <input style="margin-right:0%; float: left; width: 12.5%" class="mainForm" type=text name=year placeholder="Year">
+                <input class="buttonGray" style="margin-left: 40%; margin-top: 1%" type=submit value="Register">
+            </div>
+        </form>
+    </div>
+    <br>
+    <script>
+        function sendForm(){
+            document.getElementById("form-mail-registration").hidden = true;
+            document.getElementById("form-credit-registration").hidden = false;
+        }
+    </script>
+    <div style="margin-left: 40%">Already have an account? <a href="/login" class="navbarElement">Login</a></div>
+</body>
+</html>
