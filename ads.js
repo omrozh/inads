@@ -14,8 +14,8 @@ function createAds(element, index){
     console.log(adname)
     element.setAttribute('src', img);
     if(element.getAttribute("name") == "inadstandard"){
-        element.setAttribute("height", "30%")
-        element.setAttribute("width", "90%")
+        element.setAttribute("height", "15%")
+        element.setAttribute("width", "75%")
     }
     if(element.getAttribute("name") == "inadsbanner"){
         element.setAttribute("height", "70%")
