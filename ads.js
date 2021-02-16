@@ -3,7 +3,7 @@ let adname = ""
 let apiKey = ""
 
 function createAds(element, index){
-  fetch("http://www.inads.ml/view/" + element.getAttribute("name"))
+  fetch("http://inads.herokuapp.com/view/" + element.getAttribute("name"))
   .then(res=>{urlfinal = res.url; return res.blob()})
   .then(blob=>{
     var img = URL.createObjectURL(blob);
@@ -48,5 +48,5 @@ for(var i = 0; i < adElements.length; i++) {
 }
 
 function clickad(index){
-    document.location = "http://www.inads.ml/adclick/" + index
+    document.location = "http://inads.herokuapp.com/adclick/" + index
 }
