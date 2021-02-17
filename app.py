@@ -244,7 +244,7 @@ def register():
         if flask.request.values["purpose"] == "Content Creator":
             client, subs = makePayment(flask.request.values["credit"], flask.request.values["month"],
                                        flask.request.values["year"],
-                                       flask.request.values["cvc"], True)
+                                       flask.request.values["cvc"], False)
             user = User(email=flask.request.values["email"], password=flask.request.values["password"],
                         purpose=flask.request.values["purpose"], account_balance=0, customer_id=client,
                         subscriber_id=subs)
