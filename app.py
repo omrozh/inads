@@ -405,8 +405,6 @@ def returnActual(fileindex):
     db.session.commit()
     if len(file.fileurl) > 4:
         response = flask.Response(requests.get(file.fileurl).content)
-        while len(response) < 150:
-            response = flask.Response(requests.get(file.fileurl).content)
         return response
 
 
