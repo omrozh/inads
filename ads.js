@@ -11,9 +11,6 @@ function createAds(element, index){
         return "Cannot complete action"
     }
     var img = URL.createObjectURL(blob);
-    if(blob.size == 6148){
-        alert("Ad could not be loaded!")
-    }
     adname = urlfinal.substring(urlfinal.lastIndexOf("/") + 1)
     element.setAttribute('src', img);
     if(element.getAttribute("name") == "inadstandard"){
