@@ -6,6 +6,7 @@ import urllib.parse
 import flask_sqlalchemy
 import requests
 import stripe
+import random
 from flask_cors import CORS, cross_origin
 from flask_login import LoginManager, UserMixin, current_user, logout_user, login_required, login_user
 
@@ -352,15 +353,17 @@ def return_file(adtype):
         return "Unauthorized request"
 
     suitablead = None
+    suitableads = []
 
     keywords = Domains.query.filter_by(domain=domain).first().keywords.split("/")
     for i in Ads.query.all():
-        print(i.keywords.split("/"))
-        print(keywords)
         if i.ad_type == adtype and i.budget > 0.25:
             for c in i.keywords.split("/"):
                 if c in keywords:
                     suitablead = i
+                    suitableads.append(suitablead)
+
+    suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
 
     if suitablead:
         return flask.redirect("/ads" + "/" + str(int(suitablead.id) - 1))
