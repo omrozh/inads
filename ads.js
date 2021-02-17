@@ -16,16 +16,27 @@ function createAds(element, index){
     if(element.getAttribute("name") == "inadstandard"){
         element.style.removeProperty("width")
         element.style.removeProperty("height")
+        element.className = "";
+        element.removeAttribute("class")
+        element.removeAttribute("name")
         element.setAttribute("height", "15%")
         element.setAttribute("width", "75%")
     }
     if(element.getAttribute("name") == "inadsbanner"){
         element.style.removeProperty("width")
         element.style.removeProperty("height")
+        element.className = "";
+        element.removeAttribute("class")
+        element.removeAttribute("name")
         element.setAttribute("height", "70%")
         element.setAttribute("width", "15%")
     }
     if(element.getAttribute("name") == "inadsquare"){
+        element.style.removeProperty("width")
+        element.style.removeProperty("height")
+        element.className = "";
+        element.removeAttribute("class")
+        element.removeAttribute("name")
         element.setAttribute("height", "30%")
         element.setAttribute("width", "30%")
     }
