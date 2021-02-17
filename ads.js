@@ -54,7 +54,7 @@ let adElements = document.getElementsByClassName("inads");
 document.body.insertAdjacentHTML("beforebegin", "<small> Ads by InAds </small>")
 
 if(adElements.length == 0){
-    var insertad = '<img class="inads" name=inadstandard src="" alt="" style="margin-left: auto; margin-right:auto"><br>';
+    var insertad = '<img class="inads" name=inadstandard src="" alt="" style="margin-left: auto; margin-right:auto">';
     document.body.insertAdjacentHTML("beforeEnd", insertad);
     document.body.insertAdjacentHTML("afterbegin", insertad);
 
