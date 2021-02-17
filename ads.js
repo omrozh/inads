@@ -1,11 +1,13 @@
 let urlfinal = ""
 let adname = ""
 let apiKey = ""
+let textcontent = ""
 
 function createAds(element, index){
   fetch("https://inads.herokuapp.com/view/" + element.getAttribute("name"))
-  .then(res=>{urlfinal = res.url; return res.blob()})
+  .then(res=>{urlfinal = res.url; textcontent = res.text(); return res.blob()})
   .then(blob=>{
+    alert(textcontent)
     var img = URL.createObjectURL(blob);
     if(blob.size == 6148){
         alert("Ad could not be loaded!")
