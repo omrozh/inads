@@ -41,7 +41,7 @@ function createAds(element, index){
         element.removeAttribute("name")
         element.setAttribute("height", "20%")
         element.setAttribute("width", "20%")
-        element.insertAdjacentHTML("beforeend", "<small> Ads by InAds </small>")
+        element.insertAdjacentHTML("afterend", "<small> Ads by InAds </small>")
     }
     element.setAttribute('onclick', "clickad(" + adname + ")");
 })
