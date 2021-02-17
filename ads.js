@@ -51,9 +51,8 @@ let adElements = document.getElementsByClassName("inads");
 
 if(adElements.length == 0){
     var insertad = '<img style="float: left;" class="inads" name=inadstandard src="" alt="">';
-    var insertadsquare = '<img style="float: left; width: 10%; height: 10%" class="inads" name=inadsquare src="" alt="">';
     document.body.insertAdjacentHTML("beforeEnd", insertad);
-    document.body.insertAdjacentHTML("beforeEnd", insertad);
+    document.body.insertAdjacentHTML("afterbegin", insertad);
 
     adElements = document.getElementsByClassName("inads");
 }
