@@ -50,7 +50,7 @@ function createAds(element, index){
 let adElements = document.getElementsByClassName("inads");
 
 if(adElements.length == 0){
-    var insertad = '<center><img style="float: left;" class="inads" name=inadstandard src="" alt=""></center>';
+    var insertad = '<img style="float: left;" class="inads" name=inadstandard src="" alt="" style="margin-left: auto; margin-right:auto">';
     document.body.insertAdjacentHTML("beforeEnd", insertad);
     document.body.insertAdjacentHTML("afterbegin", insertad);
 
