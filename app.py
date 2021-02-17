@@ -368,7 +368,7 @@ def return_file(adtype):
     except ValueError:
         pass
 
-    if len(suitablead) == 0:
+    if not suitablead:
         suitablead = suitableads[random.randint(0, Ads.query.count() - 1)]
 
     if suitablead:
