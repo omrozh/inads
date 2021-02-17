@@ -368,7 +368,7 @@ def return_file(adtype):
         pass
 
     if not suitablead:
-        suitablead = suitableads[random.randint(0, Ads.query.count() - 1)]
+        suitablead = Ads.query.get(random.randint(0, Ads.query.count() - 1))
 
     if suitablead:
         return flask.redirect("/ads" + "/" + str(int(suitablead.id) - 1))
