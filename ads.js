@@ -8,7 +8,7 @@ function createAds(element, index){
   .then(res=>{urlfinal = res.url; return res.blob()})
   .then(blob=>{
     if(blob.size < 150){
-        alert("no ads")
+        alert("no ads " + blob.size)
         return "Cannot complete action"
     }
     var img = URL.createObjectURL(blob);
