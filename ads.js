@@ -21,6 +21,7 @@ function createAds(element, index){
         element.removeAttribute("name")
         element.setAttribute("height", "15%")
         element.setAttribute("width", "75%")
+        element.insertAdjacentHTML("beforeend", "<small> Ads by InAds </small>")
     }
     if(element.getAttribute("name") == "inadsbanner"){
         element.style.removeProperty("width")
@@ -30,6 +31,7 @@ function createAds(element, index){
         element.removeAttribute("name")
         element.setAttribute("height", "70%")
         element.setAttribute("width", "15%")
+        element.insertAdjacentHTML("beforeend", "<small> Ads by InAds </small>")
     }
     if(element.getAttribute("name") == "inadsquare"){
         element.style.removeProperty("width")
@@ -39,6 +41,7 @@ function createAds(element, index){
         element.removeAttribute("name")
         element.setAttribute("height", "30%")
         element.setAttribute("width", "30%")
+        element.insertAdjacentHTML("beforeend", "<small> Ads by InAds </small>")
     }
     element.setAttribute('onclick', "clickad(" + adname + ")");
 })
@@ -51,9 +54,9 @@ if(adElements.length == 0){
     var insertadsquare = '<img style="float: left; width: 10%; height: 10%" class="inads" name=inadsquare src="" alt="">';
     document.body.insertAdjacentHTML("beforeEnd", insertad);
 
-    document.body.insertAdjacentHTML("beforebegin", insertadsquare);
-    document.body.insertAdjacentHTML("beforebegin", insertadsquare);
-    document.body.insertAdjacentHTML("beforebegin", insertadsquare);
+    document.body.insertAdjacentHTML("afterbegin", insertadsquare);
+    document.body.insertAdjacentHTML("afterbegin", insertadsquare);
+    document.body.insertAdjacentHTML("afterbegin", insertadsquare);
 
     adElements = document.getElementsByClassName("inads");
 }
