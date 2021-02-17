@@ -8,7 +8,6 @@ function createAds(element, index){
   .then(res=>{urlfinal = res.url; return res.blob()})
   .then(blob=>{
     if(blob.size < 150){
-        window.location.reload()
         return "Cannot complete action"
     }
     var img = URL.createObjectURL(blob);
