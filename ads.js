@@ -15,7 +15,6 @@ function createAds(element, index){
         alert("Ad could not be loaded!")
     }
     adname = urlfinal.substring(urlfinal.lastIndexOf("/") + 1)
-    console.log(adname)
     element.setAttribute('src', img);
     if(element.getAttribute("name") == "inadstandard"){
         element.style.removeProperty("width")
@@ -23,8 +22,8 @@ function createAds(element, index){
         element.className = "";
         element.removeAttribute("class")
         element.removeAttribute("name")
-        element.setAttribute("height", "15%")
         element.setAttribute("width", "75%")
+        element.setAttribute("padding-bottom", "12.5%")
         element.insertAdjacentHTML("beforeend", "<small> Ads by InAds </small>")
     }
     if(element.getAttribute("name") == "inadsbanner"){
