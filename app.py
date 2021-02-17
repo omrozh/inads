@@ -365,6 +365,7 @@ def return_file(adtype):
     try:
         suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
     except:
+        print("No suitable ads")
         pass
 
     if not suitablead:
