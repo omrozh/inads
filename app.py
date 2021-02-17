@@ -370,7 +370,7 @@ def return_file(adtype):
 
     if suitablead is None:
         print("Suitable ad randomizer")
-        suitablead = Ads.query.get(random.randint(0, Ads.query.count() - 1))
+        suitablead = Ads.query.get(random.randint(1, Ads.query.count() - 1))
 
     if suitablead:
         return flask.redirect("/ads" + "/" + str(int(suitablead.id) - 1))
