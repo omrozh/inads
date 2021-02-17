@@ -431,9 +431,9 @@ def adclick(adname):
         return flask.redirect(Ads.query.get(int(adname) + 1).advertiserwebsite)
 
 
-@app.route("/inads")
+@app.route("/inads/<adblockcanceller>")
 @cross_origin(supports_credentials=True)
-def addscript():
+def addscript(adblockcanceller):
     return flask.send_file("ads.js")
 
 
