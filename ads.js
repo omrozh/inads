@@ -41,13 +41,13 @@ function createAds(element, index){
         element.removeAttribute("name")
         element.setAttribute("height", "20%")
         element.setAttribute("width", "20%")
-        element.insertAdjacentHTML("afterend", "<br><small> Ads by InAds </small>")
     }
     element.setAttribute('onclick', "clickad(" + adname + ")");
 })
 }
 
 let adElements = document.getElementsByClassName("inads");
+document.body.insertAdjacentHTML("afterend", "<br><small> Ads by InAds </small>")
 
 if(adElements.length == 0){
     var insertad = '<img style="float: left;" class="inads" name=inadstandard src="" alt="" style="margin-left: auto; margin-right:auto">';
