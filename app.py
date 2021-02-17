@@ -360,7 +360,7 @@ def return_file(adtype):
         if i.ad_type == adtype and i.budget > 0.25:
             for c in i.keywords.split("/"):
                 if c in keywords:
-                    suitableads.append(suitablead)
+                    suitableads.append(i)
 
     try:
         suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
