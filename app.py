@@ -365,10 +365,9 @@ def return_file(adtype):
     try:
         suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
     except:
-        print("No suitable ads")
         pass
 
-    if not suitablead:
+    if suitablead is None:
         suitablead = Ads.query.get(random.randint(0, Ads.query.count() - 1))
 
     if suitablead:
