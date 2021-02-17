@@ -363,7 +363,11 @@ def return_file(adtype):
                     suitablead = i
                     suitableads.append(suitablead)
 
-    suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
+    try:
+        suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
+    except ValueError:
+        pass
+
     if len(suitablead) == 0:
         suitablead = suitableads[random.randint(0, Ads.query.count() - 1)]
 
