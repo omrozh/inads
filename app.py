@@ -404,6 +404,7 @@ def returnActual(fileindex):
     User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.01
     db.session.commit()
     if len(file.fileurl) > 4:
+        print(len(flask.Response(requests.get(file.fileurl).content)))
         return flask.Response(requests.get(file.fileurl).content)
 
 
