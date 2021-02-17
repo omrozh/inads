@@ -368,7 +368,7 @@ def return_file(adtype):
         print(e)
         pass
 
-    print(suitablead.id)
+    print(suitableads)
 
     if suitablead is None:
         print("Suitable ad randomizer")
