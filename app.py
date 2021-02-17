@@ -359,13 +359,13 @@ def return_file(adtype):
     for i in Ads.query.all():
         if i.ad_type == adtype and i.budget > 0.25:
             for c in i.keywords.split("/"):
-                print(c in keywords)
                 if c in keywords:
                     suitableads.append(suitablead)
 
     try:
         suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
-    except:
+    except Exception as e:
+         print(e)
         pass
 
     if suitablead is None:
