@@ -369,6 +369,7 @@ def return_file(adtype):
         pass
 
     if suitablead is None:
+        print("Suitable ad randomizer")
         suitablead = Ads.query.get(random.randint(0, Ads.query.count() - 1))
 
     if suitablead:
