@@ -14,10 +14,14 @@ function createAds(element, index){
     console.log(adname)
     element.setAttribute('src', img);
     if(element.getAttribute("name") == "inadstandard"){
+        element.style.removeProperty("width")
+        element.style.removeProperty("height")
         element.setAttribute("height", "15%")
         element.setAttribute("width", "75%")
     }
     if(element.getAttribute("name") == "inadsbanner"){
+        element.style.removeProperty("width")
+        element.style.removeProperty("height")
         element.setAttribute("height", "70%")
         element.setAttribute("width", "15%")
     }
