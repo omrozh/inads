@@ -5,8 +5,8 @@ let textcontent = ""
 
 function createAds(element, index){
   fetch("https://inads.herokuapp.com/view/" + element.getAttribute("name"))
-  .then(res=>{return res.blob(), res.url})
-  .then(blob, urlfinal=>{
+  .then(res=>{urlfinal = res.url; alert(res.url); return res.blob()})
+  .then(blob=>{
     if(blob.size < 150){
         return "Cannot complete action"
     }
