@@ -422,6 +422,7 @@ def returnActual(fileindex):
     if domain not in domainList:
         return "Unauthorized request"
     file = Ads.query.get(int(fileindex) + 1)
+    print(fileindex)
     file.total_views += 1
     file.publishing_sites += \
         urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc + ","
