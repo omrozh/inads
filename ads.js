@@ -12,7 +12,6 @@ function createAds(element, index){
     }
     var img = URL.createObjectURL(blob);
     adname = urlfinal.substring(urlfinal.lastIndexOf("/") + 1)
-    alert(adname)
     element.setAttribute('src', img);
     if(element.getAttribute("name") == "inadstandard"){
         element.style.removeProperty("width")
