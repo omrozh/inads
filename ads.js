@@ -5,11 +5,8 @@ let textcontent = ""
 
 function createAds(element, index){
   fetch("https://inads.herokuapp.com/view/" + element.getAttribute("name"))
-  .then(res=>{urlfinal = res.url; alert(res.url); return res.blob()})
+  .then(res=>{adname = res.url.substring(res.url.lastIndexOf("/") + 1); element.setAttribute('onclick', "clickad(" + adname + ")"); return res.blob()})
   .then(blob=>{
-    adname = urlfinal.substring(urlfinal.lastIndexOf("/") + 1)
-    alert(adname)
-    element.setAttribute('onclick', "clickad(" + adname + ")");
 
     if(blob.size < 150){
         return "Cannot complete action"
