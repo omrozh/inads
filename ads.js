@@ -46,11 +46,11 @@ function createAds(element, index){
 }
 
 let adElements = document.getElementsByClassName("inads");
-// document.body.insertAdjacentHTML("beforebegin", "<small> Ads by InAds </small>")
+document.body.insertAdjacentHTML("beforebegin", "<small> Ads by InAds </small>")
 
 if(adElements.length == 0){
     var insertbanner = '<img class="inads" name=inadsbanner src="" alt="" style="float: right;">';
-    var insertad = '<img class="inads" name=inadstandard src="" alt="" style="margin-left: 12.5%"><br><small style="margin-left: 12.5%"> <a href="http://inads.herokuapp.com" style="text-decoration: none; color:yellow;">Ads by <div style="color: black; float: left;">&nbsp;InAds</div> </a></small>';
+    var insertad = '<img class="inads" name=inadstandard src="" alt="" style="margin-left: 12.5%"><br><small style="margin-left: 12.5%"> <a href="http://inads.herokuapp.com" style="text-decoration: none; color:yellow;">Ads by <span style="color: black;">InAds</span> </a></small>';
     document.body.insertAdjacentHTML("beforeEnd", insertad);
     document.body.insertAdjacentHTML("afterbegin", insertbanner);
     document.body.insertAdjacentHTML("afterbegin", insertad);
