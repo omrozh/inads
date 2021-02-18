@@ -4,10 +4,9 @@ let apiKey = ""
 let textcontent = ""
 
 function createAds(element, index){
-  var res = "Son of a bitch";
   fetch("https://inads.herokuapp.com/view/" + element.getAttribute("name"))
-  .then(res=>{urlfinal = res.url; return res.blob()})
-  .then(blob=>{
+  .then(res=>{return res.blob(), res.url})
+  .then(blob, urlfinal=>{
     if(blob.size < 150){
         return "Cannot complete action"
     }
@@ -44,7 +43,6 @@ function createAds(element, index){
     }
 
     adname = urlfinal.substring(urlfinal.lastIndexOf("/") + 1)
-    alert(adname)
     element.setAttribute('onclick', "clickad(" + adname + ")");
 })
 }
