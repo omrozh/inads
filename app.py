@@ -366,7 +366,11 @@ def return_file(adtype):
     print(suitableads)
 
     try:
-        suitablead = suitableads[random.randint(0, len(suitableads))]
+        if len(suitableads):
+            suitablead = suitableads[0]
+
+        else:
+            suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
     except Exception as e:
         print(e)
         pass
