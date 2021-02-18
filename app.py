@@ -428,13 +428,13 @@ def returnActual(fileindex):
     db.session.commit()
     domainobject = Domains.query.filter_by(domain=domain).first()
     domainobject.total_views += 1
-    domainobject.total_revenue += 0.01
+    domainobject.total_revenue += 0.002
     domainowner = \
         Domains.query.filter_by(domain=urllib.parse.urlparse(
             flask.request.environ.get('HTTP_REFERER', 'default value')).netloc).first().owner
     userowner = User.query.filter_by(email=domainowner).first().account_balance
-    Ads.query.get(int(fileindex) + 1).budget -= 0.01
-    User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.01
+    Ads.query.get(int(fileindex) + 1).budget -= 0.002
+    User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.002
     db.session.commit()
     if len(file.fileurl) > 4:
         response = flask.Response(requests.get(file.fileurl).content)
@@ -454,19 +454,19 @@ def adclick(adname):
         return "Unauthorized request"
     website = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     if website in Ads.query.get(int(adname) + 1).publishing_sites.split(","):
-        Ads.query.get(int(adname) + 1).budget -= 0.25
+        Ads.query.get(int(adname) + 1).budget -= 0.20
         Ads.query.get(int(adname) + 1).total_clicks += 1
 
         domainobject = Domains.query.filter_by(domain=domain).first()
         domainobject.total_views += 1
-        domainobject.total_revenue += 0.25
+        domainobject.total_revenue += 0.20
 
         domainowner = \
             Domains.query.filter_by(
                 domain=urllib.parse.urlparse(
                     flask.request.environ.get('HTTP_REFERER', 'default value')).netloc).first().owner
         userowner = User.query.filter_by(email=domainowner).first().account_balance
-        User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.25
+        User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.20
 
         db.session.commit()
         return f"<script> document.location = '{Ads.query.get(int(adname) + 1).advertiserwebsite}' </script>"

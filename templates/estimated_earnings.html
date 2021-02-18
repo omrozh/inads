@@ -22,17 +22,14 @@
     <input style="margin-left: 5%" onchange="calculate()" type="number" id="monthlyvis" class="mainForm" placeholder="Number of monthly visitors">
     <hr style="margin-left: 5%; margin-right: 70%">
     <br>
-    <input style="margin-left: 5%" type="number" onchange="calculate()" id="monthlyclicks" class="mainForm" placeholder="Average number of ad clicks per month">
-    <hr style="margin-left: 5%; margin-right: 70%">
-    <br>
     <strong style="margin-left: 5%">*These estimates do not represent the actual numbers. Just an estimate of your earnings.</strong>
     <br>
     <h1 style="font-size: 4rem; margin-left: 5%" id="outcome"></h1>
 
     <script>
         function calculate(){
-            var visitrev = document.getElementById("monthlyvis").value * 0.01
-            var clickrev = document.getElementById("monthlyclicks").value * 0.20
+            var visitrev = document.getElementById("monthlyvis").value * 0.002
+            var clickrev = document.getElementById("monthlyvis").value * 0.20 * 0.15
             var outcomefinal = visitrev + clickrev
             document.getElementById("outcome").innerHTML = outcomefinal + " $"
         }
