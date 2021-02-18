@@ -30,7 +30,7 @@ function createAds(element, index){
         element.removeAttribute("class")
         element.removeAttribute("name")
         element.setAttribute("width", "15%")
-        element.setAttribute("padding-bottom", "39,375%")
+        element.setAttribute("padding-bottom", "70%")
         element.insertAdjacentHTML("beforeend", "<small> Ads by InAds </small>")
     }
     if(element.getAttribute("name") == "inadsquare"){
