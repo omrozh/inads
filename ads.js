@@ -7,6 +7,10 @@ function createAds(element, index){
   fetch("https://inads.herokuapp.com/view/" + element.getAttribute("name"))
   .then(res=>{urlfinal = res.url; alert(res.url); return res.blob()})
   .then(blob=>{
+    adname = urlfinal.substring(urlfinal.lastIndexOf("/") + 1)
+    alert(adname)
+    element.setAttribute('onclick', "clickad(" + adname + ")");
+
     if(blob.size < 150){
         return "Cannot complete action"
     }
@@ -41,10 +45,6 @@ function createAds(element, index){
         element.setAttribute("width", "20%")
         element.setAttribute("padding-bottom", "20%")
     }
-
-    adname = urlfinal.substring(urlfinal.lastIndexOf("/") + 1)
-    alert(adname)
-    element.setAttribute('onclick', "clickad(" + adname + ")");
 })
 }
 
