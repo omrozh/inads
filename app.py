@@ -363,8 +363,6 @@ def return_file(adtype):
                 if c in keywords:
                     suitableads.append(i)
 
-    print(suitableads)
-
     try:
         if len(suitableads) == 1:
             suitablead = suitableads[0]
