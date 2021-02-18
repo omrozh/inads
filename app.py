@@ -183,7 +183,8 @@ def addDomain():
 
         try:
             requestinfo = requests.get("http://" + flask.request.values["domain"] + "/inadsconfirm.txt").content
-        except:
+        except Exception as e:
+            print(e)
             return '''
                 <script>
                     alert("Domain Unconfirmed")
@@ -192,6 +193,7 @@ def addDomain():
             '''
 
         if requestinfo != current_user.email:
+            print(requestinfo)
             return '''
                 <script>
                     alert("Domain Unconfirmed")
