@@ -49,7 +49,7 @@ let adElements = document.getElementsByClassName("inads");
 
 if(adElements.length == 0){
     var insertbanner = '<img class="inads" name=inadsbanner src="" alt="" style="float: right;">';
-    var insertad = '<img class="inads" name=inadstandard src="" alt="" style="margin-left: 12.5%"><br><small style="margin-left: 12.5%"> <a href="http://inads.herokuapp.com" style="text-decoration: none; color:yellow;">Ads by <span style="color: black;">InAds</span></a></small>';
+    var insertad = '<img class="inads" name=inadstandard src="" alt="" style="margin-left: 12.5%"><br><a href="http://inads.herokuapp.com" style="text-decoration: none; color:yellow;"><small style="margin-left: 12.5%">Ads by <span style="color: black;">InAds</small></span></a>';
     document.body.insertAdjacentHTML("beforeEnd", insertad);
     document.body.insertAdjacentHTML("afterbegin", insertbanner);
     document.body.insertAdjacentHTML("afterbegin", insertad);
