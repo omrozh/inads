@@ -359,6 +359,8 @@ def return_file(adtype):
     for i in Ads.query.all():
         if i.ad_type == adtype and i.budget > 0.25:
             for c in i.keywords.split("/"):
+                print(c)
+                print(keywords)
                 if c in keywords:
                     suitableads.append(i)
 
