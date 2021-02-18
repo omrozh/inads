@@ -180,7 +180,18 @@ def confirmationFile():
 def addDomain():
     domains = Domains.query.filter_by(owner=current_user.email)
     if flask.request.method == "POST":
-        if requests.get(flask.request.values["domain"] + "/inadsconfirm.txt").content != current_user.email:
+
+        try:
+            requestinfo = requests.get(flask.request.values["domain"] + "/inadsconfirm.txt").content
+        except:
+            return '''
+                <script>
+                    alert("Domain Unconfirmed")
+                    document.location = "/dashboard"
+                </script>
+            '''
+
+        if requestinfo != current_user.email:
             return '''
                 <script>
                     alert("Domain Unconfirmed")
