@@ -13,7 +13,7 @@ function createAds(element, index){
     }
     var img = URL.createObjectURL(blob);
     element.setAttribute('src', img);
-    element.insertAdjacentHTML("beforebegin", '<a href="http://inads.herokuapp.com" style="margin-left: ' + element.getAttribute("margin-left") + '; margin-right: ' + element.getAttribute("margin-right") + 'text-decoration: none; color:yellow;'  + element.getAttribute("height") + '; float: ' + window.getComputedStyle(element).float + '"><small style="margin-left: ' + element.getAttribute("margin-left") + '; margin-right: ' + element.getAttribute("margin-right") + '">Ads by <span style="color: black;">InAds</small></span></a>')
+    element.insertAdjacentHTML("beforebegin", '<a href="http://inads.herokuapp.com" style="margin-left: ' + element.getComputedStyle.marginLeft + '; margin-right: ' + element.getComputedStyle.marginLeft + 'text-decoration: none; color:yellow;'  + element.getAttribute("height") + '; float: ' + window.getComputedStyle(element).float + '"><small>Ads by <span style="color: black;">InAds</small></span></a>')
 
     if(element.getAttribute("name") == "inadstandard"){
         element.style.removeProperty("width")
