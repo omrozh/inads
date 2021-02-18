@@ -13,6 +13,7 @@ function createAds(element, index){
     }
     var img = URL.createObjectURL(blob);
     element.setAttribute('src', img);
+    element.insertAdjacentHTML("afterend", '<br><a href="http://inads.herokuapp.com" style="text-decoration: none; color:yellow; background-color: #B9DEED"><small style="margin-left: 12.5%">Ads by <span style="color: black;">InAds</small></span></a>')
     if(element.getAttribute("name") == "inadstandard"){
         element.style.removeProperty("width")
         element.style.removeProperty("height")
@@ -49,7 +50,7 @@ let adElements = document.getElementsByClassName("inads");
 
 if(adElements.length == 0){
     var insertbanner = '<img class="inads" name=inadsbanner src="" alt="" style="float: right;">';
-    var insertad = '<img class="inads" name=inadstandard src="" alt="" style="margin-left: 12.5%"><br><a href="http://inads.herokuapp.com" style="text-decoration: none; color:yellow;"><small style="margin-left: 12.5%">Ads by <span style="color: black;">InAds</small></span></a>';
+    var insertad = '<img class="inads" name=inadstandard src="" alt="" style="margin-left: 12.5%">';
     document.body.insertAdjacentHTML("beforeEnd", insertad);
     document.body.insertAdjacentHTML("afterbegin", insertbanner);
     document.body.insertAdjacentHTML("afterbegin", insertad);
