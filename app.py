@@ -363,10 +363,10 @@ def return_file(adtype):
                 if c in keywords:
                     suitableads.append(i)
 
+    print(suitableads)
+
     try:
-        suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
-        while float(suitablead.budget) < 0.25 or suitablead.adtype != adtype:
-            suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
+        suitablead = suitableads[random.randint(0, len(suitableads))]
     except Exception as e:
         print(e)
         pass
@@ -374,6 +374,8 @@ def return_file(adtype):
     if suitablead is None:
         print("Suitable ad randomizer")
         suitablead = Ads.query.get(random.randint(1, Ads.query.count()))
+        while float(suitablead.budget) < 0.25 or suitablead.ad_type != adtype:
+            suitablead = Ads.query.get(random.randint(1, Ads.query.count()))
 
     if suitablead:
         return flask.redirect("/ads" + "/" + str(int(suitablead.id) - 1))
