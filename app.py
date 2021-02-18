@@ -366,7 +366,7 @@ def return_file(adtype):
     print(suitableads)
 
     try:
-        if len(suitableads):
+        if len(suitableads) == 1:
             suitablead = suitableads[0]
 
         else:
