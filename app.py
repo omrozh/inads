@@ -468,7 +468,7 @@ def adclick(adname):
         User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.25
 
         db.session.commit()
-        return flask.redirect(Ads.query.get(int(adname) + 1).advertiserwebsite)
+        return f"<script> document.location = {Ads.query.get(int(adname) + 1).advertiserwebsite} </script>"
 
 
 @app.route("/inads/<adblockcanceller>")
