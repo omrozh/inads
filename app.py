@@ -169,11 +169,24 @@ def logout():
     return flask.redirect("/")
 
 
+@app.route("/confirmationfile")
+@login_required
+def confirmationFile():
+    return flask.render_template("downloadconfirmation.html", user=current_user)
+
+
 @app.route("/add_domain", methods=["POST", "GET"])
 @login_required
 def addDomain():
     domains = Domains.query.filter_by(owner=current_user.email)
     if flask.request.method == "POST":
+        if requests.get(flask.request.values["domain"] + "/inadsconfirm.txt").content != current_user.email:
+            return '''
+                <script>
+                    alert("Domain Unconfirmed")
+                    document.location = "/dashboard"
+                </script>
+            '''
         domainname = Domains(domain=flask.request.values["domain"], owner=current_user.email,
                              keywords=flask.request.values["keywords"], total_revenue=0, total_clicks=0, total_views=0)
         db.session.add(domainname)
