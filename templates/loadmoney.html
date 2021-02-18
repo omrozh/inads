@@ -39,7 +39,7 @@
             <input class="buttonGray" style="margin-left: 40%" type=submit value="Pay">
         </form>
         <center>
-            <h2>Current account balance: {{ user.account_balance }} $</h2>
+            <h2>Current account balance: {{ "%.2f" % user.account_balance }} $</h2>
         </center>
     </div>
 </body>

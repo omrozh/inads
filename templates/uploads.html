@@ -32,7 +32,7 @@
 
     <div style="float: left; width: 75%; margin-left: 4%">
         <h1>Create New Campaign</h1>
-        <h2>Current account balance: {{ user.account_balance }} $</h2>
+        <h2>Current account balance: {{ "%.2f" % user.account_balance }} $</h2>
         <form method=post enctype=multipart/form-data>
             <input type=file name=file>
             <hr>

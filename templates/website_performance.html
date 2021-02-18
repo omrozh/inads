@@ -37,7 +37,7 @@
             <div class="panel">
                 <p>Total Clicks: {{ i.total_clicks }}</p>
                 <p>Total Views: {{ i.total_views }}</p>
-                <p>Total Revenue: {{ i.total_revenue }} $</p>
+                <p>Total Revenue: {{ "%.2f" % i.total_revenue }} $</p>
                 <p>Keywords: {{ i.keywords }}</p>
                 <form method=post enctype=multipart/form-data>
                     <input hidden="true" type="text" value="{{ i.id }}" name="domainid">
