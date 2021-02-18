@@ -182,7 +182,7 @@ def addDomain():
     if flask.request.method == "POST":
 
         try:
-            requestinfo = requests.get(flask.request.values["domain"] + "/inadsconfirm.txt").content
+            requestinfo = requests.get("http://" + flask.request.values["domain"] + "/inadsconfirm.txt").content
         except:
             return '''
                 <script>
