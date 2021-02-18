@@ -43,6 +43,7 @@ function createAds(element, index){
     }
 
     adname = urlfinal.substring(urlfinal.lastIndexOf("/") + 1)
+    alert(adname)
     element.setAttribute('onclick', "clickad(" + adname + ")");
 })
 }
