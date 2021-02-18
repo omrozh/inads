@@ -4,6 +4,7 @@ let apiKey = ""
 let textcontent = ""
 
 function createAds(element, index){
+  var res = "";
   fetch("https://inads.herokuapp.com/view/" + element.getAttribute("name"))
   .then(res=>{urlfinal = res.url; return res.blob()})
   .then(blob=>{
@@ -11,7 +12,6 @@ function createAds(element, index){
         return "Cannot complete action"
     }
     var img = URL.createObjectURL(blob);
-    adname = urlfinal.substring(urlfinal.lastIndexOf("/") + 1)
     element.setAttribute('src', img);
     if(element.getAttribute("name") == "inadstandard"){
         element.style.removeProperty("width")
@@ -42,6 +42,9 @@ function createAds(element, index){
         element.setAttribute("width", "20%")
         element.setAttribute("padding-bottom", "20%")
     }
+
+    adname = urlfinal.substring(urlfinal.lastIndexOf("/") + 1)
+    alert(adname)
     element.setAttribute('onclick', "clickad(" + adname + ")");
 })
 }
