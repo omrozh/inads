@@ -51,7 +51,7 @@ document.body.insertAdjacentHTML("beforebegin", "<small> Ads by InAds </small>")
 
 if(adElements.length == 0){
     var insertbanner = '<img class="inads" name=inadsbanner src="" alt="" style="float: right;">';
-    var insertad = '<img class="inads" name=inadstandard src="" alt="" style="margin-left: 12.5%">';
+    var insertad = '<img class="inads" name=inadstandard src="" alt="" style="margin-left: 9%">';
     document.body.insertAdjacentHTML("beforeEnd", insertad);
     document.body.insertAdjacentHTML("afterbegin", insertad);
     document.body.insertAdjacentHTML("afterbegin", insertbanner);
