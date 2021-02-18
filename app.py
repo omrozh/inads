@@ -192,7 +192,7 @@ def dashboard():
     return flask.render_template("dashboard.html", user=user, ads=ads, numberofads=numberofads)
 
 
-@app.route("/payout")
+@app.route("/payout", methods=["POST", "GET"])
 @login_required
 def payoutSystem():
     if flask.request.method == "POST" and current_user.account_balance > 50:
