@@ -33,7 +33,6 @@ function createAds(element, index){
         element.removeAttribute("class")
         element.removeAttribute("name")
         element.setAttribute("width", "15%")
-        element.setAttribute("max-height", "70vh")
         element.setAttribute("padding-bottom", "70%")
         element.insertAdjacentHTML("beforeend", "<small> Ads by InAds </small>")
     }
@@ -52,7 +51,7 @@ function createAds(element, index){
 let adElements = document.getElementsByClassName("inads");
 
 if(adElements.length == 0){
-    var insertbanner = '<img class="inads" name=inadsbanner src="" alt="" style="float: right; position: fixed; right: 0; margin-top: 5%">';
+    var insertbanner = '<div style="margin-top: 5%"><img class="inads" name=inadsbanner src="" alt="" style="float: right; position: fixed; right: 0;">';
     var insertad = '<img class="inads" name=inadstandard src="" alt="" style="margin-left: 12.5%;">';
     document.body.insertAdjacentHTML("beforeEnd", insertad);
     document.body.insertAdjacentHTML("afterbegin", insertbanner);
