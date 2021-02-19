@@ -485,7 +485,7 @@ def adclick(adname):
             User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.20
 
         if User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
-            domainobject.total_revenue += 0.18
+            User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.18
             User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().account_balance += 0.02
 
         db.session.commit()
