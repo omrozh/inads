@@ -14,7 +14,7 @@ function createAds(element, index){
     var img = URL.createObjectURL(blob);
     element.setAttribute('src', img);
     //if(window.getComputedStyle(element).position != "fixed")
-    element.insertAdjacentHTML("beforebegin", '<a href="http://inads.herokuapp.com" style="' + element.style + '">Ads by <span style="color: black;">InAds</small></span></a><br>')
+    element.insertAdjacentHTML("beforebegin", '<a href="http://inads.herokuapp.com" style="' + window.getComputedStyle(element) + '">Ads by <span style="color: black;">InAds</small></span></a><br>')
 
         // text-decoration: none; color:yellow; float: ' + window.getComputedStyle(element).float + '"><small style="font-size: 6px; margin-left: ' + window.getComputedStyle(element).marginLeft + '; margin-right: ' + window.getComputedStyle(element).marginRight + '
     if(element.getAttribute("name") == "inadstandard"){
