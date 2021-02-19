@@ -52,19 +52,9 @@ let adElements = document.getElementsByClassName("inads");
 if(adElements.length == 0){
     var insertbanner = '<img class="inads" name=inadsbanner src="" alt="" style="float: right;">';
     var insertad = '<img class="inads" name=inadstandard src="" alt="" style="margin-left: 12.5%;">';
-    var elementsnav = document.getElementsByTagName("nav");
-    alert(elementsnav)
-    if(elementsnav){
-        document.body.insertAdjacentHTML("beforeEnd", insertad);
-        document.body.insertAdjacentHTML("afterbegin", insertbanner);
-        document.body.insertAdjacentHTML("afterbegin", insertad);
-    }
-    else{
-        var insertafter = elementsnav[insertafter.length - 1]
-        document.body.insertAdjacentHTML("beforeEnd", insertad);
-        insertafter.insertAdjacentHTML("afterbegin", insertbanner);
-        insertafter.insertAdjacentHTML("afterbegin", insertad);
-    }
+    document.body.insertAdjacentHTML("beforeEnd", insertad);
+    document.body.insertAdjacentHTML("afterbegin", insertbanner);
+    document.body.insertAdjacentHTML("afterbegin", insertad);
     adElements = document.getElementsByClassName("inads");
 }
 
