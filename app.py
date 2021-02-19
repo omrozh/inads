@@ -39,6 +39,10 @@ class User(db.Model, UserMixin):
     account_balance = db.Column(db.Float)
     customer_id = db.Column(db.String)
     subscriber_id = db.Column(db.String)
+    is_partner = db.Column(db.Boolean)
+
+    def __repr__(self):
+        return self.email
 
 
 class Payouts(db.Model):
@@ -457,14 +461,21 @@ def adclick(adname):
 
         domainobject = Domains.query.filter_by(domain=domain).first()
         domainobject.total_views += 1
-        domainobject.total_revenue += 0.20
-
+        if not User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
+            domainobject.total_revenue += 0.20
+        if User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
+            domainobject.total_revenue += 0.18
         domainowner = \
             Domains.query.filter_by(
                 domain=urllib.parse.urlparse(
                     flask.request.environ.get('HTTP_REFERER', 'default value')).netloc).first().owner
         userowner = User.query.filter_by(email=domainowner).first().account_balance
-        User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.20
+        if not User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
+            User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.20
+
+        if User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
+            domainobject.total_revenue += 0.18
+            User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().account_balance += 0.02
 
         db.session.commit()
         return f"<script> document.location = '{Ads.query.get(int(adname) + 1).advertiserwebsite}' </script>"
