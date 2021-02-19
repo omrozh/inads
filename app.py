@@ -397,8 +397,8 @@ def return_file(adtype):
     suitableads = []
 
     keywords = Domains.query.filter_by(domain=domain).first().keywords.split("/")
-    for i in Ads.query.all():
-        if i.ad_type == adtype and i.budget > 0.25:
+    for i in Ads.query.filter_by(ad_type=adtype):
+        if i.budget > 0.25:
             for c in i.keywords.split("/"):
                 if c in keywords:
                     suitableads.append(i)
