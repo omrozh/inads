@@ -265,15 +265,9 @@ def register():
     user = ""
     if flask.request.method == "POST":
         if flask.request.values["purpose"] == "Advertiser":
-            client, subs = makePayment(flask.request.values["credit"], flask.request.values["month"],
-                                       flask.request.values["year"],
-                                       flask.request.values["cvc"], False)
             user = User(email=flask.request.values["email"], password=flask.request.values["password"],
                         purpose=flask.request.values["purpose"], account_balance=0)
         if flask.request.values["purpose"] == "Content Creator":
-            client, subs = makePayment(flask.request.values["credit"], flask.request.values["month"],
-                                       flask.request.values["year"],
-                                       flask.request.values["cvc"], False)
             user = User(email=flask.request.values["email"], password=flask.request.values["password"],
                         purpose=flask.request.values["purpose"], account_balance=0)
 
