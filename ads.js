@@ -33,6 +33,7 @@ function createAds(element, index){
         element.removeAttribute("class")
         element.removeAttribute("name")
         element.setAttribute("width", "15%")
+        element.setAttribute("max-height", "70vh")
         element.setAttribute("padding-bottom", "70%")
         element.insertAdjacentHTML("beforeend", "<small> Ads by InAds </small>")
     }
