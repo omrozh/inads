@@ -53,7 +53,7 @@ if(adElements.length == 0){
     var insertbanner = '<img class="inads" name=inadsbanner src="" alt="" style="float: right;">';
     var insertad = '<img class="inads" name=inadstandard src="" alt="" style="margin-left: 12.5%;">';
     var elementsnav = document.getElementsByTagName("nav");
-    if(elementsnav.length == 0){
+    if(elementsnav){
         document.body.insertAdjacentHTML("beforeEnd", insertad);
         document.body.insertAdjacentHTML("afterbegin", insertbanner);
         document.body.insertAdjacentHTML("afterbegin", insertad);
