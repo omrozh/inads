@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>InAds - Register</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="/styles">
+    <script>
+        alert("You need to create a payment source first")
+    </script>
 </head>
 <body style="font-family: open sans">
     <div style="width: 100%; color: gray; margin-top: 1%; margin-bottom: 1%; position: fixed">
@@ -20,24 +25,17 @@
     </center>
     <div style="margin-top: 3%">
         <form id="form-id" method=post enctype=multipart/form-data>
-            <div id="form-mail-registration">
-                <input style="margin-left: 40%; margin-right:35%; float: left" class="mainForm" type=text name=email placeholder="Email" required>
+            <div id="form-credit-registration" hidden="true">
+                <input style="margin-left: 40%; margin-right:35%; float: left" class="mainForm" type=number inputmode="numeric" pattern="[0-9\s]{13,19}" name=credit placeholder="Card Number">
                 <hr style="margin-left: 40%; margin-right:35%">
-                <input style="margin-left: 40%; margin-right:35%"  class="mainForm" type=password name=password placeholder="Password" required>
+                <input style="margin-left: 40%; margin-right:35%; float: left" class="mainForm" type=number name=cvc placeholder="CVC">
                 <hr style="margin-left: 40%; margin-right:35%">
-                <select style="margin-left: 40%;" size="margin-left: 40%" name="purpose" class="mainForm" id="rgstr" required>
-                    <option value="Advertiser">Your Purpose</option>
-                    <option value="Content Creator">Content Creator</option>
-                    <option value="Advertiser">Advertiser</option>
-                </select>
-                <hr style="margin-left: 40%; margin-right:35%">
+                <input style="margin-left: 40%; margin-right:0%; float: left; width: 12.5%" class="mainForm" type=number name=month placeholder="Month">
+                <input style="margin-right:0%; float: left; width: 12.5%" class="mainForm" type=number name=year placeholder="Year">
                 <br>
-                <input class="buttonGray" style="margin-left: 40%; margin-top: 1%" type=submit value="Register">
+                <small>Credit card information is collected to be able to store it for advertising payments no fees will apply</small>
             </div>
         </form>
     </div>
-    <br>
-    <div style="margin-left: 40%">Already have an account? <a href="/login" class="navbarElement">Login</a></div>
-    <br>
 </body>
 </html>

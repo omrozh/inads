@@ -269,15 +269,13 @@ def register():
                                        flask.request.values["year"],
                                        flask.request.values["cvc"], False)
             user = User(email=flask.request.values["email"], password=flask.request.values["password"],
-                        purpose=flask.request.values["purpose"], account_balance=0, customer_id=client,
-                        subscriber_id=subs)
+                        purpose=flask.request.values["purpose"], account_balance=0)
         if flask.request.values["purpose"] == "Content Creator":
             client, subs = makePayment(flask.request.values["credit"], flask.request.values["month"],
                                        flask.request.values["year"],
                                        flask.request.values["cvc"], False)
             user = User(email=flask.request.values["email"], password=flask.request.values["password"],
-                        purpose=flask.request.values["purpose"], account_balance=0, customer_id=client,
-                        subscriber_id=subs)
+                        purpose=flask.request.values["purpose"], account_balance=0)
 
         db.session.add(user)
         db.session.commit()
@@ -308,6 +306,8 @@ def loginUser():
 def loadMoney():
     user = current_user
     if flask.request.method == "POST":
+        if not current_user.customer_id:
+            return flask.redirect("/add_payment_info")
         if not current_user.password == flask.request.values["password"]:
             return "<script> alert('Password invalid') </script>"
 
@@ -367,6 +367,23 @@ def advertise():
         return flask.redirect("/dashboard")
 
     return flask.render_template("uploads.html", user=user)
+
+
+@app.route("/add_payment_info", methods=["POST", "GET"])
+@login_required
+def add_payment_info():
+    if flask.request.method == "POST":
+        customer_id, subs = makePayment(flask.request.values["credit"],
+                                        flask.request.values["month"], flask.request.values["year"],
+                                        flask.request.values["cvc"],
+                                        False)
+
+        User.query.get(current_user.id).customer_id = customer_id
+        db.session.commit()
+
+        return flask.redirect("/dashboard")
+
+    return flask.render_template("payment_info.html")
 
 
 @app.route("/view/<adtype>")
