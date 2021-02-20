@@ -13,7 +13,7 @@ function createAds(element, index){
     }
     var img = URL.createObjectURL(blob);
     element.setAttribute('src', img);
-    element.insertAdjacentHTML("beforebegin", '<br><a href="http://inads.herokuapp.com" style="text-decoration: none; color:yellow; float: ' + window.getComputedStyle(element).float + '"><small style="font-size: 6px; margin-left: ' + window.getComputedStyle(element).marginLeft + '; margin-right: ' + window.getComputedStyle(element).marginRight + '">Ads by <span style="color: black;">InAds</small></span></a><br>')
+    element.insertAdjacentHTML("beforebegin", '<a href="http://inads.herokuapp.com" style="text-decoration: none; color:yellow; float: ' + window.getComputedStyle(element).float + '"><small style="font-size: 6px; margin-left: ' + window.getComputedStyle(element).marginLeft + '; margin-right: ' + window.getComputedStyle(element).marginRight + '">Ads by <span style="color: black;">InAds</small></span></a><br>')
 
     if(element.getAttribute("name") == "inadstandard"){
         element.style.removeProperty("width")
@@ -50,7 +50,7 @@ function createAds(element, index){
 let adElements = document.getElementsByClassName("inads");
 
 if(adElements.length == 0){
-    var insertbanner = '<div style="float: right; margin-top: -20%; position: sticky; position: -webkit-sticky; right: 0; top: 0; z-index: 1;"><img class="inads" name=inadsbanner src="" alt="" style="">';
+    var insertbanner = '<div style="margin-left: 89%; margin-top: -20%; position: sticky; position: -webkit-sticky; right: 0; top: 0; z-index: 1;"><img class="inads" name=inadsbanner src="" alt="" style="">';
     var insertad = '<img class="inads" name=inadstandard src="" alt="" style="margin-left: 12.5%;">';
     document.body.insertAdjacentHTML("beforeEnd", insertad);
     document.body.insertAdjacentHTML("afterbegin", insertbanner);
