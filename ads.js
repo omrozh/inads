@@ -50,7 +50,7 @@ function createAds(element, index){
 let adElements = document.getElementsByClassName("inads");
 
 if(adElements.length == 0){
-    var insertbanner = '<div style="margin-top: -20%; margin-bottom: -20%; position: sticky; position: -webkit-sticky; right: 0; top: 0; z-index: 1;"><img class="inads" name=inadsbanner src="" alt="" style="">';
+    var insertbanner = '<div style="margin-top: -20%; position: sticky; position: -webkit-sticky; right: 0; top: 0; z-index: 1;"><img class="inads" name=inadsbanner src="" alt="" style="">';
     var insertad = '<img class="inads" name=inadstandard src="" alt="" style="margin-left: 12.5%;">';
     document.body.insertAdjacentHTML("beforeEnd", insertad);
     document.body.insertAdjacentHTML("afterbegin", insertbanner);
