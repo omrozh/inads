@@ -367,13 +367,21 @@ def advertise():
 @login_required
 def add_payment_info():
     if flask.request.method == "POST":
-        customer_id, subs = makePayment(flask.request.values["credit"],
-                                        flask.request.values["month"], flask.request.values["year"],
-                                        flask.request.values["cvc"],
-                                        False)
+        try:
+            customer_id, subs = makePayment(flask.request.values["credit"],
+                                            flask.request.values["month"], flask.request.values["year"],
+                                            flask.request.values["cvc"],
+                                            False)
 
-        User.query.get(current_user.id).customer_id = customer_id
-        db.session.commit()
+            User.query.get(current_user.id).customer_id = customer_id
+            db.session.commit()
+        except:
+            return '''
+                <script>
+                    alert('Payment information cannot be verified.')
+                    document.location("/add_payment_info")
+                </script>
+            '''
 
         return flask.redirect("/dashboard")
 
