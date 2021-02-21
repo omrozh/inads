@@ -36,7 +36,6 @@
         <form method=post enctype=multipart/form-data>
             <div class="upload-btn-wrapper">
               <button onclick="filenamer()" id="uploadButton" class="btn">Upload a file</button>
-              <div hidden="true" id="selected">File selected</div>
               <input type="file" name="file" id="file">
             </div>
             <hr>
@@ -58,8 +57,7 @@
     </div>
     <script>
         function() filenamer{
-            document.getElementById("uploadButton").hidden = true
-            document.getElementById("selected").hidden = false
+            document.getElementById("uploadButton").innerHTML = "File Selected"
         }
     </script>
 </body>
