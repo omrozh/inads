@@ -35,8 +35,9 @@
         <h2>Current account balance: {{ "%.2f" % user.account_balance }} $</h2>
         <form method=post enctype=multipart/form-data>
             <div class="upload-btn-wrapper">
-              <button id="uploadButton" class="btn">Upload a file</button>
-              <input onchange="filenamer()" type="file" name="file" id="file">
+              <button onclick="filenamer()" id="uploadButton" class="btn">Upload a file</button>
+              <div hidden="true" id="selected">File selected</div>
+              <input type="file" name="file" id="file">
             </div>
             <hr>
             <input class="mainFormBig" type=text name=website placeholder="Advertisement Web Page URL">
@@ -57,11 +58,8 @@
     </div>
     <script>
         function() filenamer{
-            var file = document.getElementById('file').files[0];
-            if(file){
-                alert(file)
-                document.getElementById("uploadButton").innerHTML = file.name
-            }
+            document.getElementById("uploadButton").hidden = true
+            document.getElementById("selected").hidden = false
         }
     </script>
 </body>
