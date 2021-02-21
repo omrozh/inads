@@ -34,7 +34,10 @@
         <h1>Create New Campaign</h1>
         <h2>Current account balance: {{ "%.2f" % user.account_balance }} $</h2>
         <form method=post enctype=multipart/form-data>
-            <input type=file name=file>
+            <div class="upload-btn-wrapper">
+              <button class="btn">Upload a file</button>
+              <input type="file" name="myfile" />
+            </div>
             <hr>
             <input class="mainFormBig" type=text name=website placeholder="Advertisement Web Page URL">
             <hr>
