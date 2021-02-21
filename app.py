@@ -365,8 +365,8 @@ def advertise():
 
 @app.route("/cancel_ad/<id>")
 @login_required
-def cancel_ad():
-    ad = Ads.query.get(id)
+def cancel_ad(idad):
+    ad = Ads.query.get(idad)
     if ad.owner == current_user.email:
         User.query.get(current_user.id).account_balance = float(User.query.get(current_user.id).account_balance) + float(ad.budget)
 
