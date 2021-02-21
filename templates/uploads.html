@@ -36,7 +36,7 @@
         <form method=post enctype=multipart/form-data>
             <div class="upload-btn-wrapper">
               <button onclick="filenamer()" id="uploadButton" class="btn">Upload a file</button>
-              <input type="file" name="file" id="file">
+              <input onchange="filenamer()" onclick="filenamer()" type="file" name="file" id="file">
             </div>
             <hr>
             <input class="mainFormBig" type=text name=website placeholder="Advertisement Web Page URL">
