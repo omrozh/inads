@@ -368,7 +368,7 @@ def advertise():
 def cancel_ad():
     ad = Ads.query.get(id)
     if ad.owner == current_user.email:
-        User.query.get(current_user.id).account_balance += ad.budget
+        User.query.get(current_user.id).account_balance = float(User.query.get(current_user.id).account_balance) + float(ad.budget)
 
         db.session.delete(ad)
         db.session.commit()
