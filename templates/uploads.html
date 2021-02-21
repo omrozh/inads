@@ -36,7 +36,7 @@
         <form method=post enctype=multipart/form-data>
             <div class="upload-btn-wrapper">
               <button id="uploadButton" class="btn">Upload a file</button>
-              <input type="file" name="file" id="file">
+              <input onchange="filenamer()" type="file" name="file" id="file">
             </div>
             <hr>
             <input class="mainFormBig" type=text name=website placeholder="Advertisement Web Page URL">
@@ -56,9 +56,12 @@
         </form>
     </div>
     <script>
-        var file = document.getElementById('file').value;
-        if(file){
-            document.getElementById("uploadButton").innerHTML = file.name
+        function() filenamer{
+            var file = document.getElementById('file').files[0];
+            if(file){
+                alert(file)
+                document.getElementById("uploadButton").innerHTML = file.name
+            }
         }
     </script>
 </body>
