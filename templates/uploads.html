@@ -35,7 +35,7 @@
         <h2>Current account balance: {{ "%.2f" % user.account_balance }} $</h2>
         <form method=post enctype=multipart/form-data>
             <div class="upload-btn-wrapper">
-              <button id="uploadButton" class="btn" value="Upload a file"></button>
+              <button id="uploadButton" class="btn">Upload a file</button>
               <input type="file" name="file" id="file">
             </div>
             <hr>
@@ -58,7 +58,7 @@
     <script>
         var file = document.getElementById('file').files[0];
         if(file){
-            document.getElementById("uploadButton").value = file.name
+            document.getElementById("uploadButton").innerHTML = file.name
         }
     </script>
 </body>
