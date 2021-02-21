@@ -56,7 +56,7 @@
         </form>
     </div>
     <script>
-        var file = document.getElementById('file').files[0];
+        var file = document.getElementById('file').value;
         if(file){
             document.getElementById("uploadButton").innerHTML = file.name
         }
