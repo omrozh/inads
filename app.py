@@ -363,7 +363,7 @@ def advertise():
     return flask.render_template("uploads.html", user=user)
 
 
-@app.route("/cancel_ad/<id>")
+@app.route("/cancel_ad/<adid>")
 @login_required
 def cancel_ad(idad):
     ad = Ads.query.get(idad)
