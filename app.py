@@ -391,7 +391,7 @@ def add_payment_info():
 @app.route("/view/<adtype>")
 @cross_origin(supports_credentials=True)
 def return_file(adtype):
-    print("www")
+    print(adtype)
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     domainList = []
 
