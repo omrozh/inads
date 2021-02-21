@@ -391,6 +391,7 @@ def add_payment_info():
 @app.route("/view/<adtype>")
 @cross_origin(supports_credentials=True)
 def return_file(adtype):
+    print("www")
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     domainList = []
 
@@ -415,9 +416,6 @@ def return_file(adtype):
 
         else:
             suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
-            while suitablead.ad_type != adtype:
-                print(adtype)
-                suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
     except Exception as e:
         print(e)
         pass
