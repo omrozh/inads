@@ -405,6 +405,7 @@ def return_file(adtype):
 
     keywords = Domains.query.filter_by(domain=domain).first().keywords.split("/")
     for i in Ads.query.filter_by(ad_type=adtype):
+        print("DB Out:" + i.ad_type)
         if i.budget > 0.25:
             for c in i.keywords.split("/"):
                 if c in keywords:
