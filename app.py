@@ -404,9 +404,7 @@ def return_file(adtype):
 
     keywords = Domains.query.filter_by(domain=domain).first().keywords.split("/")
     for i in Ads.query.filter_by(ad_type=adtype):
-        print(i.ad_type)
-        print(adtype)
-        if i.budget > 0.25 and i.ad_type == adtype:
+        if i.budget > 0.25:
             for c in i.keywords.split("/"):
                 if c in keywords:
                     suitableads.append(i)
@@ -417,6 +415,8 @@ def return_file(adtype):
 
         else:
             suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
+            while suitablead.ad_type != adtype:
+                suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
     except Exception as e:
         print(e)
         pass
