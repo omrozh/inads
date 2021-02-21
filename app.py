@@ -338,7 +338,7 @@ def advertise():
         if file.filename == '':
             return flask.redirect(flask.request.url)
 
-        filename = secure_filename(file.filename)
+        filename = secure_filename(file.filename) + str(random.randint(1384384718471324218, 9471384138946193649716))
 
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
