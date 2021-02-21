@@ -8,6 +8,8 @@ function createAds(element, index){
   .then(res=>{adname = res.url.substring(res.url.lastIndexOf("/") + 1); element.setAttribute('onclick', "clickad(" + adname + ")"); return res.blob()})
   .then(blob=>{
 
+    alert(element.getAttribute("name"))
+
     if(blob.size < 150){
         return "Cannot complete action"
     }
