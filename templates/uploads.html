@@ -35,8 +35,8 @@
         <h2>Current account balance: {{ "%.2f" % user.account_balance }} $</h2>
         <form method=post enctype=multipart/form-data>
             <div class="upload-btn-wrapper">
-              <button class="btn">Upload a file</button>
-              <input type="file" name="file" />
+              <button id="uploadButton" class="btn" value="Upload a file"></button>
+              <input type="file" name="file" id="file">
             </div>
             <hr>
             <input class="mainFormBig" type=text name=website placeholder="Advertisement Web Page URL">
@@ -55,4 +55,10 @@
             <input class="buttonBlue" style="width: 25%" type=submit value="Start Campaign">
         </form>
     </div>
+    <script>
+        var file = document.getElementById('file').files[0];
+        if(file){
+            document.getElementById("uploadButton").value = file.name
+        }
+    </script>
 </body>
