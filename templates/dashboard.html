@@ -43,6 +43,8 @@
                 <h3>Total number of ad clicks: {{ i.total_clicks }}</h3>
                 <h3>Total number of view: {{ i.total_views }}</h3>
                 <h3>Remaining Budget: {{ "%.2f" % i.budget }} $</h3>
+                <h3>Ad Type: {{ i.ad_type }} $</h3>
+                <a href="/cancel_ad/{{ i.id }}" style="text-decoration=none; color: gray">Cancel Ad</a>
                 <hr>
             </div>
         {% endfor %}

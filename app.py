@@ -363,6 +363,16 @@ def advertise():
     return flask.render_template("uploads.html", user=user)
 
 
+@app.route("/cancel_ad/<id>")
+@login_required
+def cancel_ad():
+    ad = Ads.query.get(id)
+    if ad.owner == current_user.email:
+        db.session.delete(ad)
+        db.session.commit()
+    return flask.redirect("/dashboard")
+
+
 @app.route("/add_payment_info", methods=["POST", "GET"])
 @login_required
 def add_payment_info():
