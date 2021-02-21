@@ -9,7 +9,7 @@ import stripe
 import random
 from flask_cors import CORS, cross_origin
 from flask_login import LoginManager, UserMixin, current_user, logout_user, login_required, login_user
-
+ 
 app = flask.Flask(__name__)
 app.config["UPLOAD_FOLDER"] = ""
 app.config["SECRET_KEY"] = "MAKEMEBILLIONAIRE"
@@ -397,8 +397,6 @@ def return_file(adtype):
     for i in Domains.query.all():
         domainList.append(str(i.domain))
     if domain not in domainList:
-        print(domain)
-        print(domainList)
         return "Unauthorized request"
 
     suitablead = None
@@ -406,7 +404,9 @@ def return_file(adtype):
 
     keywords = Domains.query.filter_by(domain=domain).first().keywords.split("/")
     for i in Ads.query.filter_by(ad_type=adtype):
-        if i.budget > 0.25:
+        print(i.ad_type)
+        print(adtype)
+        if i.budget > 0.25 and i.ad_type == adtype:
             for c in i.keywords.split("/"):
                 if c in keywords:
                     suitableads.append(i)
