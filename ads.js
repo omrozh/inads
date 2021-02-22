@@ -41,8 +41,8 @@ function createAds(element, index){
         element.className = "";
         element.removeAttribute("class")
         element.removeAttribute("name")
-        element.setAttribute("width", "20%")
-        element.setAttribute("padding-bottom", "20%")
+        element.setAttribute("width", "100%")
+        element.setAttribute("padding-bottom", "100%")
     }
 })
 }
