@@ -37,8 +37,8 @@
         <h2 style="margin-top: 10%; margin-left: 5%">Active Campaigns</h2>
         {% for i in ads %}
         <button class="accordion">{{ i.domain }}</button>
-        <div class="panel">
-            <div style="margin-left: 10%">
+        <div style="margin-left: 10%" class="panel">
+            <div>
                 <h3>{{ i.advertiserwebsite }}</h3>
                 <h3>{{ i.keywords }}</h3>
                 <h3>Total number of ad clicks: {{ i.total_clicks }}</h3>
