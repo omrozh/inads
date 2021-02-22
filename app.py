@@ -435,9 +435,9 @@ def return_file(adtype):
         print("Suitable ad randomizer")
         totalads = Ads.query.all()
 
-        suitablead = totalads[random.randint(0, len(totalads))]
+        suitablead = totalads[random.randint(0, len(totalads) - 1)]
         while float(suitablead.budget) < 0.25 or suitablead.ad_type != adtype:
-            suitablead = totalads[random.randint(0, len(totalads))]
+            suitablead = totalads[random.randint(0, len(totalads) - 1)]
 
     if suitablead:
         return flask.redirect("/ads" + "/" + str(int(suitablead.id) - 1))
