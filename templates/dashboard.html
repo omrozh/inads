@@ -35,8 +35,9 @@
             <h1 style="font-size: 2rem; margin-right: 5%; float: right">{{ "%.2f" % user.account_balance }} $</h1>
         </div>
         <h2 style="margin-top: 10%; margin-left: 5%">Active Campaigns</h2>
-        <hr>
         {% for i in ads %}
+        <button class="accordion">{{ i.domain }}</button>
+        <div class="panel">
             <div style="margin-left: 10%">
                 <h3>{{ i.advertiserwebsite }}</h3>
                 <h3>{{ i.keywords }}</h3>
@@ -45,8 +46,8 @@
                 <h3>Remaining Budget: {{ "%.2f" % i.budget }} $</h3>
                 <h3>Ad Type: {{ i.ad_type }}</h3>
                 <a href="/cancel_ad/{{ i.id }}" style="text-decoration=none; color: gray">Cancel Ad</a>
-                <hr>
             </div>
+        </div>
         {% endfor %}
         {% if numberofads < 1 %}
         <h2 style="margin-left: 5%; margin-top: 10%">You have no campaigns yet. <a href="/advertise" style="color: gray; text-decoration: none">Create One</a></h2>
