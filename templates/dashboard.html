@@ -35,9 +35,9 @@
             <h1 style="font-size: 2rem; margin-right: 5%; float: right">{{ "%.2f" % user.account_balance }} $</h1>
         </div>
         <h2 style="margin-top: 10%; margin-left: 5%">Active Campaigns</h2>
+        <hr>
         {% for i in ads %}
             <div style="margin-left: 10%">
-                <hr>
                 <h3>{{ i.advertiserwebsite }}</h3>
                 <h3>{{ i.keywords }}</h3>
                 <h3>Total number of ad clicks: {{ i.total_clicks }}</h3>
