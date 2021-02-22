@@ -36,7 +36,7 @@
         </div>
         <h2 style="margin-top: 10%; margin-left: 5%">Active Campaigns</h2>
         {% for i in ads %}
-        <button class="accordion">{{ i.advertiserwebsite }}</button>
+            <button style="margin-left: 10%" class="accordion">{{ i.advertiserwebsite }}</button>
             <div style="margin-left: 10%" class="panel">
                 <div>
                     <h3>{{ i.advertiserwebsite }}</h3>
@@ -53,5 +53,22 @@
         <h2 style="margin-left: 5%; margin-top: 10%">You have no campaigns yet. <a href="/advertise" style="color: gray; text-decoration: none">Create One</a></h2>
         {% endif %}
     </div>
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+              panel.style.display = "none";
+            } else {
+              panel.style.display = "block";
+            }
+          });
+        }
+    </script>
 </body>
 </html>
