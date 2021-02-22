@@ -36,18 +36,18 @@
         </div>
         <h2 style="margin-top: 10%; margin-left: 5%">Active Campaigns</h2>
         {% for i in ads %}
-        <button class="accordion">{{ i.domain }}</button>
-        <div style="margin-left: 10%" class="panel">
-            <div>
-                <h3>{{ i.advertiserwebsite }}</h3>
-                <h3>{{ i.keywords }}</h3>
-                <h3>Total number of ad clicks: {{ i.total_clicks }}</h3>
-                <h3>Total number of view: {{ i.total_views }}</h3>
-                <h3>Remaining Budget: {{ "%.2f" % i.budget }} $</h3>
-                <h3>Ad Type: {{ i.ad_type }}</h3>
-                <a href="/cancel_ad/{{ i.id }}" style="text-decoration=none; color: gray">Cancel Ad</a>
+        <button class="accordion">{{ i.advertiserwebsite }}</button>
+            <div style="margin-left: 10%" class="panel">
+                <div>
+                    <h3>{{ i.advertiserwebsite }}</h3>
+                    <h3>{{ i.keywords }}</h3>
+                    <h3>Total number of ad clicks: {{ i.total_clicks }}</h3>
+                    <h3>Total number of view: {{ i.total_views }}</h3>
+                    <h3>Remaining Budget: {{ "%.2f" % i.budget }} $</h3>
+                    <h3>Ad Type: {{ i.ad_type }}</h3>
+                    <a href="/cancel_ad/{{ i.id }}" style="text-decoration=none; color: gray">Cancel Ad</a>
+                </div>
             </div>
-        </div>
         {% endfor %}
         {% if numberofads < 1 %}
         <h2 style="margin-left: 5%; margin-top: 10%">You have no campaigns yet. <a href="/advertise" style="color: gray; text-decoration: none">Create One</a></h2>
