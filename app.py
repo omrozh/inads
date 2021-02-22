@@ -403,15 +403,12 @@ def add_payment_info():
 @app.route("/view/<adtype>")
 @cross_origin(supports_credentials=True)
 def return_file(adtype):
-    print(adtype)
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     domainList = []
 
     for i in Domains.query.all():
         domainList.append(str(i.domain))
     if domain not in domainList:
-        print(domain)
-        print(domainList)
         return "Unauthorized request"
 
     suitablead = None
@@ -422,7 +419,6 @@ def return_file(adtype):
         if i.budget > 0.25:
             for c in i.keywords.split("/"):
                 if c in keywords:
-                    print("DB Out:" + i.ad_type + ", " + str(i.id))
                     suitableads.append(i)
 
     try:
@@ -437,9 +433,9 @@ def return_file(adtype):
 
     if suitablead is None:
         print("Suitable ad randomizer")
-        suitablead = Ads.query.get(random.randint(1, Ads.query.count()))
+        suitablead = Ads.query.get(random.randint(1, Ads.query.count() - 1))
         while float(suitablead.budget) < 0.25 or suitablead.ad_type != adtype:
-            suitablead = Ads.query.get(random.randint(1, Ads.query.count()))
+            suitablead = Ads.query.get(random.randint(1, Ads.query.count() - 1))
 
     if suitablead:
         return flask.redirect("/ads" + "/" + str(int(suitablead.id) - 1))
