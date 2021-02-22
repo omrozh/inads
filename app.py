@@ -410,6 +410,8 @@ def return_file(adtype):
     for i in Domains.query.all():
         domainList.append(str(i.domain))
     if domain not in domainList:
+        print(domain)
+        print(domainList)
         return "Unauthorized request"
 
     suitablead = None
@@ -432,8 +434,6 @@ def return_file(adtype):
     except Exception as e:
         print(e)
         pass
-
-    print(suitablead.id)
 
     if suitablead is None:
         print("Suitable ad randomizer")
