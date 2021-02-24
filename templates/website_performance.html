@@ -35,6 +35,7 @@
         {% for i in domainslist %}
             <button class="accordion">{{ i.domain }}</button>
             <div class="panel">
+                <p>{{ i.domain }}</p>
                 <p>Total Clicks: {{ i.total_clicks }}</p>
                 <p>Total Views: {{ i.total_views }}</p>
                 <p>Total Revenue: {{ "%.2f" % i.total_revenue }} $</p>
