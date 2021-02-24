@@ -452,7 +452,7 @@ def return_file_mobile(adtype, mobileapi):
             suitablead = totalads[random.randint(0, len(totalads) - 1)]
 
     if suitablead:
-        return flask.redirect(f"/{domain}/ads" + "/" + str(int(suitablead.id) - 1))
+        return flask.redirect("/domain" + "/ads" + "/" + str(int(suitablead.id) - 1))
     else:
         return "No ads are suitable to your query."
 
