@@ -329,6 +329,9 @@ def advertise():
         for c in i.keywords.split("/"):
             if c not in total_keywords:
                 total_keywords.append(c)
+
+    total_keywords = sorted(total_keywords, key=str.lower)
+
     if flask.request.method == 'POST':
         if float(flask.request.values["budget"]) > float(current_user.account_balance):
             return '''
