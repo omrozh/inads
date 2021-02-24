@@ -324,6 +324,10 @@ def loadMoney():
 @login_required
 def advertise():
     user = current_user
+    total_keywords = []
+    for i in Domains.query.all():
+        for c in i.keywords.split("/"):
+            total_keywords.append(c)
     if flask.request.method == 'POST':
         if float(flask.request.values["budget"]) > float(current_user.account_balance):
             return '''
@@ -360,7 +364,7 @@ def advertise():
 
         return flask.redirect("/dashboard")
 
-    return flask.render_template("uploads.html", user=user)
+    return flask.render_template("uploads.html", user=user, total_keywords=total_keywords)
 
 
 @app.route("/cancel_ad/<idad>")

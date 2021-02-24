@@ -43,7 +43,7 @@
             <hr>
             <input class="mainFormBig" type=number name=budget placeholder="Campaign Total Budget">
             <hr>
-            <input class="mainFormBig" style="width: 90%" type=text name=keywords placeholder="Targeted Keywords with '/' in between.">
+            <input id="keywordsInput" class="mainFormBig" style="width: 90%" type=text name=keywords placeholder="Targeted Keywords with '/' in between.">
             <hr>
             <select class="mainFormBig" name="typeAd">
                 <option value="inadsbanner">Banner(For vertically placed ads)</option>
@@ -54,10 +54,35 @@
             <br>
             <input class="buttonBlue" style="width: 25%" type=submit value="Start Campaign">
         </form>
+        <button class="accordion">Available Keywords</button>
+        <div class="panel" style="height: 70vh; overflow: auto">
+            {% for i in total_keywords %}
+                <p onclick="addKeyword({{ i }})">{{ i }}</p>
+            {% endfor %}
+        </div>
     </div>
     <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+              panel.style.display = "none";
+            } else {
+              panel.style.display = "block";
+            }
+          });
+        }
         function filenamer(){
             document.getElementById("uploadButton").innerHTML = "File Selected"
+        }
+
+        function addKeyword(var insertKey){
+             "/" + docuemnt.getElementById("keywordsInput").value(insertKey)
         }
     </script>
 </body>
