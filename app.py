@@ -9,7 +9,7 @@ import stripe
 import random
 from flask_cors import CORS, cross_origin
 from flask_login import LoginManager, UserMixin, current_user, logout_user, login_required, login_user
- 
+
 app = flask.Flask(__name__)
 app.config["UPLOAD_FOLDER"] = ""
 app.config["SECRET_KEY"] = "MAKEMEBILLIONAIRE"
@@ -264,8 +264,12 @@ def account():
 def register():
     user = ""
     if flask.request.method == "POST":
-        user = User(email=flask.request.values["email"], password=flask.request.values["password"],
-                    purpose="Advertiser", account_balance=0)
+        if flask.request.values["purpose"] == "Advertiser":
+            user = User(email=flask.request.values["email"], password=flask.request.values["password"],
+                        purpose=flask.request.values["purpose"], account_balance=0)
+        if flask.request.values["purpose"] == "Content Creator":
+            user = User(email=flask.request.values["email"], password=flask.request.values["password"],
+                        purpose=flask.request.values["purpose"], account_balance=0)
 
         db.session.add(user)
         db.session.commit()
@@ -372,7 +376,8 @@ def advertise():
 def cancel_ad(idad):
     ad = Ads.query.get(idad)
     if ad.owner == current_user.email:
-        User.query.get(current_user.id).account_balance = float(User.query.get(current_user.id).account_balance) + float(ad.budget)
+        User.query.get(current_user.id).account_balance = float(
+            User.query.get(current_user.id).account_balance) + float(ad.budget)
 
         db.session.delete(ad)
         db.session.commit()
