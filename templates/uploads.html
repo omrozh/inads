@@ -58,7 +58,7 @@
         <button class="accordion">Available Keywords</button>
         <div class="panel" style="height: 70vh; overflow: auto">
             {% for i in total_keywords %}
-                <p onclick="addKeyword({{ i }})">{{ i }}</p>
+                <p onclick="addKeyword('{{ i }}')">{{ i }}</p>
             {% endfor %}
         </div>
     </div>
