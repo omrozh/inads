@@ -542,15 +542,13 @@ def returnActualMobile(fileindex, key):
         return "Unauthorized request"
     file = Ads.query.get(int(fileindex) + 1)
     file.total_views += 1
-    file.publishing_sites += \
-        urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc + ","
+    file.publishing_sites += domain
     db.session.commit()
     domainobject = Domains.query.filter_by(domain=domain).first()
     domainobject.total_views += 1
     domainobject.total_revenue += 0.001
     domainowner = \
-        Domains.query.filter_by(domain=urllib.parse.urlparse(
-            flask.request.environ.get('HTTP_REFERER', 'default value')).netloc).first().owner
+        Domains.query.filter_by(domain=domain).first().owner
     userowner = User.query.filter_by(email=domainowner).first().account_balance
     Ads.query.get(int(fileindex) + 1).budget -= 0.001
     User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.001
