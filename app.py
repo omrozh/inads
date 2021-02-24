@@ -8,6 +8,7 @@ import requests
 import stripe
 import string
 import random
+import time
 from flask_cors import CORS, cross_origin
 from flask_login import LoginManager, UserMixin, current_user, logout_user, login_required, login_user
 
@@ -25,6 +26,10 @@ db = flask_sqlalchemy.SQLAlchemy(app)
 cred = credentials.Certificate("inads-dccd5-firebase-adminsdk-jra7j-95b2ea76a3.json")
 
 initialize_app(cred, {'storageBucket': 'inads-dccd5.appspot.com'})
+
+suspected_ips = {
+
+}
 
 
 @login_manager.user_loader
@@ -602,13 +607,20 @@ def adclick(adname):
 def adclickmobile(adname, apikey):
     domain = apikey
     domainList = []
+    requestip = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
+
+    if suspected_ips.get(requestip):
+        if time.time() - float(suspected_ips.get(requestip)) < 60:
+            return "Invalid Request"
+
+    suspected_ips[] = \
+        time.time()
 
     for i in Domains.query.all():
         domainList.append(str(i.domain))
 
     if domain not in domainList:
         return "Unauthorized request"
-    website = domain
     if True:
         Ads.query.get(int(adname) + 1).budget -= 0.20
         Ads.query.get(int(adname) + 1).total_clicks += 1
