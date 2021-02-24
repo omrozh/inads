@@ -327,7 +327,8 @@ def advertise():
     total_keywords = []
     for i in Domains.query.all():
         for c in i.keywords.split("/"):
-            total_keywords.append(c)
+            if c not in total_keywords:
+                total_keywords.append(c)
     if flask.request.method == 'POST':
         if float(flask.request.values["budget"]) > float(current_user.account_balance):
             return '''
