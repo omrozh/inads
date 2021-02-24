@@ -264,12 +264,8 @@ def account():
 def register():
     user = ""
     if flask.request.method == "POST":
-        if flask.request.values["purpose"] == "Advertiser":
-            user = User(email=flask.request.values["email"], password=flask.request.values["password"],
-                        purpose=flask.request.values["purpose"], account_balance=0)
-        if flask.request.values["purpose"] == "Content Creator":
-            user = User(email=flask.request.values["email"], password=flask.request.values["password"],
-                        purpose=flask.request.values["purpose"], account_balance=0)
+        user = User(email=flask.request.values["email"], password=flask.request.values["password"],
+                    purpose="Advertiser", account_balance=0)
 
         db.session.add(user)
         db.session.commit()
