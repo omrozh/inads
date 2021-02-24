@@ -192,6 +192,7 @@ def addDomain():
                                  total_views=0)
             db.session.add(domainname)
             db.session.commit()
+            return flask.redirect("/dashboard")
         try:
             requestinfo = requests.get("http://" + flask.request.values["domain"] + "/inadsconfirm.txt").content
         except Exception as e:
