@@ -609,7 +609,7 @@ def adclickmobile(adname, apikey):
     if domain not in domainList:
         return "Unauthorized request"
     website = domain
-    if website in Ads.query.get(int(adname) + 1).publishing_sites.split(","):
+    if True:
         Ads.query.get(int(adname) + 1).budget -= 0.20
         Ads.query.get(int(adname) + 1).total_clicks += 1
 
