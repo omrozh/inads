@@ -47,11 +47,11 @@
             const passOrigin = document.getElementById("passOrigin").value
             const passAgain = document.getElementById("passAgain").value
             if(passAgain != passOrigin){
-                alert("Passwords do not match!")
+                document.getElementById("alert-box").hidden = false;
                 return;
             }
 
-            document.getElementById("alert-box").hidden = false;
+            document.getElementById("alert-box").submit()
         }
     </script>
 </body>
