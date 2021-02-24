@@ -6,6 +6,7 @@ import urllib.parse
 import flask_sqlalchemy
 import requests
 import stripe
+import string
 import random
 from flask_cors import CORS, cross_origin
 from flask_login import LoginManager, UserMixin, current_user, logout_user, login_required, login_user
@@ -184,7 +185,13 @@ def confirmationFile():
 def addDomain():
     domains = Domains.query.filter_by(owner=current_user.email)
     if flask.request.method == "POST":
-
+        if flask.request.values["domain"] == "mobile":
+            api_key = ''.join(random.choice(string.ascii_uppercase) for i in range(30))
+            domainname = Domains(domain=api_key, owner=current_user.email,
+                                 keywords=flask.request.values["keywords"], total_revenue=0, total_clicks=0,
+                                 total_views=0)
+            db.session.add(domainname)
+            db.session.commit()
         try:
             requestinfo = requests.get("http://" + flask.request.values["domain"] + "/inadsconfirm.txt").content
         except Exception as e:
@@ -403,6 +410,51 @@ def add_payment_info():
         return flask.redirect("/dashboard")
 
     return flask.render_template("payment_info.html")
+
+
+@app.route("/view/<adtype>/<mobileapi>")
+@cross_origin(supports_credentials=True)
+def return_file(adtype, mobileapi):
+    domain = mobileapi
+    domainList = []
+
+    for i in Domains.query.all():
+        domainList.append(str(i.domain))
+    if domain not in domainList:
+        return "Unauthorized request"
+
+    suitablead = None
+    suitableads = []
+
+    keywords = Domains.query.filter_by(domain=domain).first().keywords.split("/")
+    for i in Ads.query.filter_by(ad_type=adtype):
+        if i.budget > 0.25:
+            for c in i.keywords.split("/"):
+                if c in keywords:
+                    suitableads.append(i)
+
+    try:
+        if len(suitableads) == 1:
+            suitablead = suitableads[0]
+
+        else:
+            suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
+    except Exception as e:
+        print(e)
+        pass
+
+    if suitablead is None:
+        print("Suitable ad randomizer")
+        totalads = Ads.query.all()
+
+        suitablead = totalads[random.randint(0, len(totalads) - 1)]
+        while float(suitablead.budget) < 0.25 or suitablead.ad_type != adtype:
+            suitablead = totalads[random.randint(0, len(totalads) - 1)]
+
+    if suitablead:
+        return flask.redirect("/ads" + "/" + str(int(suitablead.id) - 1))
+    else:
+        return "No ads are suitable to your query."
 
 
 @app.route("/view/<adtype>")
