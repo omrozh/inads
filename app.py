@@ -597,6 +597,42 @@ def adclick(adname):
         return f"<script> document.location = '{Ads.query.get(int(adname) + 1).advertiserwebsite}' </script>"
 
 
+@app.route("/adclickmobile/<adname>/<apikey>")
+@cross_origin(supports_credentials=True)
+def adclickmobile(adname, apikey):
+    domain = apikey
+    domainList = []
+
+    for i in Domains.query.all():
+        domainList.append(str(i.domain))
+
+    if domain not in domainList:
+        return "Unauthorized request"
+    website = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
+    if website in Ads.query.get(int(adname) + 1).publishing_sites.split(","):
+        Ads.query.get(int(adname) + 1).budget -= 0.20
+        Ads.query.get(int(adname) + 1).total_clicks += 1
+
+        domainobject = Domains.query.filter_by(domain=domain).first()
+        domainobject.total_views += 1
+        if not User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
+            domainobject.total_revenue += 0.20
+        if User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
+            domainobject.total_revenue += 0.18
+        domainowner = \
+            Domains.query.filter_by(
+                domain=domain).first().owner
+        userowner = User.query.filter_by(email=domainowner).first().account_balance
+        if not User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
+            User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.20
+
+        if User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
+            User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.18
+            User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().account_balance += 0.02
+
+        db.session.commit()
+        return f"<script> document.location = '{Ads.query.get(int(adname) + 1).advertiserwebsite}' </script>"
+
 @app.route("/inads/<adblockcanceller>")
 @cross_origin(supports_credentials=True)
 def addscript(adblockcanceller):
