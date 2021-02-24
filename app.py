@@ -668,6 +668,6 @@ def favicon():
     return flask.send_file("favicon.ico")
 
 
-@app.route("/unityextension")
+@app.route("/unityextension.cs")
 def unityextension():
     return flask.send_file("InAds.cs")
