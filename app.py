@@ -414,7 +414,7 @@ def add_payment_info():
 
 @app.route("/view/<adtype>/<mobileapi>")
 @cross_origin(supports_credentials=True)
-def return_file(adtype, mobileapi):
+def return_file_mobile(adtype, mobileapi):
     domain = mobileapi
     domainList = []
 
@@ -497,7 +497,7 @@ def return_file(adtype):
             suitablead = totalads[random.randint(0, len(totalads) - 1)]
 
     if suitablead:
-        return flask.redirect("/ads" + "/" + str(int(suitablead.id) - 1))
+        return flask.redirect(f"{domain}/ads" + "/" + str(int(suitablead.id) - 1))
     else:
         return "No ads are suitable to your query."
 
@@ -507,6 +507,35 @@ def return_file(adtype):
 def returnActual(fileindex):
     domainList = []
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
+    for i in Domains.query.all():
+        domainList.append(str(i.domain))
+    if domain not in domainList:
+        return "Unauthorized request"
+    file = Ads.query.get(int(fileindex) + 1)
+    file.total_views += 1
+    file.publishing_sites += \
+        urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc + ","
+    db.session.commit()
+    domainobject = Domains.query.filter_by(domain=domain).first()
+    domainobject.total_views += 1
+    domainobject.total_revenue += 0.001
+    domainowner = \
+        Domains.query.filter_by(domain=urllib.parse.urlparse(
+            flask.request.environ.get('HTTP_REFERER', 'default value')).netloc).first().owner
+    userowner = User.query.filter_by(email=domainowner).first().account_balance
+    Ads.query.get(int(fileindex) + 1).budget -= 0.001
+    User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.001
+    db.session.commit()
+    if len(file.fileurl) > 4:
+        response = flask.Response(requests.get(file.fileurl).content)
+        return response
+
+
+@app.route("/<key>/ads/<fileindex>")
+@cross_origin(supports_credentials=True)
+def returnActualMobile(fileindex, key):
+    domainList = []
+    domain = key
     for i in Domains.query.all():
         domainList.append(str(i.domain))
     if domain not in domainList:
