@@ -684,3 +684,14 @@ def favicon():
 @app.route("/unityextension.cs")
 def unityextension():
     return flask.send_file("InAds.cs")
+
+
+@app.errorhandler(500)
+def handle_500(e):
+    return flask.render_template("500.html")
+
+
+@app.errorhandler(404)
+def handle_500(e):
+    return flask.render_template("404.html")
+
