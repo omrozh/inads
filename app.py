@@ -370,8 +370,8 @@ def advertise():
                            ad_type=flask.request.values['typeAd'], owner=current_user.email, total_clicks=0,
                            total_views=0))
 
-        User.query.get(current_user.id).account_balance = int(User.query.get(current_user.id).account_balance) - \
-                                                          int(flask.request.values["budget"])
+        User.query.get(current_user.id).account_balance = float(User.query.get(current_user.id).account_balance) - \
+                                                          float(flask.request.values["budget"])
 
         db.session.commit()
 
