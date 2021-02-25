@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
-public class InAds : MonoBehaviour {
+public class unityextensioninads : MonoBehaviour {
 
     public string adType;
     public string apiKey;
