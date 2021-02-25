@@ -209,7 +209,13 @@ def addDomain():
             pagetitle = requestobject[requestobject.find('<title>') + 7:requestobject.find('</title>')]
 
             pagetitle.replace("|", "")
-            pagefinal = pagetitle.replace(" ", "/")
+            pagelist = pagetitle.replace(" ", "/")
+            pagefinal = []
+
+            for i in pagelist:
+                if len(i) >= 2:
+                    pagefinal.append(i)
+
             print(pagefinal)
         except Exception as e:
             print(e)
