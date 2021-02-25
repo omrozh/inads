@@ -611,6 +611,8 @@ def adclickmobile(adname, apikey):
 
     if suspected_ips.get(requestip):
         if time.time() - float(suspected_ips.get(requestip)) < 60:
+            suspected_ips[requestip] = \
+                time.time()
             return "Invalid Request"
 
     suspected_ips[requestip] = \
