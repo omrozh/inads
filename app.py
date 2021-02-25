@@ -216,7 +216,7 @@ def addDomain():
                 if len(i) >= 2:
                     pagefinal.append(i)
 
-            pagefinal = "".join(pagefinal)
+            pagefinal = "/".join(pagefinal)
 
             print(pagefinal)
         except Exception as e:
