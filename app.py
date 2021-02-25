@@ -204,7 +204,7 @@ def addDomain():
             requestinfo = requests.get("http://" + flask.request.values["domain"] + "/inadsconfirm.txt").content
             url = "http://" + flask.request.values["domain"] + "/inadsconfirm.txt"
 
-            requestobject = urllibreq.urlopen(url).text
+            requestobject = urllibreq.urlopen(url).read()
 
             pagetitle = requestobject[requestobject.find('<title>') + 7:requestobject.find('</title>')]
 
