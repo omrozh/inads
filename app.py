@@ -204,6 +204,8 @@ def addDomain():
             requestinfo = requests.get("http://" + flask.request.values["domain"] + "/inadsconfirm.txt").content
             url = "http://" + flask.request.values["domain"] + "/inadsconfirm.txt"
 
+            print(urllibreq.urlopen(url))
+
             soup = BeautifulSoup(urllibreq.urlopen(url))
             pagetitle = soup.title.string
 
