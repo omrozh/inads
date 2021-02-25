@@ -570,6 +570,17 @@ def adclick(adname):
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     domainList = []
 
+    requestip = domain
+
+    if suspected_ips.get(requestip):
+        if time.time() - float(suspected_ips.get(requestip)) < 60:
+            suspected_ips[requestip] = \
+                time.time()
+            return "Invalid Request"
+
+    suspected_ips[requestip] = \
+        time.time()
+
     for i in Domains.query.all():
         domainList.append(str(i.domain))
 
