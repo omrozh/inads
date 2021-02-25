@@ -212,6 +212,7 @@ def addDomain():
 
             pagetitle.replace("|", "")
             pagefinal = pagetitle.replace(" ", "/")
+            print(pagefinal)
         except Exception as e:
             print(e)
             return '''
