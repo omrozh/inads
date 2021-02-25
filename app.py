@@ -698,5 +698,5 @@ def handle_500(e):
 
 @app.route("/.well-known/pki-validation/AE87104A85FF4B0BB731EFAC069CF36D.txt")
 def verification():
-    flask.send_file("AE87104A85FF4B0BB731EFAC069CF36D.txt")
+    return flask.send_file("AE87104A85FF4B0BB731EFAC069CF36D.txt")
 
