@@ -573,7 +573,7 @@ def adclick(adname):
     requestip = domain
 
     if suspected_ips.get(requestip):
-        if time.time() - float(suspected_ips.get(requestip)) < 60:
+        if time.time() - float(suspected_ips.get(requestip)) < 10:
             suspected_ips[requestip] = \
                 time.time()
             return "Invalid Request"
