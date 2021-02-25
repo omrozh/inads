@@ -8,6 +8,7 @@ import requests
 import stripe
 import string
 import random
+import urllib.request as urllibreq
 from bs4 import BeautifulSoup
 import time
 from flask_cors import CORS, cross_origin
@@ -203,7 +204,7 @@ def addDomain():
             requestinfo = requests.get("http://" + flask.request.values["domain"] + "/inadsconfirm.txt").content
             url = "http://" + flask.request.values["domain"] + "/inadsconfirm.txt"
 
-            soup = BeautifulSoup(urllib.urlopen(url))
+            soup = BeautifulSoup(urllibreq.urlopen(url))
             pagetitle = soup.title.string
 
             pagetitle.replace("|", "")
