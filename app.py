@@ -581,7 +581,7 @@ def adclick(adname):
         Ads.query.get(int(adname) + 1).total_clicks += 1
 
         domainobject = Domains.query.filter_by(domain=domain).first()
-        domainobject.total_views += 1
+        domainobject.total_clicks += 1
         if not User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
             domainobject.total_revenue += 0.20
         if User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
@@ -626,7 +626,7 @@ def adclickmobile(adname, apikey):
         Ads.query.get(int(adname) + 1).total_clicks += 1
 
         domainobject = Domains.query.filter_by(domain=domain).first()
-        domainobject.total_views += 1
+        domainobject.total_clicks += 1
         if not User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
             domainobject.total_revenue += 0.20
         if User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
