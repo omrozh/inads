@@ -212,9 +212,11 @@ def addDomain():
             pagelist = pagetitle.replace(" ", "/")
             pagefinal = []
 
-            for i in pagelist:
+            for i in pagelist.split("/"):
                 if len(i) >= 2:
                     pagefinal.append(i)
+
+            pagefinal = "".join(pagefinal)
 
             print(pagefinal)
         except Exception as e:
