@@ -204,10 +204,9 @@ def addDomain():
             requestinfo = requests.get("http://" + flask.request.values["domain"] + "/inadsconfirm.txt").content
             url = "http://" + flask.request.values["domain"] + "/inadsconfirm.txt"
 
-            print(urllibreq.urlopen(url))
+            requestobject = urllibreq.urlopen(url).text
 
-            soup = BeautifulSoup(urllibreq.urlopen(url))
-            pagetitle = soup.title.string
+            pagetitle = requestobject[requestobject.find('<title>') + 7:requestobject.find('</title>')]
 
             pagetitle.replace("|", "")
             pagefinal = pagetitle.replace(" ", "/")
@@ -230,7 +229,8 @@ def addDomain():
                 </script>
             '''
         domainname = Domains(domain=flask.request.values["domain"], owner=current_user.email,
-                             keywords=flask.request.values["keywords"] + pagefinal, total_revenue=0, total_clicks=0, total_views=0)
+                             keywords=flask.request.values["keywords"] + pagefinal, total_revenue=0, total_clicks=0,
+                             total_views=0)
         db.session.add(domainname)
         db.session.commit()
     return flask.render_template("domainadd.html", domains=domains, user=current_user)
@@ -290,7 +290,7 @@ def register():
     user = ""
     if flask.request.method == "POST":
         user = User(email=flask.request.values["email"], password=flask.request.values["password"],
-                        purpose=flask.request.values["purpose"], account_balance=0)
+                    purpose=flask.request.values["purpose"], account_balance=0)
 
         db.session.add(user)
         db.session.commit()
