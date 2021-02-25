@@ -694,9 +694,3 @@ def handle_500(e):
 @app.errorhandler(404)
 def handle_500(e):
     return flask.render_template("404.html")
-
-
-@app.route("/.well-known/pki-validation/AE87104A85FF4B0BB731EFAC069CF36D.txt")
-def verification():
-    return flask.send_file("AE87104A85FF4B0BB731EFAC069CF36D.txt")
-
