@@ -610,7 +610,7 @@ def adclickmobile(adname, apikey):
     requestip = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
 
     if suspected_ips.get(requestip):
-        if time.time() - float(suspected_ips.get(requestip)) < 60:
+        if time.time() - float(suspected_ips.get(requestip)) < 300:
             suspected_ips[requestip] = \
                 time.time()
             return "Invalid Request"
