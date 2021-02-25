@@ -8,6 +8,7 @@ import requests
 import stripe
 import string
 import random
+from bs4 import BeautifulSoup
 import time
 from flask_cors import CORS, cross_origin
 from flask_login import LoginManager, UserMixin, current_user, logout_user, login_required, login_user
@@ -200,6 +201,17 @@ def addDomain():
             return flask.redirect("/dashboard")
         try:
             requestinfo = requests.get("http://" + flask.request.values["domain"] + "/inadsconfirm.txt").content
+            url = "http://" + flask.request.values["domain"] + "/inadsconfirm.txt"
+            reqs = requests.get(url)
+            soup = BeautifulSoup(reqs.text, 'html.parser')
+
+            pagetitle = ""
+
+            for title in soup.find_all('title'):
+                pagetitle = title.get_text()
+
+            pagetitle.replace("|", "")
+            pagefinal = pagetitle.replace(" ", "/")
         except Exception as e:
             print(e)
             return '''
@@ -218,7 +230,7 @@ def addDomain():
                 </script>
             '''
         domainname = Domains(domain=flask.request.values["domain"], owner=current_user.email,
-                             keywords=flask.request.values["keywords"], total_revenue=0, total_clicks=0, total_views=0)
+                             keywords=flask.request.values["keywords"] + pagefinal, total_revenue=0, total_clicks=0, total_views=0)
         db.session.add(domainname)
         db.session.commit()
     return flask.render_template("domainadd.html", domains=domains, user=current_user)
