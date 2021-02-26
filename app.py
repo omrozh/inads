@@ -489,6 +489,24 @@ def return_file(adtype):
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     domainList = []
 
+    url = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value'))
+
+    requestobject = requests.get(url).content.decode("utf-8")
+
+    pagetitle = requestobject[requestobject.find('<title>') + 7:requestobject.find('</title>')]
+
+    pagetitle.replace("|", "")
+    pagelist = pagetitle.replace(" ", "/")
+    pagefinal = []
+
+    for i in pagelist.split("/"):
+        if len(i) >= 2:
+            pagefinal.append(i)
+
+    pagefinal = "/".join(pagefinal)
+
+    print(url)
+
     for i in Domains.query.all():
         domainList.append(str(i.domain))
     if domain not in domainList:
@@ -497,7 +515,8 @@ def return_file(adtype):
     suitablead = None
     suitableads = []
 
-    keywords = Domains.query.filter_by(domain=domain).first().keywords.split("/")
+    keywords = Domains.query.filter_by(domain=domain).first().keywords + "/" + pagefinal
+    keywords = keywords.split("/")
     for i in Ads.query.filter_by(ad_type=adtype):
         if i.budget > 0.25:
             for c in i.keywords.split("/"):
