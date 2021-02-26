@@ -8,7 +8,6 @@ import requests
 import stripe
 import string
 import random
-import urllib.request as urllibreq
 from bs4 import BeautifulSoup
 import time
 from flask_cors import CORS, cross_origin
@@ -493,12 +492,6 @@ def return_file(adtype):
     url = "http://" + str(url.netloc) + str(url.path)
 
     requestobject = requests.get(url).content.decode("utf-8")
-
-    if '<script src="https://www.inadsglobal.tk/inads/' not in requestobject and \
-            '<script src="https://inads.herokuapp.com/inads/' not in requestobject:
-        print("Illegal option")
-        return "Script not real"
-
     pagetitle = requestobject[requestobject.find('<title>') + 7:requestobject.find('</title>')]
 
     pagetitle.replace("|", "")
