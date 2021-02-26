@@ -494,7 +494,8 @@ def return_file(adtype):
 
     requestobject = requests.get(url).content.decode("utf-8")
 
-    if '<script src="https://www.inadsglobal.tk/inads/' not in requestobject:
+    if '<script src="https://www.inadsglobal.tk/inads/' not in requestobject and \
+            '<script src="https://inads.herokuapp.com/inads/':
         print("Illegal option")
         return "Script not real"
 
