@@ -4,7 +4,7 @@ let apiKey = ""
 let textcontent = ""
 
 function createAds(element, index){
-  fetch("https://inads.herokuapp.com/view/" + element.getAttribute("name") + "/" + document.currentScript.src)
+  fetch("https://inads.herokuapp.com/view/" + element.getAttribute("name"))
   .then(res=>{adname = res.url.substring(res.url.lastIndexOf("/") + 1); element.setAttribute('onclick', "clickad(" + adname + ")"); return res.blob()})
   .then(blob=>{
 
