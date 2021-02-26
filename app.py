@@ -485,7 +485,7 @@ def return_file_mobile(adtype, mobileapi):
 
 @app.route("/view/<adtype>")
 @cross_origin(supports_credentials=True)
-def return_file(adtype, scriptsrc):
+def return_file(adtype):
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     domainList = []
 
