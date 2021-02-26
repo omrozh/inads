@@ -506,8 +506,6 @@ def return_file(adtype):
 
     pagefinal = "/".join(pagefinal)
 
-    print(url)
-
     for i in Domains.query.all():
         domainList.append(str(i.domain))
     if domain not in domainList:
