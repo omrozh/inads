@@ -483,9 +483,11 @@ def return_file_mobile(adtype, mobileapi):
         return "No ads are suitable to your query."
 
 
-@app.route("/view/<adtype>")
+@app.route("/view/<adtype>/<scriptsrc>")
 @cross_origin(supports_credentials=True)
-def return_file(adtype):
+def return_file(adtype, scriptsrc):
+    if "https://www.inadsglobal.tk/inads/" in scriptsrc:
+        return "Illegal Source for script"
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     domainList = []
 
