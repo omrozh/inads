@@ -490,7 +490,7 @@ def return_file(adtype):
     domainList = []
 
     url = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value'))
-    url = url.netloc + url.path
+    url = "http://" + str(url.netloc) + str(url.path)
 
     requestobject = requests.get(url).content.decode("utf-8")
 
