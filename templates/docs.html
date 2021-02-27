@@ -14,9 +14,10 @@
             <a class="navbarElement" href="/plans"><small>Plans</small></a>
             <a class="navbarElement" href="/estimated_earnings"><small>Estimated Earnings</small></a>
             <a class="navbarElement" href="/docs"><small>Docs</small></a>
+            <a class="navbarElement" style="float: right; margin-right: 5%" href="/docs" id="langelement"><small>TR</small></a>
         </div>
     <hr style="opacity: .3">
-    <div style="margin-left: 5%">
+    <div style="margin-left: 5%" id="en">
         <h1>Super Simple Integration!</h1>
         First add your domain name to the InAds system through the add domain tap from the InAds dashboard.
         <br>
@@ -46,10 +47,50 @@
             <p>Download the <a href="/unityextensioninads.cs" style="text-decoration: none">InAds Script for Unity</a>. Create a Raw Image object in your UI canvas and add the InAds Script as a component.</p>
         </div>
     </div>
+    <div style="margin-left: 5%" id="tr" hidden="true">
+        <h1>Super Simple Integration!</h1>
+        Öncelikle alan adınızı InAds gösterge panelinin alan adı ekleme sekmesinden InAds sistemine ekleyin.
+        <br>
+        <br>
+        Aşağıda yer alan kodu web sayfanıza ekleyin.
+        <br>
+        <p style="background-color: rgb(230, 230, 235)">&lt;script src="https://www.inadsglobal.tk/inads/&lt;writesomethinghere>">&lt;/script></p>
+        Eğer sadece bu kodu yerleştirip bırakırsanız otomatik yerleştirmeyi etkinleştirmiş olursunuz verilen script sizin yerinize web sayfanıza reklamları ekleyecektir. Fakat eğer isterseniz yukarıdaki kodu kullanarak reklamlarınızın sayısını, boyutlarını ve yerlerini özelleştirebilirsiniz.
+        <p style="background-color: rgb(230, 230, 235)">&lt;div>&lt;img class=inads name=&lt;shape>>&lt;/div></p>
+        Şu anlık web sayfanıza ekleyebileceğiniz reklam çeşitleri aşağıdaki gibidir.
+        <br>
+        <ul>
+            <li>inadstandard: width:height = 5:1</li>
+            <li>inadsquare: width:height = 1:1</li>
+            <li>inadsbanner: width:height = 1:5</li>
+        </ul>
+        Yukarıdaki listelenmiş reklam tiplerinden birini seçerek reklamlarınızın şeklini seçebilirsiniz. Eğer bu reklamlara ekstra stil vermek isterseniz bunu div üst öğesi üzerinden yapmanızı öneririz.
+        <br>
+        <strong>Önemli uyarı: En iyi sonuçları almak için reklam scriptini sayfanızın en altına yerleştirmenizi tavsiye ederiz.</strong>
+        <h3>Nasıl yeni bir alan adı eklerim?</h3>
+        <p>Öncelikle alan adı ekleme sekmesinden inadsconfirm.txt dosyasını indirin, websitenize ekleyin ve dosyanın http://&lt;alan adınız>/inadsconfirm.txt adresinden erişilebilir olduğuna emin olun.</p>
+        <p>Sonrasında sayfada yer alan formu doldurarak işlemi tamamlayın ve kullanmaya başlayın.</p>
+        <a onclick="InAdsUnity()" style="text-decoration: none; color: yellow">Unity ile InAds</a>
+        <div id="InAdsUnityTR" hidden="true">
+            <h3>InAds Unity ile nasıl kullanılır?</h3>
+            <p>Alan adı ekleme sekmesine gidin ve alan adı olarak küçük harfler ile unity yazın. Sistem size kullanmanız için bir public key atayacak bunu web sitesi performans sekmesinden veya hesap sekmesinden görüntüleyebilirsiniz.</p>
+            <p><a href="/unityextensioninads.cs" style="text-decoration: none">InAds Script for Unity</a> dosyasını indirin. UI'ınızda bir Raw Image objesi oluşturun ve InAds Scriptini bu objeye bileşen olarak ekleyin.</p>
+        </div>
+    </div>
     <center><button class="buttonBlue" style="margin-left: 5%; margin-top: 10%" onclick="document.location = '/register'">Start Now</button></center>
     <script>
         function InAdsUnity(){
             document.getElementById("InAdsUnity").hidden = !document.getElementById("InAdsUnity").hidden;
+            document.getElementById("InAdsUnityTR").hidden = !document.getElementById("InAdsUnityTR").hidden;
+        }
+        function InAdsLanguage(){
+            if(document.getElementById("langelement").innerHTML == "EN")
+                document.getElementById("langelement").innerHTML = "TR"
+            else
+                document.getElementById("langelement").innerHTML = "TR"
+
+            document.getElementById("tr").hidden = !document.getElementById("tr").hidden
+            document.getElementById("en").hidden = !document.getElementById("en").hidden
         }
     </script>
 </body>
