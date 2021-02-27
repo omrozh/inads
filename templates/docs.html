@@ -14,7 +14,7 @@
             <a class="navbarElement" href="/plans"><small>Plans</small></a>
             <a class="navbarElement" href="/estimated_earnings"><small>Estimated Earnings</small></a>
             <a class="navbarElement" href="/docs"><small>Docs</small></a>
-            <a class="navbarElement" style="float: right; margin-right: 5%" id="langelement" onclick="InAdsLanguage()"><small>TR</small></a>
+            <a class="navbarElement" style="float: right; margin-right: 5%" id="langelement" onclick="InAdsLanguage()">TR</a>
         </div>
     <hr style="opacity: .3">
     <div style="margin-left: 5%" id="en">
@@ -84,10 +84,10 @@
             document.getElementById("InAdsUnityTR").hidden = !document.getElementById("InAdsUnityTR").hidden;
         }
         function InAdsLanguage(){
-            if(document.getElementById("langelement").innerHTML == "<small>EN</small>")
-                document.getElementById("langelement").innerHTML = "<small>TR</small>"
+            if(document.getElementById("langelement").innerHTML == "EN")
+                document.getElementById("langelement").innerHTML = "TR"
             else
-                document.getElementById("langelement").innerHTML = "<small>EN</small>"
+                document.getElementById("langelement").innerHTML = "EN"
 
             document.getElementById("tr").hidden = !document.getElementById("tr").hidden
             document.getElementById("en").hidden = !document.getElementById("en").hidden
