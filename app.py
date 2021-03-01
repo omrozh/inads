@@ -155,6 +155,7 @@ def changePassword():
 
     return flask.render_template("changepassword.html")
 
+
 @app.route("/website_performance", methods=["GET", "POST"])
 @login_required
 def websitePerformance():
