@@ -138,6 +138,23 @@ def makePayment(credit, month, year, cvc, create_subscription):
     return customer.stripe_id, subscribeid
 
 
+@app.route("/change_password", methods=["GET", "POST"])
+@login_required
+def changePassword():
+    if flask.request.method == "POST":
+        if current_user.password != flask.request.values["oldpassword"]:
+            return '''
+                <script>
+                    alert("Password Incorrect")
+                </script>
+            '''
+        User.query.get(current_user.id).password = flask.request.values["password"]
+
+        logout_user()
+        return flask.redirect("/")
+
+    return flask.render_template("changepassword.html")
+
 @app.route("/website_performance", methods=["GET", "POST"])
 @login_required
 def websitePerformance():
