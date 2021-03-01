@@ -149,6 +149,7 @@ def changePassword():
                 </script>
             '''
         User.query.get(current_user.id).password = flask.request.values["password"]
+        db.session.commit()
 
         logout_user()
         return flask.redirect("/")
