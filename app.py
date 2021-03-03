@@ -283,7 +283,7 @@ def dashboard():
     numberofads = 0
     for i in ads:
         numberofads += 1
-    return flask.render_template("dashboard.html", user=user, ads=ads, numberofads=numberofads)
+    return flask.render_template("dashboard.html", user=user, ads=ads, numberofads=numberofads, authorized_mails=authorized_mails)
 
 
 @app.route("/payout", methods=["POST", "GET"])

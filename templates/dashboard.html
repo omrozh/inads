@@ -25,6 +25,10 @@
             <a style="margin-top: 10%" href="/payout" class="navbarElement">Receive Payout</a>
             <br>
             <a style="margin-top: 10%" href="/website_performance" class="navbarElement">Website Performance</a>
+            <br>
+            {% if user.email in authorized_emails %}
+                <a style="margin-top: 10%" href="/web_traffic" class="navbarElement">View Website Traffic</a>
+            {% endif %}
             {% endif %}
         </div>
     </div>
