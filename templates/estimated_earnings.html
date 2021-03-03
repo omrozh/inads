@@ -29,7 +29,8 @@
         function calculate(){
             var revestimate = document.getElementById("monthlyvis").value * 0.0004 * 5
             var revestimate2 = document.getElementById("monthlyvis").value * 0.20 * 0.007
-            document.getElementById("outcome").innerHTML = revestimate + revestimate2 * 3 * 12 + " $ annually"
+            var frev = parseFloat(revestimate + revestimate2 * 3)
+            document.getElementById("outcome").innerHTML = frev.toFixed(2)  + " $ per month";
         }
     </script>
 </body>
