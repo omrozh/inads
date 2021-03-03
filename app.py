@@ -18,6 +18,8 @@ app.config["UPLOAD_FOLDER"] = ""
 app.config["SECRET_KEY"] = "MAKEMEBILLIONAIRE"
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_URL']
 
+authorized_mails = ["omrozh@gmail.com"]
+
 CORS(app, support_credentials=True)
 
 login_manager = LoginManager(app)
@@ -136,6 +138,17 @@ def makePayment(credit, month, year, cvc, create_subscription):
         subscribeid = subscription.stripe_id
 
     return customer.stripe_id, subscribeid
+
+
+@app.route("/web_traffic")
+@login_required
+def trafficController():
+    if current_user.email not in authorized_mails:
+        return "Unauthorized"
+
+    domainslist = Domains.query.all()
+
+    return flask.render_template("traffic_control.html", domainslist=domainslist)
 
 
 @app.route("/change_password", methods=["GET", "POST"])
