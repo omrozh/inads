@@ -148,7 +148,7 @@ def trafficController():
 
     domainslist = Domains.query.all()
 
-    return flask.render_template("traffic_control.html", domainslist=domainslist, user=user)
+    return flask.render_template("traffic_control.html", domainslist=domainslist, user=current_user)
 
 
 @app.route("/change_password", methods=["GET", "POST"])
