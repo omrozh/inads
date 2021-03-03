@@ -219,7 +219,7 @@ def addDomain():
             db.session.commit()
             return flask.redirect("/dashboard")
         try:
-            requestinfo = "info@tatilkupu.com"
+            requestinfo = b'info@tatilkupu.com'
             url = "http://" + flask.request.values["domain"]
 
             requestobject = requests.get(url).content.decode("utf-8")
