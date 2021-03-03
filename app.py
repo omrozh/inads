@@ -486,7 +486,7 @@ def return_file_mobile(adtype, mobileapi):
 
     keywords = Domains.query.filter_by(domain=domain).first().keywords.split("/")
     for i in Ads.query.filter_by(ad_type=adtype):
-        if i.budget > 0.25:
+        if i.budget > 0.20:
             for c in i.keywords.split("/"):
                 if c in keywords:
                     suitableads.append(i)
@@ -657,26 +657,26 @@ def adclick(adname):
         return "Unauthorized request"
     website = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     if website in Ads.query.get(int(adname) + 1).publishing_sites.split(","):
-        Ads.query.get(int(adname) + 1).budget -= 0.20
+        Ads.query.get(int(adname) + 1).budget -= 0.01
         Ads.query.get(int(adname) + 1).total_clicks += 1
 
         domainobject = Domains.query.filter_by(domain=domain).first()
         domainobject.total_clicks += 1
         if not User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
-            domainobject.total_revenue += 0.20
+            domainobject.total_revenue += 0.01
         if User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
-            domainobject.total_revenue += 0.18
+            domainobject.total_revenue += 0.009
         domainowner = \
             Domains.query.filter_by(
                 domain=urllib.parse.urlparse(
                     flask.request.environ.get('HTTP_REFERER', 'default value')).netloc).first().owner
         userowner = User.query.filter_by(email=domainowner).first().account_balance
         if not User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
-            User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.20
+            User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.01
 
         if User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
-            User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.18
-            User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().account_balance += 0.02
+            User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.09
+            User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().account_balance += 0.01
 
         db.session.commit()
         return f"<script> document.location = '{Ads.query.get(int(adname) + 1).advertiserwebsite}' </script>"
@@ -704,21 +704,21 @@ def adclickmobile(adname, apikey):
     if domain not in domainList:
         return "Unauthorized request"
     if True:
-        Ads.query.get(int(adname) + 1).budget -= 0.20
+        Ads.query.get(int(adname) + 1).budget -= 0.01
         Ads.query.get(int(adname) + 1).total_clicks += 1
 
         domainobject = Domains.query.filter_by(domain=domain).first()
         domainobject.total_clicks += 1
         if not User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
-            domainobject.total_revenue += 0.20
+            domainobject.total_revenue += 0.009
         if User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
-            domainobject.total_revenue += 0.18
+            domainobject.total_revenue += 0.001
         domainowner = \
             Domains.query.filter_by(
                 domain=domain).first().owner
         userowner = User.query.filter_by(email=domainowner).first().account_balance
         if not User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
-            User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.20
+            User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.01
 
         if User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
             User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.18
