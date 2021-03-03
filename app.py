@@ -598,8 +598,8 @@ def returnActual(fileindex):
         Domains.query.filter_by(domain=urllib.parse.urlparse(
             flask.request.environ.get('HTTP_REFERER', 'default value')).netloc).first().owner
     userowner = User.query.filter_by(email=domainowner).first().account_balance
-    Ads.query.get(int(fileindex) + 1).budget -= 0.001
-    User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.001
+    Ads.query.get(int(fileindex) + 1).budget -= 0.0004
+    User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.0004
     db.session.commit()
     if len(file.fileurl) > 4:
         response = flask.Response(requests.get(file.fileurl).content)
