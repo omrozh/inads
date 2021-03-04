@@ -521,14 +521,17 @@ def return_file(adtype):
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     domainList = []
 
-    url = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value'))
-    url = "http://" + str(url.netloc) + str(url.path)
+    try:
+        url = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value'))
+        url = "http://" + str(url.netloc) + str(url.path)
 
-    requestobject = requests.get(url).content.decode("utf-8")
-    pagetitle = requestobject[requestobject.find('<title>') + 7:requestobject.find('</title>')]
+        requestobject = requests.get(url).content.decode("utf-8")
+        pagetitle = requestobject[requestobject.find('<title>') + 7:requestobject.find('</title>')]
 
-    pagetitle.replace("|", "")
-    pagelist = pagetitle.replace(" ", "/")
+        pagetitle.replace("|", "")
+        pagelist = pagetitle.replace(" ", "/")
+    except:
+        pass
     pagefinal = []
 
     for i in pagelist.split("/"):
