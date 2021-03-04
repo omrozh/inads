@@ -521,6 +521,8 @@ def return_file(adtype):
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     domainList = []
 
+    pagelist = ""
+
     try:
         url = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value'))
         url = "http://" + str(url.netloc) + str(url.path)
