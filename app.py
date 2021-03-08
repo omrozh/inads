@@ -595,7 +595,6 @@ def returnActual(fileindex):
     file.total_views += 1
     file.publishing_sites += \
         urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc + ","
-    db.session.commit()
     domainobject = Domains.query.filter_by(domain=domain).first()
     domainobject.total_views += 1
     domainobject.total_revenue += 0.0003
