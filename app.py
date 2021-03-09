@@ -505,10 +505,11 @@ def return_file_mobile(adtype, mobileapi):
         print("Suitable ad randomizer")
         totalads = Ads.query.filter_by(ad_type=adtype)
 
-        if len(totalads) == 0:
-            return "No suitable ads"
-
         suitablead = totalads[random.randint(0, len(totalads) - 1)]
+        for i in totalads:
+            if float(suitablead.budget) < 0.25 or suitablead.ad_type != adtype:
+                continue
+            suitablead = totalads[random.randint(0, len(totalads) - 1)]
 
     if suitablead:
         return flask.redirect("/" + domain + "/ads" + "/" + str(int(suitablead.id) - 1))
@@ -571,10 +572,12 @@ def return_file(adtype):
 
     if suitablead is None:
         print("Suitable ad randomizer")
-        totalads = Ads.query.all()
+        totalads = Ads.query.filter_by(ad_type=adtype)
 
         suitablead = totalads[random.randint(0, len(totalads) - 1)]
-        while float(suitablead.budget) < 0.25 or suitablead.ad_type != adtype:
+        for i in totalads:
+            if float(suitablead.budget) < 0.25 or suitablead.ad_type != adtype:
+                continue
             suitablead = totalads[random.randint(0, len(totalads) - 1)]
 
     if suitablead:
