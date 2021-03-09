@@ -8,7 +8,7 @@ function createAds(element, index){
   .then(res=>{adname = res.url.substring(res.url.lastIndexOf("/") + 1); element.setAttribute('onclick', "c(" + adname + ")"); return res.blob()})
   .then(blob=>{
 
-    if(blob.size < 500){
+    if(blob.size < 150){
         return "Cannot complete action"
     }
     var img = URL.createObjectURL(blob);
