@@ -9,6 +9,7 @@ function createAds(element, index){
   .then(blob=>{
 
     if(blob.size < 150){
+        element.hidden = "true"
         return "Cannot complete action"
     }
     var img = URL.createObjectURL(blob);
