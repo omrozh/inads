@@ -32,14 +32,14 @@
             {% endif %}
         </div>
     </div>
-    <div style="float: left; width: 75%; margin-left: 20%">
+    <div style="float: left; width: 79%; margin-left: 20%">
         <div style="width: 100%">
             <h1 style="font-size: 2rem; margin-left: 5%; float: left">Account Balance</h1>
             <h1 style="font-size: 2rem; margin-right: 5%; float: right">{{ "%.2f" % user.account_balance }} $</h1>
         </div>
         <h2 style="margin-top: 10%; margin-left: 5%">Active Campaigns</h2>
         {% for i in ads %}
-            <button style="margin-left: 10%;" class="accordion">{{ i.advertiserwebsite }}</button>
+            <button style="margin-left: 10%; margin-right: 5%" class="accordion">{{ i.advertiserwebsite }}</button>
             <div style="margin-left: 10%" class="panel">
                 <div>
                     <h3>{{ i.advertiserwebsite }}</h3>
