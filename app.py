@@ -490,18 +490,13 @@ def return_file_mobile(adtype, mobileapi):
                 if c in keywords:
                     suitableads.append(i)
 
-    try:
-        if len(suitableads) == 1:
-            suitablead = suitableads[0]
+    if len(suitableads) == 1:
+        suitablead = suitableads[0]
 
-        else:
-            suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
-    except Exception as e:
-        print(e)
-        pass
+    elif len(suitableads) < 1:
+        suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
 
     if suitablead is None:
-        print("Suitable ad randomizer")
         totalads = []
 
         for i in Ads.query.filter_by(ad_type=adtype):
@@ -567,18 +562,13 @@ def return_file(adtype):
                 if c in keywords:
                     suitableads.append(i)
 
-    try:
-        if len(suitableads) == 1:
-            suitablead = suitableads[0]
+    if len(suitableads) == 1:
+        suitablead = suitableads[0]
 
-        else:
-            suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
-    except Exception as e:
-        print(e)
-        pass
+    elif len(suitableads) > 1:
+        suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
 
     if suitablead is None:
-        print("Suitable ad randomizer")
         totalads = []
 
         for i in Ads.query.filter_by(ad_type=adtype):
