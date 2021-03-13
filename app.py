@@ -515,6 +515,9 @@ def return_file_mobile(adtype, mobileapi):
                 continue
             suitablead = totalads[random.randint(0, len(totalads) - 1)]
 
+    if float(suitablead.budget) < 0.25:
+        return "No ads suitable"
+
     if suitablead:
         return flask.redirect("/" + domain + "/ads" + "/" + str(int(suitablead.id) - 1))
     else:
@@ -586,6 +589,9 @@ def return_file(adtype):
             if float(suitablead.budget) < 0.25 or suitablead.ad_type != adtype:
                 continue
             suitablead = totalads[random.randint(0, len(totalads) - 1)]
+
+        if float(suitablead.budget) < 0.25:
+            return "No ads suitable"
 
     if suitablead:
         return flask.redirect(f"/ads" + "/" + str(int(suitablead.id) - 1))
