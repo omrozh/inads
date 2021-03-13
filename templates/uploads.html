@@ -54,13 +54,12 @@
             <input class="buttonBlue" style="width: 25%" type=submit value="Start Campaign">
         </form>
         <br>
-        <button class="accordion">Direct Keywords</button>
+        <button class="accordion">Recommended Keywords</button>
         <div class="panel" style="height: 70vh; overflow: auto">
             {% for i in total_keywords %}
                 <p onclick="addKeyword('{{ i }}')">{{ i }}</p>
             {% endfor %}
         </div>
-        <small>Direct keywords are keywords that are already manually registered by the websites you can also insert your own keywords that you think is fitting into the context of your ad. The system will automatically assign them into the best fitting web pages.</small>
     </div>
     <script>
         var acc = document.getElementsByClassName("accordion");
