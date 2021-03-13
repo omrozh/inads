@@ -8,7 +8,6 @@ import requests
 import stripe
 import string
 import random
-from bs4 import BeautifulSoup
 import time
 from flask_cors import CORS, cross_origin
 from flask_login import LoginManager, UserMixin, current_user, logout_user, login_required, login_user
