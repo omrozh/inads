@@ -507,10 +507,10 @@ def return_file_mobile(adtype, mobileapi):
 
         for i in Ads.query.filter_by(ad_type=adtype):
             totalads.append(i)
+        print(totalads)
 
-        suitablead = totalads[random.randint(0, len(totalads) - 1)]
         for i in totalads:
-            if float(suitablead.budget) < 0.25 or suitablead.ad_type != adtype:
+            if float(suitablead.budget) < 0.25:
                 continue
             suitablead = totalads[random.randint(0, len(totalads) - 1)]
 
