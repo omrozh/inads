@@ -509,6 +509,7 @@ def return_file_mobile(adtype, mobileapi):
             totalads.append(i)
         print(totalads)
 
+        suitablead = totalads[random.randint(0, len(totalads) - 1)]
         for i in totalads:
             if float(suitablead.budget) < 0.25:
                 continue
@@ -575,7 +576,10 @@ def return_file(adtype):
 
     if suitablead is None:
         print("Suitable ad randomizer")
-        totalads = Ads.query.filter_by(ad_type=adtype)
+        totalads = []
+
+        for i in Ads.query.filter_by(ad_type=adtype):
+            totalads.append(i)
 
         suitablead = totalads[random.randint(0, len(totalads) - 1)]
         for i in totalads:
