@@ -515,7 +515,7 @@ def return_file_mobile(adtype, mobileapi):
                 continue
             suitablead = totalads[random.randint(0, len(totalads) - 1)]
 
-    if float(suitablead.budget) < 0.25:
+    if float(suitablead.budget) < 0.25:
         return "No ads suitable"
 
     if suitablead:
@@ -590,7 +590,7 @@ def return_file(adtype):
                 continue
             suitablead = totalads[random.randint(0, len(totalads) - 1)]
 
-        if float(suitablead.budget) < 0.25:
+        if float(suitablead.budget) < 0.25:
             return "No ads suitable"
 
     if suitablead:
