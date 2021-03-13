@@ -581,9 +581,6 @@ def return_file(adtype):
                 continue
             suitablead = totalads[random.randint(0, len(totalads) - 1)]
 
-        if float(suitablead.budget) < 0.25:
-            return "No ads suitable"
-
     if suitablead:
         return flask.redirect(f"/ads" + "/" + str(int(suitablead.id) - 1))
     else:
