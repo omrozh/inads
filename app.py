@@ -496,6 +496,7 @@ def return_file_mobile(adtype, mobileapi):
             suitablead = suitableads[0]
 
         else:
+            print(suitableads)
             suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
     except Exception as e:
         print(e)
