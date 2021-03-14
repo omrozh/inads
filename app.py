@@ -544,8 +544,6 @@ def return_file(adtype):
     if not is_there_ad:
         return "No ads"
 
-    print(is_there_ad)
-
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     domainList = []
 
@@ -563,6 +561,8 @@ def return_file(adtype):
     except:
         pass
     pagefinal = []
+
+    print("HHH")
 
     for i in pagelist.split("/"):
         if len(i) >= 2:
