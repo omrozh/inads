@@ -544,6 +544,8 @@ def return_file(adtype):
     if not is_there_ad:
         return "No ads"
 
+    print(is_there_ad)
+
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     domainList = []
 
@@ -590,9 +592,6 @@ def return_file(adtype):
 
         elif len(suitableads) > 1:
             suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
-
-        else:
-            suitablead = None
 
         if suitablead is None:
             totalads = []
