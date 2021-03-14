@@ -568,11 +568,14 @@ def return_file(adtype):
     elif len(suitableads) > 1:
         suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
 
+    else:
+        suitablead = None
+
     if suitablead is None:
         totalads = []
 
-        for i in Ads.query.filter_by(ad_type=adtype):
-            if i.budget > 0.25:
+        for i in Ads.query.all():
+            if i.budget > 0.25 and i.ad_type == adtype:
                 totalads.append(i)
 
         suitablead = totalads[random.randint(0, len(totalads) - 1)]
