@@ -282,6 +282,8 @@ def dashboard():
     numberofads = 0
     is_admin = current_user.email in authorized_mails
     is_partner = current_user.is_partner == "true"
+    if is_partner:
+        return "Partner"
     for i in ads:
         numberofads += 1
     return flask.render_template("dashboard.html", user=user, ads=ads, numberofads=numberofads, is_admin=is_admin,
