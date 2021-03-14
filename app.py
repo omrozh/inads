@@ -573,8 +573,6 @@ def return_file(adtype):
     if domain not in domainList:
         return "Unauthorized request"
 
-    print("HHH")
-
     try:
         suitablead = None
         suitableads = []
@@ -593,6 +591,7 @@ def return_file(adtype):
         elif len(suitableads) > 1:
             suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
 
+        print("HHH")
 
         if suitablead is None:
             totalads = []
