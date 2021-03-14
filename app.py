@@ -562,8 +562,6 @@ def return_file(adtype):
         pass
     pagefinal = []
 
-    print("HHH")
-
     for i in pagelist.split("/"):
         if len(i) >= 2:
             pagefinal.append(i)
@@ -574,6 +572,8 @@ def return_file(adtype):
         domainList.append(str(i.domain))
     if domain not in domainList:
         return "Unauthorized request"
+
+    print("HHH")
 
     try:
         suitablead = None
@@ -592,6 +592,7 @@ def return_file(adtype):
 
         elif len(suitableads) > 1:
             suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
+
 
         if suitablead is None:
             totalads = []
