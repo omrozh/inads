@@ -11,9 +11,6 @@
         <div style="color: black; margin-left: 25%;">
             <br>
             <div style="font-size: 80%">{{ user.email }}</div>
-            {% if user.is_partner %}
-                <div class="navbarElement" style="font-size: 80%; margin-top: 30%">Advertising Partner</div>
-            {% endif %}
             <a href="/dashboard" class="navbarElement">Dashboard</a>
             <br>
             <a style="margin-top: 10%" href="/advertise" class="navbarElement">Start a campaign</a>
@@ -32,6 +29,9 @@
             {% if is_admin %}
                 <a style="margin-top: 10%" href="/web_traffic" class="navbarElement">View Website Traffic</a>
             {% endif %}
+            {% endif %}
+            {% if user.is_partner %}
+                <div class="navbarElement" style="font-size: 80%; margin-top: 10%">Advertising Partner</div>
             {% endif %}
         </div>
     </div>
