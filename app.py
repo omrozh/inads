@@ -472,6 +472,16 @@ def add_payment_info():
 @app.route("/view/<adtype>/<mobileapi>")
 @cross_origin(supports_credentials=True)
 def return_file_mobile(adtype, mobileapi):
+
+    is_there_ad = False
+
+    for i in Ads.query.filter_by(ad_type=adtype):
+        if i.budget > 0.25:
+            is_there_ad = True
+
+    if not is_there_ad:
+        return "No ads"
+
     domain = mobileapi
     domainList = []
 
@@ -525,6 +535,15 @@ def return_file_mobile(adtype, mobileapi):
 @app.route("/view/<adtype>")
 @cross_origin(supports_credentials=True)
 def return_file(adtype):
+    is_there_ad = False
+
+    for i in Ads.query.filter_by(ad_type=adtype):
+        if i.budget > 0.25:
+            is_there_ad = True
+
+    if not is_there_ad:
+        return "No ads"
+
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     domainList = []
 
