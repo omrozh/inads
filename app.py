@@ -475,48 +475,51 @@ def return_file_mobile(adtype, mobileapi):
     domain = mobileapi
     domainList = []
 
-    for i in Domains.query.all():
-        domainList.append(str(i.domain))
-    if domain not in domainList:
-        return "Unauthorized request"
+    try:
+        for i in Domains.query.all():
+            domainList.append(str(i.domain))
+        if domain not in domainList:
+            return "Unauthorized request"
 
-    suitablead = None
-    suitableads = []
+        suitablead = None
+        suitableads = []
 
-    keywords = Domains.query.filter_by(domain=domain).first().keywords.split("/")
-    for i in Ads.query.filter_by(ad_type=adtype):
-        if i.budget > 0.20:
-            for c in i.keywords.split("/"):
-                if c in keywords:
-                    suitableads.append(i)
-
-    if len(suitableads) == 1:
-        suitablead = suitableads[0]
-
-    elif len(suitableads) < 1:
-        suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
-
-    if suitablead is None:
-        totalads = []
-
+        keywords = Domains.query.filter_by(domain=domain).first().keywords.split("/")
         for i in Ads.query.filter_by(ad_type=adtype):
-            if i.budget > 0.25:
-                totalads.append(i)
-        print(totalads)
+            if i.budget > 0.20:
+                for c in i.keywords.split("/"):
+                    if c in keywords:
+                        suitableads.append(i)
 
-        suitablead = totalads[random.randint(0, len(totalads) - 1)]
-        for i in totalads:
-            if float(suitablead.budget) < 0.25:
-                continue
+        if len(suitableads) == 1:
+            suitablead = suitableads[0]
+
+        elif len(suitableads) < 1:
+            suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
+
+        if suitablead is None:
+            totalads = []
+
+            for i in Ads.query.filter_by(ad_type=adtype):
+                if i.budget > 0.25:
+                    totalads.append(i)
+            print(totalads)
+
             suitablead = totalads[random.randint(0, len(totalads) - 1)]
+            for i in totalads:
+                if float(suitablead.budget) < 0.25:
+                    continue
+                suitablead = totalads[random.randint(0, len(totalads) - 1)]
 
-        if float(suitablead.budget) < 0.25:
-            return "No ads for query"
+            if float(suitablead.budget) < 0.25:
+                return "No ads for query"
 
-    if suitablead:
-        return flask.redirect("/" + domain + "/ads" + "/" + str(int(suitablead.id) - 1))
-    else:
-        return "No ads are suitable to your query."
+        if suitablead:
+            return flask.redirect("/" + domain + "/ads" + "/" + str(int(suitablead.id) - 1))
+        else:
+            return "No ads are suitable to your query."
+    except:
+        return "Problem Occured"
 
 
 @app.route("/view/<adtype>")
