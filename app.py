@@ -281,9 +281,11 @@ def dashboard():
     ads = Ads.query.filter_by(owner=current_user.email)
     numberofads = 0
     is_admin = current_user.email in authorized_mails
+    is_partner = current_user.is_partner == "true"
     for i in ads:
         numberofads += 1
-    return flask.render_template("dashboard.html", user=user, ads=ads, numberofads=numberofads, is_admin=is_admin)
+    return flask.render_template("dashboard.html", user=user, ads=ads, numberofads=numberofads, is_admin=is_admin,
+                                 is_partner=is_partner)
 
 
 @app.route("/payout", methods=["POST", "GET"])
