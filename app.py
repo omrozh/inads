@@ -558,7 +558,8 @@ def return_file(adtype):
 
         pagetitle.replace("|", "")
         pagelist = pagetitle.replace(" ", "/")
-    except:
+    except Exception as e:
+        print(e)
         pass
     pagefinal = []
 
