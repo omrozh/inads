@@ -651,8 +651,6 @@ def returnActualMobile(fileindex, key):
         return "Unauthorized request"
     file = Ads.query.get(int(fileindex) + 1)
     file.total_views += 1
-    file.publishing_sites += domain
-    db.session.commit()
     domainobject = Domains.query.filter_by(domain=domain).first()
     domainobject.total_views += 1
     domainobject.total_revenue += 0.00015
