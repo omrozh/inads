@@ -662,8 +662,7 @@ def returnActualMobile(fileindex, key):
     User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.00015
     db.session.commit()
     if len(file.fileurl) > 4:
-        response = flask.Response(requests.get(file.fileurl).content)
-        return response
+        return flask.redirect(file.fileurl, code=302)
 
 
 @app.route("/adclick/<adname>")
