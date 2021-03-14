@@ -11,6 +11,10 @@
         <div style="color: black; margin-left: 25%;">
             <br>
             <div style="font-size: 80%">{{ user.email }}</div>
+            {% if user.partner %}
+                <br>
+                <strong style="font-size: 80%">Advertising Partner</strong>
+            {% endif %}
             <a style="margin-top: 30%" href="/dashboard" class="navbarElement">Dashboard</a>
             <br>
             <a style="margin-top: 10%" href="/advertise" class="navbarElement">Start a campaign</a>
