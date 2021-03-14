@@ -483,12 +483,9 @@ def return_file_mobile(adtype, mobileapi):
         return "No ads"
 
     domain = mobileapi
-    domainList = []
 
     try:
-        for i in Domains.query.all():
-            domainList.append(str(i.domain))
-        if domain not in domainList:
+        if domain not in Domains.query.all():
             return "Unauthorized request"
 
         suitablead = None
