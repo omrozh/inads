@@ -267,7 +267,8 @@ def addDomain():
                 </script>
             '''
         domainname = Domains(domain=flask.request.values["domain"], owner=current_user.email,
-                             keywords=flask.request.values["keywords"] + "/" + pagefinal, total_revenue=0, total_clicks=0,
+                             keywords=flask.request.values["keywords"] + "/" + pagefinal, total_revenue=0,
+                             total_clicks=0,
                              total_views=0)
         db.session.add(domainname)
         db.session.commit()
@@ -374,7 +375,8 @@ def loadMoney():
             currency="usd"
         )
 
-        User.query.get(current_user.id).account_balance += float(flask.request.values["amount"])
+        User.query.get(current_user.id).account_balance += float(
+            float(flask.request.values["amount"]) - float((float(flask.request.values["amount"]) / 100) * 3)) - 0.30
         db.session.commit()
         return flask.redirect("/dashboard")
     return flask.render_template("loadmoney.html", user=user)
@@ -472,7 +474,6 @@ def add_payment_info():
 @app.route("/view/<adtype>/<mobileapi>")
 @cross_origin(supports_credentials=True)
 def return_file_mobile(adtype, mobileapi):
-
     is_there_ad = False
 
     for i in Ads.query.filter_by(ad_type=adtype):
