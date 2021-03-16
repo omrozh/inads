@@ -573,7 +573,7 @@ def return_file(adtype, lang):
     except Exception as e:
         pass
 
-    pagefinal = [lang]
+    pagefinal = []
 
     for i in pagelist.split("/"):
         if len(i) >= 2:
@@ -590,7 +590,7 @@ def return_file(adtype, lang):
         suitablead = None
         suitableads = []
 
-        keywords = Domains.query.filter_by(domain=domain).first().keywords + "/" + pagefinal
+        keywords = Domains.query.filter_by(domain=domain).first().keywords + "/" + pagefinal + "/" + lang
         keywords = keywords.split("/")
         for i in Ads.query.filter_by(ad_type=adtype):
             if i.budget > 0.25:
