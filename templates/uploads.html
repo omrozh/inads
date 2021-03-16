@@ -44,7 +44,7 @@
             <hr>
             <input id="keywordsInput" class="mainFormBig" style="width: 90%" type=text name=keywords placeholder="Targeted Keywords with '/' in between.">
             <hr>
-            <input id="languageInp" class="mainFormBig" style="width: 90%" type=text name=languages placeholder="Targeted Languages" readonly>
+            <input id="languageInp" class="mainFormBig" style="width: 90%" type=text name=languages placeholder="Ad Type" readonly>
             <hr>
             <select class="mainFormBig" name="typeAd">
                 <option value="inadsbanner">Banner(For vertically placed ads)</option>
@@ -56,7 +56,7 @@
             <input class="buttonBlue" style="width: 25%" type=submit value="Start Campaign">
         </form>
         <br>
-        <button class="accordion">Recommended Keywords</button>
+        <button class="accordion">Targeted Languages</button>
         <div class="panel" style="height: 70vh; overflow: auto">
             {% for i in languages %}
                 <p onclick="addLanguage('{{ i }}')">{{ i }}</p>
