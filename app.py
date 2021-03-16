@@ -770,6 +770,11 @@ def styles():
     return flask.send_file("styles.css")
 
 
+@app.route("/logos/<logoname>")
+def logosreturn(logoname):
+    return flask.send_file("./logos/" + logoname)
+
+
 @app.route("/docs")
 def docs():
     return flask.render_template("docs.html")
