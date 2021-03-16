@@ -44,6 +44,8 @@
             <hr>
             <input id="keywordsInput" class="mainFormBig" style="width: 90%" type=text name=keywords placeholder="Targeted Keywords with '/' in between.">
             <hr>
+            <input id="languageInp" class="mainFormBig" style="width: 90%" type=text name=languages placeholder="Targeted Languages" readonly>
+            <hr>
             <select class="mainFormBig" name="typeAd">
                 <option value="inadsbanner">Banner(For vertically placed ads)</option>
                 <option value="inadstandard">Rectangle(For horizontally placed ads)</option>
@@ -56,8 +58,8 @@
         <br>
         <button class="accordion">Recommended Keywords</button>
         <div class="panel" style="height: 70vh; overflow: auto">
-            {% for i in total_keywords %}
-                <p onclick="addKeyword('{{ i }}')">{{ i }}</p>
+            {% for i in languages %}
+                <p onclick="addLanguage('{{ i }}')">{{ i }}</p>
             {% endfor %}
         </div>
     </div>
@@ -81,8 +83,8 @@
             document.getElementById("uploadButton").innerHTML = "File Selected"
         }
 
-        function addKeyword(insertKey){
-             document.getElementById("keywordsInput").value = document.getElementById("keywordsInput").value + "/" + insertKey
+        function addLanguage(insertKey){
+             document.getElementById("languageInp").value = document.getElementById("languageInp").value + "/" + insertKey
         }
     </script>
 </body>
