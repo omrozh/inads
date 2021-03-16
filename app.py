@@ -760,10 +760,10 @@ def adclickmobile(adname, apikey):
 
 @app.before_request
 def before_request():
-    if request.url.startswith('http://'):
-        url = request.url.replace('http://', 'https://', 1)
+    if flask.request.url.startswith('http://'):
+        url = flask.request.url.replace('http://', 'https://', 1)
         code = 301
-        return redirect(url, code=code)
+        return flask.request(url, code=code)
 
 
 @app.route("/inads/<adblockcanceller>")
