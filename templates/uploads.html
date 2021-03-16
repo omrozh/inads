@@ -53,13 +53,6 @@
             <br>
             <input class="buttonBlue" style="width: 25%" type=submit value="Start Campaign">
         </form>
-        <br>
-        <button class="accordion">Recommended Keywords</button>
-        <div class="panel" style="height: 70vh; overflow: auto">
-            {% for i in total_keywords %}
-                <p onclick="addKeyword('{{ i }}')">{{ i }}</p>
-            {% endfor %}
-        </div>
     </div>
     <script>
         var acc = document.getElementsByClassName("accordion");
