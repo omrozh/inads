@@ -17,6 +17,19 @@ app.config["UPLOAD_FOLDER"] = ""
 app.config["SECRET_KEY"] = "MAKEMEBILLIONAIRE"
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_URL']
 
+languages = ["af", "sq", "ar-SA", "ar-IQ", "ar-EG", "ar-LY", "ar-DZ", "ar-MA", "ar-TN", "ar-OM",
+             "ar-YE", "ar-SY", "ar-JO", "ar-LB", "ar-KW", "ar-AE", "ar-BH", "ar-QA", "eu", "bg",
+             "be", "ca", "zh-TW", "zh-CN", "zh-HK", "zh-SG", "hr", "cs", "da", "nl", "nl-BE", "en",
+             "en-US", "en-EG", "en-AU", "en-GB", "en-CA", "en-NZ", "en-IE", "en-ZA", "en-JM",
+             "en-BZ", "en-TT", "et", "fo", "fa", "fi", "fr", "fr-BE", "fr-CA", "fr-CH", "fr-LU",
+             "gd", "gd-IE", "de", "de-CH", "de-AT", "de-LU", "de-LI", "el", "he", "hi", "hu",
+             "is", "id", "it", "it-CH", "ja", "ko", "lv", "lt", "mk", "mt", "no", "pl",
+             "pt-BR", "pt", "rm", "ro", "ro-MO", "ru", "ru-MI", "sz", "sr", "sk", "sl", "sb",
+             "es", "es-AR", "es-GT", "es-CR", "es-PA", "es-DO", "es-MX", "es-VE", "es-CO",
+             "es-PE", "es-EC", "es-CL", "es-UY", "es-PY", "es-BO", "es-SV", "es-HN", "es-NI",
+             "es-PR", "sx", "sv", "sv-FI", "th", "ts", "tn", "tr", "uk", "ur", "ve", "vi", "xh",
+             "ji", "zu"]
+
 authorized_mails = ["omrozh@gmail.com"]
 
 CORS(app, support_credentials=True)
@@ -417,7 +430,8 @@ def advertise():
         blob.upload_from_filename(filename)
         blob.make_public()
 
-        db.session.add(Ads(fileurl=blob.public_url, keywords=flask.request.values["keywords"],
+        db.session.add(Ads(fileurl=blob.public_url, keywords=flask.request.values["keywords"] +
+                                                             flask.request.values["languages"],
                            budget=flask.request.values["budget"],
                            advertiserwebsite=flask.request.values['website'], publishing_sites="",
                            ad_type=flask.request.values['typeAd'], owner=current_user.email, total_clicks=0,
@@ -430,7 +444,7 @@ def advertise():
 
         return flask.redirect("/dashboard")
 
-    return flask.render_template("uploads.html", user=user, total_keywords=total_keywords)
+    return flask.render_template("uploads.html", user=user, languages=languages)
 
 
 @app.route("/cancel_ad/<idad>")
@@ -530,9 +544,9 @@ def return_file_mobile(adtype, mobileapi):
         return "Problem Occured"
 
 
-@app.route("/view/<adtype>")
+@app.route("/view/<adtype>/<lang>")
 @cross_origin(supports_credentials=True)
-def return_file(adtype):
+def return_file(adtype, lang):
     is_there_ad = False
 
     for i in Ads.query.filter_by(ad_type=adtype):
@@ -558,7 +572,8 @@ def return_file(adtype):
         pagelist = pagetitle.replace(" ", "/")
     except Exception as e:
         pass
-    pagefinal = []
+
+    pagefinal = [lang]
 
     for i in pagelist.split("/"):
         if len(i) >= 2:
@@ -602,7 +617,6 @@ def return_file(adtype):
                     continue
                 suitablead = totalads[random.randint(0, len(totalads) - 1)]
 
-        if suitablead and float(suitablead.budget > 0.25):
             return flask.redirect(f"/ads" + "/" + str(int(suitablead.id) - 1))
         else:
             return "No ads are suitable to your query."
