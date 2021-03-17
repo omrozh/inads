@@ -35,7 +35,7 @@
         <form method=post enctype=multipart/form-data>
             <div class="upload-btn-wrapper">
               <button onclick="filenamer()" id="uploadButton" class="btn">Upload a file</button>
-              <input onchange="filenamer()" onclick="filenamer()" type="file" name="file" id="file">
+              <input onchange="loadFile(event)" type="file" name="file" id="file">
             </div>
             <hr>
             <input class="mainFormBig" type=text name=website placeholder="Advertisement Web Page URL">
@@ -53,8 +53,17 @@
             <br>
             <input class="buttonBlue" style="width: 25%" type=submit value="Start Campaign">
         </form>
+        <img id="output" src="" alt="">
     </div>
     <script>
+        var loadFile = function(event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+              URL.revokeObjectURL(output.src) // free memory
+            }
+        };
+
         var acc = document.getElementsByClassName("accordion");
         var i;
 
