@@ -45,9 +45,9 @@
             <input id="keywordsInput" class="mainFormBig" style="width: 90%" type=text name=keywords placeholder="Targeted Keywords with '/' in between.">
             <hr>
             <select class="mainFormBig" name="typeAd" id="shapead">
-                <option value="inadsbanner">Banner - Typically for vertically placed ads</option>
+                <option value="inadsbanner">Banner- Typically for vertically placed ads</option>
                 <option value="inadstandard">Rectangle - Typically for horizontally placed ads</option>
-                <option value="inadsquare">Square - For ads with equal width and height</option>
+                <option value="inadsquare">Square - Typically for evenly distributed</option>
             </select>
             <hr>
             <br>
@@ -62,8 +62,9 @@
             var output = document.getElementById('output');
             output.src = URL.createObjectURL(event.target.files[0]);
             output.onload = function() {
-            URL.revokeObjectURL(output.src)
-            document.getElementsById("uploadButton").innerHTML = event.target.files[0].name
+              URL.revokeObjectURL(output.src)
+              document.getElementById("uploadButton").innerHTML = event.target.files[0].name
+            }
         };
 
         var acc = document.getElementsByClassName("accordion");
