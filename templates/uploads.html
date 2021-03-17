@@ -63,6 +63,7 @@
             output.src = URL.createObjectURL(event.target.files[0]);
             output.onload = function() {
             URL.revokeObjectURL(output.src)
+            document.getElementsById("uploadButton").innerHTML = event.target.files[0].name
         };
 
         var acc = document.getElementsByClassName("accordion");
