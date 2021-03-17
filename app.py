@@ -237,9 +237,10 @@ def addDomain():
             requestobject = requests.get(url).content.decode("utf-8")
 
             pagetitle = requestobject[requestobject.find('<title>') + 7:requestobject.find('</title>')] + \
-                        requestobject[requestobject.find('<meta>') + 6:requestobject.find('</meta>')]
+                        requestobject[requestobject.find('content') + 7:requestobject.find('>')]
 
             pagetitle.replace("|", "")
+            pagetitle.replace(",", "")
             pagelist = pagetitle.replace(" ", "/")
             pagefinal = []
 
