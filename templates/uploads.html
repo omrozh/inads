@@ -44,7 +44,7 @@
             <hr>
             <input id="keywordsInput" class="mainFormBig" style="width: 90%" type=text name=keywords placeholder="Targeted Keywords with '/' in between.">
             <hr>
-            <select class="mainFormBig" name="typeAd">
+            <select class="mainFormBig" name="typeAd" id="shapead">
                 <option value="inadsbanner">Banner(For vertically placed ads)</option>
                 <option value="inadstandard">Rectangle(For horizontally placed ads)</option>
                 <option value="inadsquare">Square</option>
@@ -63,7 +63,15 @@
             output.src = URL.createObjectURL(event.target.files[0]);
             output.onload = function() {
               URL.revokeObjectURL(output.src) // free memory
-              document.getElementById("sizes").innerHTML = event.target.files[0].size
+              if (Math.abs(event.target.files[0].width - event.target.files[0].height) < 200){
+                document.getElementById("shapead").value = "inadsquare"
+              }
+              else if ((event.target.files[0].width - event.target.files[0].height) < 0){
+                document.getElementById("shapead").value = "inadsbanner"
+              }
+              else if ((event.target.files[0].width - event.target.files[0].height) > 0){
+                document.getElementById("shapead").value = "inadstandard"
+              }
               document.getElementById("uploadButton").innerHTML = event.target.files[0].name
             }
         };
