@@ -63,7 +63,8 @@
             output.src = URL.createObjectURL(event.target.files[0]);
             output.onload = function() {
               URL.revokeObjectURL(output.src) // free memory
-              document.getElementById("sizes").innerHTML = event.files[0].size
+              document.getElementById("sizes").innerHTML = event.target.files[0].size
+              document.getElementById("uploadButton").innerHTML = event.target.files[0].name
             }
         };
 
@@ -81,9 +82,6 @@
               panel.style.display = "block";
             }
           });
-        }
-        function filenamer(){
-            document.getElementById("uploadButton").innerHTML = "File Selected"
         }
 
         function addKeyword(insertKey){
