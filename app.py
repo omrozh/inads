@@ -15,7 +15,7 @@ from flask_login import LoginManager, UserMixin, current_user, logout_user, logi
 app = flask.Flask(__name__)
 app.config["UPLOAD_FOLDER"] = ""
 app.config["SECRET_KEY"] = "MAKEMEBILLIONAIRE"
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_CONNECTION_POOL_URL']
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_URL']
 
 authorized_mails = ["omrozh@gmail.com"]
 
