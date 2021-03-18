@@ -16,3 +16,5 @@ for i in ads:
 
 for i in domains:
     db.session.add(i)
+
+db.session.commit()
