@@ -161,7 +161,6 @@ def changePassword():
                 </script>
             '''
         User.query.get(current_user.id).password = flask.request.values["password"]
-        db.session.commit()
 
         logout_user()
         return flask.redirect("/")
@@ -175,7 +174,6 @@ def websitePerformance():
     domainslist = Domains.query.filter_by(owner=current_user.email)
     if flask.request.method == "POST":
         Domains.query.get(flask.request.values["domainid"]).keywords = flask.request.values["keywords"]
-        db.session.commit()
     return flask.render_template("website_performance.html", domainslist=domainslist, user=current_user)
 
 
@@ -187,7 +185,6 @@ def cancelSubscription():
 
     if flask.request.method == "POST":
         db.session.delete(User.query.get(current_user.id))
-        db.session.commit()
         stripe.api_key = "sk_test_51HZAtZHjukLYcqc9JUrifnqu7SZiifNT4FbJHQnTXQo" \
                          "hTrHXdLp3EQQaNeZVHi4JaQYfMwvCRC7UPFi1IggTS6uJ00DvcuSZ19"
 
@@ -228,7 +225,6 @@ def addDomain():
                                  keywords=flask.request.values["keywords"], total_revenue=0, total_clicks=0,
                                  total_views=0)
             db.session.add(domainname)
-            db.session.commit()
             return flask.redirect("/dashboard")
         try:
             requestinfo = requests.get("http://" + flask.request.values["domain"] + "/inadsconfirm.txt").content
@@ -273,7 +269,6 @@ def addDomain():
                              total_clicks=0,
                              total_views=0)
         db.session.add(domainname)
-        db.session.commit()
     return flask.render_template("domainadd.html", domains=domains, user=current_user)
 
 
@@ -301,7 +296,6 @@ def payoutSystem():
                                           + ", Routing Number" + values["rnumber"] + "Account Mail: " +
                                           current_user.email)
         db.session.add(information)
-        db.session.commit()
     return flask.render_template("payout.html", user=current_user)
 
 
@@ -335,7 +329,6 @@ def register():
                     purpose=flask.request.values["purpose"], account_balance=0)
 
         db.session.add(user)
-        db.session.commit()
         return '''
             <script>
                 alert("Registered")
@@ -379,7 +372,6 @@ def loadMoney():
 
         User.query.get(current_user.id).account_balance += float(
             float(flask.request.values["amount"]) - float((float(flask.request.values["amount"]) / 100) * 3)) - 0.30
-        db.session.commit()
         return flask.redirect("/dashboard")
     return flask.render_template("loadmoney.html", user=user)
 
@@ -428,8 +420,6 @@ def advertise():
         User.query.get(current_user.id).account_balance = float(User.query.get(current_user.id).account_balance) - \
                                                           float(flask.request.values["budget"])
 
-        db.session.commit()
-
         return flask.redirect("/dashboard")
 
     return flask.render_template("uploads.html", user=user, total_keywords=total_keywords)
@@ -444,7 +434,6 @@ def cancel_ad(idad):
             User.query.get(current_user.id).account_balance) + float(ad.budget)
 
         db.session.delete(ad)
-        db.session.commit()
     return flask.redirect("/dashboard")
 
 
@@ -459,7 +448,6 @@ def add_payment_info():
                                             False)
 
             User.query.get(current_user.id).customer_id = customer_id
-            db.session.commit()
         except:
             return '''
                 <script>
@@ -634,7 +622,6 @@ def returnActual(fileindex):
     userowner = User.query.filter_by(email=domainowner).first().account_balance
     Ads.query.get(int(fileindex) + 1).budget -= 0.00015
     User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.00015
-    db.session.commit()
     if len(file.fileurl) > 4:
         response = flask.Response(requests.get(file.fileurl).content)
         return response
@@ -659,7 +646,6 @@ def returnActualMobile(fileindex, key):
     userowner = User.query.filter_by(email=domainowner).first().account_balance
     Ads.query.get(int(fileindex) + 1).budget -= 0.00015
     User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.00015
-    db.session.commit()
     if len(file.fileurl) > 4:
         response = flask.Response(requests.get(file.fileurl).content)
         return response
@@ -710,7 +696,6 @@ def adclick(adname):
             User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.09
             User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().account_balance += 0.01
 
-        db.session.commit()
         return f"<script> document.location = '{Ads.query.get(int(adname) + 1).advertiserwebsite}' </script>"
 
 
@@ -756,7 +741,6 @@ def adclickmobile(adname, apikey):
             User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.18
             User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().account_balance += 0.02
 
-        db.session.commit()
         return f"<script> document.location = '{Ads.query.get(int(adname) + 1).advertiserwebsite}' </script>"
 
 
@@ -816,5 +800,5 @@ def handle_500(e):
 
 @app.teardown_request
 def teardown_request_func(error=None):
+    db.session.commit()
     db.session.close()
-
