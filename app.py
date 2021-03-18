@@ -813,6 +813,6 @@ def handle_500(e):
 
 
 @app.after_request
-def after_request():
+def after_request(response):
     db.session.close()
     return "Connection Closed"
