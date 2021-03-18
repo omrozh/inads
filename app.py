@@ -812,7 +812,7 @@ def handle_500(e):
     return flask.render_template("404.html")
 
 
-@app.after_request
-def after_request(response):
+@app.teardown_request
+def teardown_request_func(error=None):
     db.session.close()
-    return response
+
