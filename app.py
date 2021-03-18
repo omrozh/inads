@@ -19,7 +19,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_CONNECTION_POOL_URL
 
 authorized_mails = ["omrozh@gmail.com"]
 
-CORS(app, support_credentials=True)
+CORS(app)
 
 login_manager = LoginManager(app)
 
