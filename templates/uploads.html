@@ -54,7 +54,7 @@
             <input class="buttonBlue" style="width: 25%" type=submit value="Start Campaign">
         </form>
         <br>
-        <h3>Preview</h3>
+        <h3 hidden="true" id="prehead">Preview</h3>
         <br>
         <img id="output" src="" alt="">
         <p id="sizes"></p>
@@ -64,6 +64,7 @@
             var output = document.getElementById('output');
             output.src = URL.createObjectURL(event.target.files[0]);
             output.onload = function() {
+              document.getElementById("prehead").hidden = false;
               URL.revokeObjectURL(output.src)
               document.getElementById("uploadButton").innerHTML = event.target.files[0].name
               if(Math.abs(output.width - output.height) < 200){
