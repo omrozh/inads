@@ -474,7 +474,7 @@ def add_payment_info():
 
 
 @app.route("/view/<adtype>/<mobileapi>")
-@cross_origin(supports_credentials=True)
+@cross_origin()
 def return_file_mobile(adtype, mobileapi):
     is_there_ad = False
 
@@ -533,7 +533,7 @@ def return_file_mobile(adtype, mobileapi):
 
 
 @app.route("/view/<adtype>")
-@cross_origin(supports_credentials=True)
+@cross_origin()
 def return_file(adtype):
     is_there_ad = False
 
@@ -613,7 +613,7 @@ def return_file(adtype):
 
 
 @app.route("/ads/<fileindex>")
-@cross_origin(supports_credentials=True)
+@cross_origin()
 def returnActual(fileindex):
     domainList = []
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
@@ -641,7 +641,7 @@ def returnActual(fileindex):
 
 
 @app.route("/<key>/ads/<fileindex>")
-@cross_origin(supports_credentials=True)
+@cross_origin()
 def returnActualMobile(fileindex, key):
     domainList = []
     domain = key
@@ -666,7 +666,7 @@ def returnActualMobile(fileindex, key):
 
 
 @app.route("/adclick/<adname>")
-@cross_origin(supports_credentials=True)
+@cross_origin()
 def adclick(adname):
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     domainList = []
@@ -715,7 +715,7 @@ def adclick(adname):
 
 
 @app.route("/adclickmobile/<adname>/<apikey>")
-@cross_origin(supports_credentials=True)
+@cross_origin()
 def adclickmobile(adname, apikey):
     domain = apikey
     domainList = []
@@ -761,13 +761,13 @@ def adclickmobile(adname, apikey):
 
 
 @app.route("/inads/<adblockcanceller>")
-@cross_origin(supports_credentials=True)
+@cross_origin()
 def addscript(adblockcanceller):
     return flask.send_file("ads.js")
 
 
 @app.route("/styles")
-@cross_origin(supports_credentials=True)
+@cross_origin()
 def styles():
     return flask.send_file("styles.css")
 
