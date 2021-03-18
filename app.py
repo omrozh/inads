@@ -19,7 +19,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_CONNECTION_POOL_URL
 
 authorized_mails = ["omrozh@gmail.com"]
 
-CORS(app)
+CORS(app, support_credentials=True)
 
 login_manager = LoginManager(app)
 
@@ -474,7 +474,7 @@ def add_payment_info():
 
 
 @app.route("/view/<adtype>/<mobileapi>")
-@cross_origin()
+@cross_origin(supports_credentials=True)
 def return_file_mobile(adtype, mobileapi):
     is_there_ad = False
 
@@ -533,7 +533,7 @@ def return_file_mobile(adtype, mobileapi):
 
 
 @app.route("/view/<adtype>")
-@cross_origin()
+@cross_origin(supports_credentials=True)
 def return_file(adtype):
     is_there_ad = False
 
@@ -613,7 +613,7 @@ def return_file(adtype):
 
 
 @app.route("/ads/<fileindex>")
-@cross_origin()
+@cross_origin(supports_credentials=True)
 def returnActual(fileindex):
     domainList = []
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
@@ -641,7 +641,7 @@ def returnActual(fileindex):
 
 
 @app.route("/<key>/ads/<fileindex>")
-@cross_origin()
+@cross_origin(supports_credentials=True)
 def returnActualMobile(fileindex, key):
     domainList = []
     domain = key
@@ -666,7 +666,7 @@ def returnActualMobile(fileindex, key):
 
 
 @app.route("/adclick/<adname>")
-@cross_origin()
+@cross_origin(supports_credentials=True)
 def adclick(adname):
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     domainList = []
@@ -715,7 +715,7 @@ def adclick(adname):
 
 
 @app.route("/adclickmobile/<adname>/<apikey>")
-@cross_origin()
+@cross_origin(supports_credentials=True)
 def adclickmobile(adname, apikey):
     domain = apikey
     domainList = []
@@ -761,13 +761,13 @@ def adclickmobile(adname, apikey):
 
 
 @app.route("/inads/<adblockcanceller>")
-@cross_origin()
+@cross_origin(supports_credentials=True)
 def addscript(adblockcanceller):
     return flask.send_file("ads.js")
 
 
 @app.route("/styles")
-@cross_origin()
+@cross_origin(supports_credentials=True)
 def styles():
     return flask.send_file("styles.css")
 
@@ -803,11 +803,13 @@ def unityextension():
 
 
 @app.errorhandler(500)
+@cross_origin(supports_credentials=True)
 def handle_500(e):
     return flask.render_template("500.html")
 
 
 @app.errorhandler(404)
+@cross_origin(supports_credentials=True)
 def handle_500(e):
     return flask.render_template("404.html")
 
