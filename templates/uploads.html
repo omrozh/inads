@@ -64,7 +64,15 @@
             output.onload = function() {
               URL.revokeObjectURL(output.src)
               document.getElementById("uploadButton").innerHTML = event.target.files[0].name
-              alert(output.width)
+              if(Math.abs(output.width - output.height) < 200){
+                document.getElementById("shapead").value = "inadsquare"
+              }
+              else if(output.width - output.height < 0){
+                document.getElementById("shapead").value = "inadsquare"
+              }
+              else if(output.width - output.height > 0){
+                document.getElementById("shapead").value = "inadstandard"
+              }
             }
         };
 
