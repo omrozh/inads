@@ -56,7 +56,7 @@
         <br>
         <h3 hidden="true" id="prehead">Pre<span style="color: yellow">view</span></h3>
         <br>
-        <a><small style="font-size: 6px;">Ads by <span style="color: black;">InAds</span></small></a><br>
+        <a><small hidden="true" id="inadsid" style="font-size: 6px; color: yellow">Ads by <span style="color: black;">InAds</span></small></a><br>
         <img id="output" src="" alt="">
         <p id="sizes"></p>
     </div>
@@ -66,6 +66,7 @@
             output.src = URL.createObjectURL(event.target.files[0]);
             output.onload = function() {
               document.getElementById("prehead").hidden = false;
+              document.getElementById("inadsid").hidden = false;
               URL.revokeObjectURL(output.src)
               document.getElementById("uploadButton").innerHTML = event.target.files[0].name
               if(Math.abs(output.width - output.height) < 200){
