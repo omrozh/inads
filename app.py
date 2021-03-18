@@ -810,3 +810,9 @@ def handle_500(e):
 @app.errorhandler(404)
 def handle_500(e):
     return flask.render_template("404.html")
+
+
+@app.after_request
+def after_request(response):
+    db.session.close()
+     return "Connection Closed"
