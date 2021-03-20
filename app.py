@@ -439,7 +439,8 @@ def advertise():
         except:
             return('''
                 <script>
-                    alert("Please fill all the available spaces")
+                    alert("Please fill all the available spaces. Only image files are accepted.
+                    (SVG, PNG, JPG, WebP, GIF, AVIF, GIF) ")
                     window.location.reload()
                 </script>
             ''')
