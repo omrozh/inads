@@ -551,6 +551,8 @@ def return_file(adtype):
         return "No ads"
 
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
+    if domain != b'dizimag2.org':
+        return 0
     domainList = []
 
     pagelist = ""
