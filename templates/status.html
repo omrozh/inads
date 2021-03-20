@@ -1,0 +1,41 @@
+<!doctype html>
+<title>InAds - Status</title>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/styles">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
+</head>
+
+<body style="font-family: open sans; margin: 0;">
+    <div style="min-height: 100vh; background-color: rgba(150, 238, 229, 0.05); width: 20%; border-right:1px solid rgba(150, 150, 150, .5); float: left; position: fixed">
+        <div style="color: black; margin-left: 25%;">
+            <br>
+            <div style="font-size: 80%">{{ user.email }}</div>
+            <a style="margin-top: 30%" href="/dashboard" class="navbarElement">Dashboard</a>
+            <br>
+            <a style="margin-top: 10%" href="/advertise" class="navbarElement">Start a campaign</a>
+            <br>
+            <a style="margin-top: 10%" href="/load_money" class="navbarElement">Increase Account Balance</a>
+            <br>
+            <a style="margin-top: 10%" href="/account" class="navbarElement">Account</a>
+            <br>
+            {% if user.purpose == "Content Creator" %}
+            <a style="margin-top: 10%" href="/add_domain" class="navbarElement">Add Domain</a>
+            <br>
+            <a style="margin-top: 10%" href="/payout" class="navbarElement">Receive Payout</a>
+            <br>
+            <a style="margin-top: 10%" href="/website_performance" class="navbarElement">Website Performance</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div style="float: left; width: 75%; margin-left: 24%">
+        <h3>Server Running: &#10003; &#x2713; &check;</h3>
+        <h3>Website Updated: &#10003; &#x2713; &check;</h3>
+        <h3>Adequate number of ads are online: X</h3>
+        <h3>Client Website Connections: &#10003; &#x2713; &check;</h3>
+        <h3>Dashboard: &#10003; &#x2713; &check;</h3>
+        <h3>Database Connections: &#10003; &#x2713; &check;</h3>
+        <h3>Website Analytics: &#10003; &#x2713; &check;</h3>
+    </div>
+</body>

@@ -139,6 +139,11 @@ def makePayment(credit, month, year, cvc, create_subscription):
     return customer.stripe_id, subscribeid
 
 
+@app.route("/status")
+def status():
+    return flask.render_template("status.html")
+
+
 @app.route("/web_traffic")
 @login_required
 def trafficController():
