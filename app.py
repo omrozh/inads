@@ -140,8 +140,9 @@ def makePayment(credit, month, year, cvc, create_subscription):
 
 
 @app.route("/status")
+@login_required
 def status():
-    return flask.render_template("status.html")
+    return flask.render_template("status.html", user=current_user)
 
 
 @app.route("/web_traffic")
