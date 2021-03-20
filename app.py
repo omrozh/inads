@@ -440,7 +440,7 @@ def advertise():
             return('''
                 <script>
                     alert("Please fill all the available spaces")
-                    window.location.reload
+                    window.location.reload()
                 </script>
             ''')
 
