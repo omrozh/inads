@@ -403,29 +403,29 @@ def advertise():
     total_keywords = sorted(total_keywords, key=str.lower)
 
     if flask.request.method == 'POST':
-        if float(flask.request.values["budget"]) > float(current_user.account_balance):
-            return '''
-            <script>
-                alert("Inadequate Account Balance");
-                window.location.reload()
-            </script>
-            '''
-        if 'file' not in flask.request.files:
-            return flask.redirect(flask.request.url)
-        file = flask.request.files['file']
-        if file.filename == '':
-            return flask.redirect(flask.request.url)
-
-        filename = secure_filename(file.filename) + str(random.randint(1384384718471324218, 9471384138946193649716))
-
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-
-        bucket = storage.bucket()
-        blob = bucket.blob(filename)
-        blob.upload_from_filename(filename)
-        blob.make_public()
-
         try:
+            if float(flask.request.values["budget"]) > float(current_user.account_balance):
+                return '''
+                <script>
+                    alert("Inadequate Account Balance");
+                    window.location.reload()
+                </script>
+                '''
+            if 'file' not in flask.request.files:
+                return flask.redirect(flask.request.url)
+            file = flask.request.files['file']
+            if file.filename == '':
+                return flask.redirect(flask.request.url)
+
+            filename = secure_filename(file.filename) + str(random.randint(1384384718471324218, 9471384138946193649716))
+
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+            bucket = storage.bucket()
+            blob = bucket.blob(filename)
+            blob.upload_from_filename(filename)
+            blob.make_public()
+
             db.session.add(Ads(fileurl=blob.public_url, keywords=flask.request.values["keywords"],
                                budget=flask.request.values["budget"],
                                advertiserwebsite=flask.request.values['website'], publishing_sites="",
