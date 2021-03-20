@@ -425,16 +425,24 @@ def advertise():
         blob.upload_from_filename(filename)
         blob.make_public()
 
-        db.session.add(Ads(fileurl=blob.public_url, keywords=flask.request.values["keywords"],
-                           budget=flask.request.values["budget"],
-                           advertiserwebsite=flask.request.values['website'], publishing_sites="",
-                           ad_type=flask.request.values['typeAd'], owner=current_user.email, total_clicks=0,
-                           total_views=0))
+        try:
+            db.session.add(Ads(fileurl=blob.public_url, keywords=flask.request.values["keywords"],
+                               budget=flask.request.values["budget"],
+                               advertiserwebsite=flask.request.values['website'], publishing_sites="",
+                               ad_type=flask.request.values['typeAd'], owner=current_user.email, total_clicks=0,
+                               total_views=0))
 
-        User.query.get(current_user.id).account_balance = float(User.query.get(current_user.id).account_balance) - \
-                                                          float(flask.request.values["budget"])
+            User.query.get(current_user.id).account_balance = float(User.query.get(current_user.id).account_balance) - \
+                                                              float(flask.request.values["budget"])
 
-        db.session.commit()
+            db.session.commit()
+        except:
+            return('''
+                <script>
+                    alert("Please fill all the available spaces")
+                    window.location.reload
+                </script>
+            ''')
 
         return flask.redirect("/dashboard")
 
