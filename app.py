@@ -237,7 +237,7 @@ def addDomain():
             db.session.commit()
             return flask.redirect("/dashboard")
         try:
-            requestinfo = b'dizilla@protonmail.com'
+            requestinfo = requests.get("http://" + flask.request.values["domain"] + "/inadsconfirm.txt").content
             url = "http://" + flask.request.values["domain"]
 
             requestobject = requests.get(url).content.decode("utf-8")
@@ -560,8 +560,6 @@ def return_file(adtype):
 
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     domainList = []
-
-    # Remove that if statement tomorrow
 
     pagelist = ""
 
