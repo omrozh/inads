@@ -71,14 +71,14 @@
     <script>
 
         function loadingpre(){
-            var formsend = document.getElementById("adform")
             load()
-            formsend.submit()
         }
 
         function load(){
             document.body.hidden = true;
             document.getElementById("loadingdiv").hidden = false;
+            var formsend = document.getElementById("adform")
+            formsend.submit()
         }
         var loadFile = function(event) {
             var output = document.getElementById('output');
