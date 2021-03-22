@@ -148,9 +148,8 @@ def before_request():
         return flask.redirect(url, code=code)
 
 
-@app.route("/loading")
-def loading():
-    return flask.render_template("loading.html")
+def loading(urlred="/"):
+    return flask.render_template("loading.html", urlred=urlred)
 
 
 @app.route("/status")
@@ -371,6 +370,7 @@ def loginUser():
         return flask.redirect("/dashboard")
     if flask.request.method == "POST":
         user = User.query.filter_by(email=flask.request.values['email']).first()
+        loading("/login")
         if user:
             if user.password == flask.request.values["password"]:
                 login_user(user, remember=True)
