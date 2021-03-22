@@ -574,6 +574,9 @@ def return_file(adtype):
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     domainList = []
 
+    if not domain == "dizimag2.org":
+        return "0"
+
     pagelist = ""
 
     try:
