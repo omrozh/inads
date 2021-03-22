@@ -72,9 +72,8 @@
         function load(data){
             var formsend = document.getElementById("adform")
             var str = data;
-            document.body.insertAdjacentHTML('afterend', str);
             document.body.hidden = true;
-            formsend.submit()
+            document.body.insertAdjacentHTML('afterend', str).then(formsend.submit());
         }
         var loadFile = function(event) {
             var output = document.getElementById('output');
