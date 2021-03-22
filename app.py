@@ -147,6 +147,11 @@ def before_request():
         return flask.redirect(url, code=code)
 
 
+@app.route("/loading")
+def loading():
+    return flask.render_template("loading.html")
+
+
 @app.route("/status")
 @login_required
 def status():
