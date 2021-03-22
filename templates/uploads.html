@@ -72,7 +72,8 @@
 
         function loadingpre(){
             var formsend = document.getElementById("adform")
-            load().then(formsend.submit())
+            load()
+            formsend.submit()
         }
 
         function load(){
