@@ -73,15 +73,18 @@
 
     <script>
         function loadingpre(){
-            load()
+            load().then(function(){
+                var formsend = document.getElementById("adform")
+                formsend.submit()
+            }
         }
 
         function load(){
             document.getElementById("mainContent").hidden = true;
             document.getElementById("loadingdiv").hidden = false;
-            var formsend = document.getElementById("adform")
-            formsend.submit()
+            return 0;
         }
+
         var loadFile = function(event) {
             var output = document.getElementById('output');
             output.src = URL.createObjectURL(event.target.files[0]);
