@@ -141,10 +141,12 @@ def makePayment(credit, month, year, cvc, create_subscription):
 
 @app.before_request
 def before_request():
+    url = flask.request.url.replace("http://", "https://", 1)
     if not flask.request.is_secure:
-        url = flask.request.url.replace("http://", "https://", 1)
         code = 301
         return flask.redirect(url, code=code)
+
+    return flask.render_template("loading.html", url=url)
 
 
 @app.route("/status")
