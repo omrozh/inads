@@ -139,6 +139,16 @@ def makePayment(credit, month, year, cvc, create_subscription):
     return customer.stripe_id, subscribeid
 
 
+@app.before_request
+def before_request():
+    if flask.request.is_secure:
+        return
+
+    url = flask.request.url.replace("http://", "https://", 1)
+    code = 301
+    return flask.redirect(url, code=code)
+
+
 @app.route("/status")
 @login_required
 def status():
