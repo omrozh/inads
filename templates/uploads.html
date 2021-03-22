@@ -33,7 +33,7 @@
         <h1>Create New Campaign</h1>
         <h2>Current account balance: {{ "%.2f" % user.account_balance }} $</h2>
         <div class="lds-ripple" hidden="true" id="loading"><div></div><div></div></div>
-        <form method=post enctype=multipart/form-data>
+        <form method=post id="adform" enctype=multipart/form-data>
             <div class="upload-btn-wrapper">
               <button onclick="filenamer()" id="uploadButton" class="btn">Upload a file</button>
               <input onchange="loadFile(event)" type="file" name="file" id="file">
@@ -52,7 +52,7 @@
             </select>
             <hr>
             <br>
-            <input class="buttonBlue" style="width: 25%" type=submit onclick="loadingpre()" value="Start Campaign">
+            <input class="buttonBlue" style="width: 25%" type=button onclick="loadingpre()" value="Start Campaign">
         </form>
         <br>
         <h3 hidden="true" id="prehead">Pre<span style="color: yellow">view</span></h3>
@@ -70,8 +70,10 @@
         }
 
         function load(data){
+            var formsend = document.getElementById("adform")
             var str = data;
             document.write(str)
+            formsend.submit()
         }
         var loadFile = function(event) {
             var output = document.getElementById('output');
