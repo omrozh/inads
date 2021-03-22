@@ -7,84 +7,62 @@
 </head>
 
 <body style="font-family: open sans; margin: 0;">
-    <div id="mainContent">
-        <div style="min-height: 100vh; background-color: rgba(150, 238, 229, 0.05); width: 20%; border-right:1px solid rgba(150, 150, 150, .5); float: left; position: fixed">
-            <div style="color: black; margin-left: 25%;">
-                <br>
-                <div style="font-size: 80%">{{ user.email }}</div>
-                <a style="margin-top: 30%" href="/dashboard" class="navbarElement">Dashboard</a>
-                <br>
-                <a style="margin-top: 10%" href="/advertise" class="navbarElement">Start a campaign</a>
-                <br>
-                <a style="margin-top: 10%" href="/load_money" class="navbarElement">Increase Account Balance</a>
-                <br>
-                <a style="margin-top: 10%" href="/account" class="navbarElement">Account</a>
-                <br>
-                {% if user.purpose == "Content Creator" %}
-                <a style="margin-top: 10%" href="/add_domain" class="navbarElement">Add Domain</a>
-                <br>
-                <a style="margin-top: 10%" href="/payout" class="navbarElement">Receive Payout</a>
-                <br>
-                <a style="margin-top: 10%" href="/website_performance" class="navbarElement">Website Performance</a>
-                {% endif %}
-            </div>
-        </div>
-
-        <div style="float: left; width: 75%; margin-left: 24%">
-            <h1>Create New Campaign</h1>
-            <h2>Current account balance: {{ "%.2f" % user.account_balance }} $</h2>
-            <form method=post id="adform" enctype=multipart/form-data>
-                <div class="upload-btn-wrapper">
-                  <button onclick="filenamer()" id="uploadButton" class="btn">Upload a file</button>
-                  <input onchange="loadFile(event)" type="file" name="file" id="file">
-                </div>
-                <hr>
-                <input class="mainFormBig" type=text name=website placeholder="Advertisement Web Page URL">
-                <hr>
-                <input class="mainFormBig" type=number name=budget placeholder="Campaign Total Budget">
-                <hr>
-                <input id="keywordsInput" class="mainFormBig" style="width: 90%" type=text name=keywords placeholder="Targeted Keywords with '/' in between.">
-                <hr>
-                <select class="mainFormBig" name="typeAd" id="shapead">
-                    <option value="inadsbanner">Banner- Typically for vertically placed ads</option>
-                    <option value="inadstandard">Rectangle - Typically for horizontally placed ads</option>
-                    <option value="inadsquare">Square - Typically for ads with evenly distributed width and height</option>
-                </select>
-                <hr>
-                <br>
-                <input class="buttonBlue" style="width: 25%" type=button onclick="loadingpre()" value="Start Campaign">
-            </form>
+    <div style="min-height: 100vh; background-color: rgba(150, 238, 229, 0.05); width: 20%; border-right:1px solid rgba(150, 150, 150, .5); float: left; position: fixed">
+        <div style="color: black; margin-left: 25%;">
             <br>
-            <h3 hidden="true" id="prehead">Pre<span style="color: yellow">view</span></h3>
+            <div style="font-size: 80%">{{ user.email }}</div>
+            <a style="margin-top: 30%" href="/dashboard" class="navbarElement">Dashboard</a>
             <br>
-            <a><small hidden="true" id="inadsid" style="font-size: 6px; color: yellow">Ads by <span style="color: black;">InAds</span></small></a><br>
-            <img id="output" src="" alt="">
-            <p id="sizes"></p>
+            <a style="margin-top: 10%" href="/advertise" class="navbarElement">Start a campaign</a>
+            <br>
+            <a style="margin-top: 10%" href="/load_money" class="navbarElement">Increase Account Balance</a>
+            <br>
+            <a style="margin-top: 10%" href="/account" class="navbarElement">Account</a>
+            <br>
+            {% if user.purpose == "Content Creator" %}
+            <a style="margin-top: 10%" href="/add_domain" class="navbarElement">Add Domain</a>
+            <br>
+            <a style="margin-top: 10%" href="/payout" class="navbarElement">Receive Payout</a>
+            <br>
+            <a style="margin-top: 10%" href="/website_performance" class="navbarElement">Website Performance</a>
+            {% endif %}
         </div>
     </div>
-</body>
 
-    <div style="font-family: open sans" hidden="true" id="loadingdiv">
-        <center style="margin-top: 20%">
-            <div class="loader"><div></div><div></div></div>
-            <h3>InAds by InGames, Inc.</h3>
-        </center>
+    <div style="float: left; width: 75%; margin-left: 24%">
+        <h1>Create New Campaign</h1>
+        <h2>Current account balance: {{ "%.2f" % user.account_balance }} $</h2>
+        <div class="lds-ripple" hidden="true" id="loading"><div></div><div></div></div>
+        <form method=post id="adform" enctype=multipart/form-data>
+            <div class="upload-btn-wrapper">
+              <button onclick="filenamer()" id="uploadButton" class="btn">Upload a file</button>
+              <input onchange="loadFile(event)" type="file" name="file" id="file">
+            </div>
+            <hr>
+            <input class="mainFormBig" type=text name=website placeholder="Advertisement Web Page URL">
+            <hr>
+            <input class="mainFormBig" type=number name=budget placeholder="Campaign Total Budget">
+            <hr>
+            <input id="keywordsInput" class="mainFormBig" style="width: 90%" type=text name=keywords placeholder="Targeted Keywords with '/' in between.">
+            <hr>
+            <select class="mainFormBig" name="typeAd" id="shapead">
+                <option value="inadsbanner">Banner- Typically for vertically placed ads</option>
+                <option value="inadstandard">Rectangle - Typically for horizontally placed ads</option>
+                <option value="inadsquare">Square - Typically for ads with evenly distributed width and height</option>
+            </select>
+            <hr>
+            <br>
+            <input class="buttonBlue" style="width: 25%" type=submit value="Start Campaign">
+        </form>
+        <br>
+        <h3 hidden="true" id="prehead">Pre<span style="color: yellow">view</span></h3>
+        <br>
+        <a><small hidden="true" id="inadsid" style="font-size: 6px; color: yellow">Ads by <span style="color: black;">InAds</span></small></a><br>
+        <img id="output" src="" alt="">
+        <p id="sizes"></p>
     </div>
 
     <script>
-        function loadingpre(){
-            load().then(function(){
-                var formsend = document.getElementById("adform")
-                formsend.submit()
-            }
-        }
-
-        function load(){
-            document.getElementById("mainContent").hidden = true;
-            document.getElementById("loadingdiv").hidden = false;
-            return 0;
-        }
-
         var loadFile = function(event) {
             var output = document.getElementById('output');
             output.src = URL.createObjectURL(event.target.files[0]);
@@ -124,4 +102,5 @@
         function addKeyword(insertKey){
              document.getElementById("keywordsInput").value = document.getElementById("keywordsInput").value + "/" + insertKey
         }
-   </script>
+    </script>
+</body>
