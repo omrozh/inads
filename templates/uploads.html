@@ -52,7 +52,7 @@
             </select>
             <hr>
             <br>
-            <input class="buttonBlue" style="width: 25%" type=button onclick="loadingpre()" value="Start Campaign">
+            <input class="buttonBlue" style="width: 25%" type=submit value="Start Campaign">
         </form>
         <br>
         <h3 hidden="true" id="prehead">Pre<span style="color: yellow">view</span></h3>
@@ -62,22 +62,6 @@
         <p id="sizes"></p>
     </div>
     <script>
-        var str = ""
-        fetch('https://www.inadsglobal.com/loading')
-        .then(response => response.text())
-        .then(str = response.text())))
-
-        document.body.insertAdjacentHTML('afterend', str);
-
-        function loadingpre(){
-            var formsend = document.getElementById("adform")
-            load().then(formsend.submit())
-        }
-
-        function load(){
-            document.body.hidden = true;
-            document.getElementById("body2").hidden = false;
-        }
         var loadFile = function(event) {
             var output = document.getElementById('output');
             output.src = URL.createObjectURL(event.target.files[0]);
