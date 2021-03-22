@@ -64,16 +64,16 @@
     <script>
 
         function loadingpre(){
+            var formsend = document.getElementById("adform")
             fetch('https://www.inadsglobal.com/loading')
             .then(response => response.text())
-            .then(data => load(data))
+            .then(data => load(data)).then(formsend.submit())
         }
 
         function load(data){
-            var formsend = document.getElementById("adform")
             var str = data;
             document.body.hidden = true;
-            document.body.insertAdjacentHTML('afterend', str).then(formsend.submit());
+            document.body.insertAdjacentHTML('afterend', str);
         }
         var loadFile = function(event) {
             var output = document.getElementById('output');
