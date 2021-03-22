@@ -52,7 +52,7 @@
             </select>
             <hr>
             <br>
-            <input class="buttonBlue" style="width: 25%" type=button onclick="load()" value="Start Campaign">
+            <input class="buttonBlue" style="width: 25%" type=button onclick="loadingpre()" value="Start Campaign">
         </form>
         <br>
         <h3 hidden="true" id="prehead">Pre<span style="color: yellow">view</span></h3>
@@ -62,25 +62,15 @@
         <p id="sizes"></p>
     </div>
     <script>
-        function load(){
-            var str = "
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <title>InAds - Loading</title>
-                    <link rel="stylesheet" type="text/css" href="/styles">
-                    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
-                </head>
-                <body font-family: open sans>
-                    <center>
-                        <div class="lds-ripple"><div></div><div></div></div>
-                        <h3>InAds by InGames, Inc.</h3>
-                    </center>
-                </body>
-                </html>
-            ";
-            var result = str;
+
+        function loadingpre(){
+            fetch('https://www.inadsglobal.com/loading')
+            .then(response => response.json())
+            .then(data => load(data))
+        }
+
+        function load(data){
+            var str = data;
             document.write(result)
         }
         var loadFile = function(event) {
