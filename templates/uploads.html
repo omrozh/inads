@@ -62,6 +62,7 @@
         <p id="sizes"></p>
     </div>
     <script>
+        document.body.insertAdjacentHTML('afterend', str);
 
         function loadingpre(){
             var formsend = document.getElementById("adform")
@@ -73,7 +74,7 @@
         function load(data){
             var str = data;
             document.body.hidden = true;
-            document.body.insertAdjacentHTML('afterend', str);
+            document.getElementById("body2").hidden = false;
         }
         var loadFile = function(event) {
             var output = document.getElementById('output');
