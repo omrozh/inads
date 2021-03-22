@@ -32,7 +32,6 @@
     <div style="float: left; width: 75%; margin-left: 24%">
         <h1>Create New Campaign</h1>
         <h2>Current account balance: {{ "%.2f" % user.account_balance }} $</h2>
-        <div class="lds-ripple" hidden="true" id="loading"><div></div><div></div></div>
         <form method=post id="adform" enctype=multipart/form-data>
             <div class="upload-btn-wrapper">
               <button onclick="filenamer()" id="uploadButton" class="btn">Upload a file</button>
@@ -52,7 +51,7 @@
             </select>
             <hr>
             <br>
-            <input class="buttonBlue" style="width: 25%" type=submit value="Start Campaign">
+            <input class="buttonBlue" style="width: 25%" type=button onclick="loadingpre()" value="Start Campaign">
         </form>
         <br>
         <h3 hidden="true" id="prehead">Pre<span style="color: yellow">view</span></h3>
@@ -61,7 +60,25 @@
         <img id="output" src="" alt="">
         <p id="sizes"></p>
     </div>
+
+    <div style="font-family: open sans" hidden="true" id="loadingdiv">
+        <center style="margin-top: 20%">
+            <div class="loader"><div></div><div></div></div>
+            <h3>InAds by InGames, Inc.</h3>
+        </center>
+    </div>
+    </html>
     <script>
+
+        function loadingpre(){
+            var formsend = document.getElementById("adform")
+            load().then(formsend.submit())
+        }
+
+        function load(){
+            document.body.hidden = true;
+            document.getElementById("loadingdiv").hidden = false;
+        }
         var loadFile = function(event) {
             var output = document.getElementById('output');
             output.src = URL.createObjectURL(event.target.files[0]);
