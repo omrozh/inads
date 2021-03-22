@@ -145,10 +145,8 @@ def before_request():
     if "redirected" not in url:
         return flask.render_template("loading.html", url=url)
 
-    if not flask.request.is_secure:
-        code = 301
-        url = url.replace("redirected", "")
-        return flask.redirect(url, code=code)
+    url = url.replace("redirected", "")
+    return flask.redirect(url, code=301)
 
 
 @app.route("/status")
