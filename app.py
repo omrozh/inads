@@ -715,7 +715,7 @@ def adclick(adname):
     if domain not in domainList:
         return "Unauthorized request"
     website = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
-    if website in Ads.query.get(int(adname) + 1).publishing_sites.split(","):
+    if True:
         Ads.query.get(int(adname) + 1).budget -= 0.01
         Ads.query.get(int(adname) + 1).total_clicks += 1
 
