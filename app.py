@@ -724,8 +724,6 @@ def adclick(adname):
         domainobject.total_clicks += 1
         if not User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
             domainobject.total_revenue += 0.01
-        if User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
-            domainobject.total_revenue += 0.009
         domainowner = \
             Domains.query.filter_by(
                 domain=urllib.parse.urlparse(
@@ -735,7 +733,6 @@ def adclick(adname):
             User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.01
 
         if User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
-            User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.09
             User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().account_balance += 0.01
 
         db.session.commit()
@@ -771,10 +768,6 @@ def adclickmobile(adname, apikey):
 
         domainobject = Domains.query.filter_by(domain=domain).first()
         domainobject.total_clicks += 1
-        if not User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
-            domainobject.total_revenue += 0.009
-        if User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
-            domainobject.total_revenue += 0.001
         domainowner = \
             Domains.query.filter_by(
                 domain=domain).first().owner
@@ -783,8 +776,7 @@ def adclickmobile(adname, apikey):
             User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.01
 
         if User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
-            User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.18
-            User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().account_balance += 0.02
+            User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().account_balance += 0.01
 
         db.session.commit()
         return f"<script> document.location = '{Ads.query.get(int(adname) + 1).advertiserwebsite}' </script>"
