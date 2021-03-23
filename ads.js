@@ -5,7 +5,7 @@ let textcontent = ""
 
 function createAds(element, index){
   fetch("https://inads.herokuapp.com/view/" + element.getAttribute("name"))
-  .then(res=>{adname = res.url.substring(res.url.lastIndexOf("/") + 1); element.setAttribute('onclick', "c(" + adname + ")"); return res.blob()})
+  .then(res=>{adname = res.url.substring(res.url.lastIndexOf("/") + 1); element.setAttribute('onclick', "inadsclick(" + adname + ")"); return res.blob()})
   .then(blob=>{
 
     if(blob.size < 1000){
@@ -63,6 +63,6 @@ for(var i = 0; i < adElements.length; i++) {
   createAds(adElements[i], i)
 }
 
-function c(index){
+function inadsclick(index){
     document.location = "https://inads.herokuapp.com/adclick/" + index
 }
