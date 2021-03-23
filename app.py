@@ -736,7 +736,10 @@ def adclick(adname):
             User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().account_balance += 0.01
 
         db.session.commit()
-        return f"<script> document.location = '{Ads.query.get(int(adname) + 1).advertiserwebsite}' </script>"
+        if type(adname) is int:
+            return f"<script> document.location = '{Ads.query.get(int(adname) + 1).advertiserwebsite}' </script>"
+        else:
+            return f"<script> document.location = 'https://{adname}' </script>"
 
 
 @app.route("/adclickmobile/<adname>/<apikey>")
