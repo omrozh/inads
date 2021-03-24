@@ -457,6 +457,14 @@ def advertise():
 
     if flask.request.method == 'POST':
         try:
+            if float(flask.request.values["budget"]) < 5:
+                return '''
+                                <script>
+                                    alert("Your advertising budget needs to be higher than 5 USD to advertise.");
+                                    window.location.reload()
+                                </script>
+                                '''
+
             if float(flask.request.values["budget"]) > float(current_user.account_balance):
                 return '''
                 <script>
