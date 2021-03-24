@@ -55,13 +55,6 @@
                             <br>
                         {% endfor %}
                     </p>
-                    <h3>Advertising clicks: </h3>
-                    <p>
-                        {% for i in unique_publishers_clicks %}
-                            {{ i }} : {{ publishers_clicks.count(i) }}
-                            <br>
-                        {% endfor %}
-                    </p>
                     <form method="post">
                         <input class="mainFormBig" style="width: 100%" type=text name=keywords placeholder="Change keywords (Keywords with '/' in between.)">
                         <hr>
