@@ -330,7 +330,6 @@ def adinfo(adid):
         ads.keywords = flask.request.values["keywords"]
         db.session.commit()
     return flask.render_template("adinformation.html", user=user, ads=ads, is_admin=is_admin,
-                                 publishers_clicks=publishers_clicks, unique_publishers_clicks=unique_publishers_clicks,
                                  unique_publishers=unique_publishers, publishers=publishers, numberofads=numberofads)
 
 
