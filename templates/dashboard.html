@@ -56,8 +56,10 @@
                     <h3>Advertising websites: </h3>
                     <p>
                         {% for i in unique_publishers %}
-                            {{ i }} : {{ publishers.count(i) }}
-                            <br>
+                            {% if len(i) > 4 %}
+                                {{ i }} : {{ publishers.count(i) }}
+                                <br>
+                            {% endif %}
                         {% endfor %}
                     </p>
                     <a href="/cancel_ad/{{ i.id }}" style="text-decoration=none; color: gray">Cancel Ad</a>
