@@ -314,6 +314,8 @@ def adinfo(adid):
     user = current_user
     ads = Ads.query.get(adid)
     numberofads = 0
+    for i in ads.keywords.split("/"):
+        numberofads += 1
     is_admin = current_user.email in authorized_mails
     publishers = []
     for c in ads.publishing_sites.split(","):
@@ -322,14 +324,17 @@ def adinfo(adid):
     for i in publishers:
         if i not in unique_publishers and len(i) > 4:
             unique_publishers.append(i)
+    if flask.request.method == "POST":
+        ads.keywords = flask.request.values["keywords"]
+        db.session.commit()
     return flask.render_template("adinformation.html", user=user, ads=ads, is_admin=is_admin,
-                                 unique_publishers=unique_publishers, publishers=publishers)
+                                 unique_publishers=unique_publishers, publishers=publishers, numberofads=numberofads)
 
 
 @app.route("/payout", methods=["POST", "GET"])
 @login_required
 def payoutSystem():
-    if flask.request.method == "POST" and current_user.account_balance > 50:
+    if flask.request.method == "POST" and current_user.account_balance > 150:
         values = flask.request.values
         information = Payouts(information=values["name"] + ", Address Personal:" + values["paddress"] +
                                           ", Name Bank: " + values["namebank"] + ", Address Bank: " +
