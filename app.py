@@ -314,6 +314,8 @@ def dashboard():
 def adinfo(adid):
     user = current_user
     ads = Ads.query.get(adid)
+    if not current_user.email == ads.owner:
+        return ""
     numberofads = 0
     for i in ads.keywords.split("/"):
         numberofads += 1
