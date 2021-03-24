@@ -308,7 +308,7 @@ def dashboard():
     return flask.render_template("dashboard.html", user=user, ads=ads, numberofads=numberofads, is_admin=is_admin)
 
 
-@app.route("/dashboard/ads/<adid>")
+@app.route("/dashboard/ads/<adid>", methods=["POST", "GET"])
 @login_required
 def adinfo(adid):
     user = current_user
