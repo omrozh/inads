@@ -303,17 +303,28 @@ def dashboard():
     ads = Ads.query.filter_by(owner=current_user.email)
     numberofads = 0
     is_admin = current_user.email in authorized_mails
-    publishers = []
     for i in ads:
-        for c in i.publishing_sites.split(","):
-            publishers.append(c)
+        numberofads += 1
+    return flask.render_template("dashboard.html", user=user, ads=ads, numberofads=numberofads, is_admin=is_admin)
+
+
+@app.route("/dashboard/ads/<adid>")
+@login_required
+def adinfo(adid):
+    user = current_user
+    ads = Ads.query.get(adid)
+    numberofads = 0
+    is_admin = current_user.email in authorized_mails
+    publishers = []
+    for c in ads.publishing_sites.split(","):
+        publishers.append(c)
     unique_publishers = []
     for i in publishers:
-        if i not in unique_publishers:
+        if i not in unique_publishers and len(i) > 4:
             unique_publishers.append(i)
     for i in ads:
         numberofads += 1
-    return flask.render_template("dashboard.html", user=user, ads=ads, numberofads=numberofads, is_admin=is_admin,
+    return flask.render_template("adinformation.html", user=user, ads=ads, numberofads=numberofads, is_admin=is_admin,
                                  unique_publishers=unique_publishers, publishers=publishers)
 
 

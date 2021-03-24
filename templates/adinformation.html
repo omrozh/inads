@@ -38,23 +38,23 @@
         </div>
     </div>
     <div style="float: left; width: 79%; margin-left: 20%">
-        <div style="width: 100%">
-            <h1 style="font-size: 2rem; margin-left: 5%; float: left">Account Balance</h1>
-            <h1 style="font-size: 2rem; margin-right: 5%; float: right">{{ "%.2f" % user.account_balance }} $</h1>
-        </div>
-        <h2 style="margin-top: 10%; margin-left: 5%">Active Campaigns</h2>
-        {% for i in ads %}
+        <h1>Ad Information</h1>
             <button style="margin-left: 10%; width: 80%" class="accordion">{{ i.advertiserwebsite }}</button>
             <div style="margin-left: 10%" class="panel">
                 <div>
-                    <h3>{{ i.advertiserwebsite }}</h3>
-                    <h3>{{ i.keywords }}</h3>
-                    <h3>Total number of ad clicks: {{ i.total_clicks }}</h3>
-                    <h3>Total number of view: {{ i.total_views }}</h3>
-                    <h3>Remaining Budget: {{ "%.2f" % i.budget }} $</h3>
-                    <h3>Ad Type: {{ i.ad_type }}</h3>
+                    <h3>{{ ads.advertiserwebsite }}</h3>
+                    <h3>{{ ads.keywords }}</h3>
+                    <h3>Total number of ad clicks: {{ ads.total_clicks }}</h3>
+                    <h3>Total number of view: {{ ads.total_views }}</h3>
+                    <h3>Remaining Budget: {{ "%.2f" % ads.budget }} $</h3>
+                    <h3>Ad Type: {{ ads.ad_type }}</h3>
                     <h3>Advertising websites: </h3>
-                    <a href="/dashboard/ads/{{ i.id }}" style="text-decoration=none; color: gray">More...</a>
+                    <p>
+                        {% for i in unique_publishers %}
+                            {{ i }} : {{ publishers.count(i) }}
+                            <br>
+                        {% endfor %}
+                    </p>
                     <a href="/cancel_ad/{{ i.id }}" style="text-decoration=none; color: gray">Cancel Ad</a>
                 </div>
             </div>
