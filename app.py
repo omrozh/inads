@@ -303,9 +303,17 @@ def dashboard():
     ads = Ads.query.filter_by(owner=current_user.email)
     numberofads = 0
     is_admin = current_user.email in authorized_mails
+    publishers = []
+    for i in ads.publishing_sites:
+        publishers.append(i)
+    unique_publishers = []
+    for i in publishers:
+        if i not in unique_publishers:
+            unique_publishers.append(i)
     for i in ads:
         numberofads += 1
-    return flask.render_template("dashboard.html", user=user, ads=ads, numberofads=numberofads, is_admin=is_admin)
+    return flask.render_template("dashboard.html", user=user, ads=ads, numberofads=numberofads, is_admin=is_admin,
+                                 unique_publishers=unique_publishers, publishers=publisher)
 
 
 @app.route("/payout", methods=["POST", "GET"])
@@ -654,13 +662,13 @@ def returnActual(fileindex):
         urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc + ","
     domainobject = Domains.query.filter_by(domain=domain).first()
     domainobject.total_views += 1
-    domainobject.total_revenue += 0.00015
+    domainobject.total_revenue += 0.00010
     domainowner = \
         Domains.query.filter_by(domain=urllib.parse.urlparse(
             flask.request.environ.get('HTTP_REFERER', 'default value')).netloc).first().owner
     userowner = User.query.filter_by(email=domainowner).first().account_balance
-    Ads.query.get(int(fileindex) + 1).budget -= 0.00015
-    User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.00015
+    Ads.query.get(int(fileindex) + 1).budget -= 0.00010
+    User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.00010
     db.session.commit()
     if len(file.fileurl) > 4:
         response = flask.Response(requests.get(file.fileurl).content)
@@ -680,12 +688,12 @@ def returnActualMobile(fileindex, key):
     file.total_views += 1
     domainobject = Domains.query.filter_by(domain=domain).first()
     domainobject.total_views += 1
-    domainobject.total_revenue += 0.00015
+    domainobject.total_revenue += 0.00010
     domainowner = \
         Domains.query.filter_by(domain=domain).first().owner
     userowner = User.query.filter_by(email=domainowner).first().account_balance
-    Ads.query.get(int(fileindex) + 1).budget -= 0.00015
-    User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.00015
+    Ads.query.get(int(fileindex) + 1).budget -= 0.00010
+    User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.00010
     db.session.commit()
     if len(file.fileurl) > 4:
         response = flask.Response(requests.get(file.fileurl).content)
