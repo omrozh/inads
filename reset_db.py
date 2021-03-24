@@ -10,9 +10,6 @@ db.create_all()
 for i in user:
     db.session.add(i)
 
-for i in ads:
-    db.session.add(i)
-
 for i in domains:
     db.session.add(i)
 
