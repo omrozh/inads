@@ -330,13 +330,14 @@ def adinfo(adid):
     publishers_clicks = []
     unique_publishers_clicks = []
 
-    print(ads.website_clicks)
-
     if ads.website_clicks is not None:
         for c in ads.website_clicks.split(","):
             publishers.append(c)
+            print(c)
         for i in publishers_clicks:
+            print(i)
             if i not in unique_publishers_clicks and len(i) > 4:
+                print(i + "llll")
                 unique_publishers_clicks.append(i)
         # For clicks
 
