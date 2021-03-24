@@ -305,7 +305,7 @@ def dashboard():
     is_admin = current_user.email in authorized_mails
     publishers = []
     for i in ads:
-        for c in ads.publishing_sites.split(","):
+        for c in i.publishing_sites.split(","):
             publishers.append(c)
     unique_publishers = []
     for i in publishers:
