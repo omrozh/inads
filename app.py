@@ -322,9 +322,7 @@ def adinfo(adid):
     for i in publishers:
         if i not in unique_publishers and len(i) > 4:
             unique_publishers.append(i)
-    for i in ads:
-        numberofads += 1
-    return flask.render_template("adinformation.html", user=user, ads=ads, numberofads=numberofads, is_admin=is_admin,
+    return flask.render_template("adinformation.html", user=user, ads=ads, is_admin=is_admin,
                                  unique_publishers=unique_publishers, publishers=publishers)
 
 
