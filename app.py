@@ -479,7 +479,7 @@ def advertise():
                                budget=flask.request.values["budget"],
                                advertiserwebsite=flask.request.values['website'], publishing_sites="",
                                ad_type=flask.request.values['typeAd'], owner=current_user.email, total_clicks=0,
-                               total_views=0))
+                               total_views=0, website_clicks=0))
 
             User.query.get(current_user.id).account_balance = float(User.query.get(current_user.id).account_balance) - \
                                                               float(flask.request.values["budget"])
