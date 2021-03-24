@@ -328,13 +328,14 @@ def adinfo(adid):
     # For views
 
     publishers_clicks = []
-    for c in ads.website_clicks.split(","):
-        publishers.append(c)
-    unique_publishers_clicks = []
-    for i in publishers_clicks:
-        if i not in unique_publishers_clicks and len(i) > 4:
-            unique_publishers_clicks.append(i)
-    # For clicks
+    if ads.website_clicks:
+        for c in ads.website_clicks.split(","):
+            publishers.append(c)
+        unique_publishers_clicks = []
+        for i in publishers_clicks:
+            if i not in unique_publishers_clicks and len(i) > 4:
+                unique_publishers_clicks.append(i)
+        # For clicks
 
     if flask.request.method == "POST":
         ads.keywords = flask.request.values["keywords"]
