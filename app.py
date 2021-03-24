@@ -85,7 +85,6 @@ class Ads(db.Model):
     ad_type = db.Column(db.String)
     total_clicks = db.Column(db.Integer)
     total_views = db.Column(db.Integer)
-    website_clicks = db.Column(db.String)
 
     def __repr__(self):
         return self.id
@@ -326,15 +325,6 @@ def adinfo(adid):
         if i not in unique_publishers and len(i) > 4:
             unique_publishers.append(i)
     # For views
-
-    publishers_clicks = []
-    for c in ads.website_clicks.split(","):
-        publishers.append(c)
-    unique_publishers_clicks = []
-    for i in publishers_clicks:
-        if i not in unique_publishers_clicks and len(i) > 4:
-            unique_publishers_clicks.append(i)
-    # For clicks
 
     if flask.request.method == "POST":
         ads.keywords = flask.request.values["keywords"]
@@ -758,8 +748,6 @@ def adclick(adname):
 
         domainobject = Domains.query.filter_by(domain=domain).first()
         domainobject.total_clicks += 1
-
-        Ads.query.get(int(adname) + 1).website_clicks += website
 
         if not User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
             domainobject.total_revenue += 0.01
