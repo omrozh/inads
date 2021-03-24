@@ -304,8 +304,9 @@ def dashboard():
     numberofads = 0
     is_admin = current_user.email in authorized_mails
     publishers = []
-    for i in ads.publishing_sites:
-        publishers.append(i)
+    for i in ads:
+        for c in ads.publishing_sites.split(","):
+            publishers.append(c)
     unique_publishers = []
     for i in publishers:
         if i not in unique_publishers:
@@ -313,7 +314,7 @@ def dashboard():
     for i in ads:
         numberofads += 1
     return flask.render_template("dashboard.html", user=user, ads=ads, numberofads=numberofads, is_admin=is_admin,
-                                 unique_publishers=unique_publishers, publishers=publisher)
+                                 unique_publishers=unique_publishers, publishers=publishers)
 
 
 @app.route("/payout", methods=["POST", "GET"])
