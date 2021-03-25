@@ -355,7 +355,7 @@ def adinfo(adid):
     for i in Ads.query.all():
         for c in ads.keywords.split("/"):
             if c in i.keywords:
-                total_keyword_spending_list.append((i.total_views * 0.0001) + (i.total_clicks * 0.01))
+                total_keyword_spending_list.append((i.total_views * 0.0001) + (i.total_clicks * 0.01) / i.total_views * 1000)
 
     for i in total_keyword_spending_list:
         total_keyword_spending += i
