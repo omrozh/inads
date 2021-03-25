@@ -343,9 +343,30 @@ def adinfo(adid):
     if flask.request.method == "POST":
         ads.keywords = flask.request.values["keywords"]
         db.session.commit()
+
+    average_cpc = (ads.total_views * 0.0001 + ads.total_clicks * 0.01) / ads.total_clicks
+    average_cpm = ((ads.total_views * 0.0001 + ads.total_clicks * 0.01) / ads.total_views) * 1000
+    total_spending = ads.total_views * 0.0001 + ads.total_clicks * 0.01
+    click_rate = ads.total_views / ads.total_clicks
+
+    total_keyword_spending_list = []
+    total_keyword_spending = 0
+
+    for i in Ads.query.all():
+        for c in ads.keywords.split("/"):
+            if c in i.keywords:
+                total_keyword_spending_list.append((i.total_views * 0.0001) + (i.total_clicks * 0.01))
+
+    for i in total_keyword_spending_list:
+        total_keyword_spending += i
+
+    average_cpm_of_keywords = total_keyword_spending / len(total_keyword_spending_list)
+
     return flask.render_template("adinformation.html", user=user, ads=ads, is_admin=is_admin,
                                  publishers_clicks=publishers_clicks, unique_publishers_clicks=unique_publishers_clicks,
-                                 unique_publishers=unique_publishers, publishers=publishers, numberofads=numberofads)
+                                 unique_publishers=unique_publishers, publishers=publishers, numberofads=numberofads,
+                                 average_cpc=average_cpc, average_cpm=average_cpm, total_spending=total_spending,
+                                 click_rate=click_rate, average_cpm_of_keywords=average_cpm_of_keywords)
 
 
 @app.route("/payout", methods=["POST", "GET"])
