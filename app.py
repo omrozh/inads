@@ -365,8 +365,9 @@ def adinfo(adid):
     return flask.render_template("adinformation.html", user=user, ads=ads, is_admin=is_admin,
                                  publishers_clicks=publishers_clicks, unique_publishers_clicks=unique_publishers_clicks,
                                  unique_publishers=unique_publishers, publishers=publishers, numberofads=numberofads,
-                                 average_cpc=average_cpc, average_cpm=average_cpm, total_spending=total_spending,
-                                 click_rate=click_rate, average_cpm_of_keywords=average_cpm_of_keywords)
+                                 average_cpc="%.2f" % average_cpc, average_cpm="%.2f" % average_cpm,
+                                 total_spending="%.2f" % total_spending,
+                                 click_rate="%.2f" % click_rate, average_cpm_of_keywords="%.2f" % average_cpm_of_keywords)
 
 
 @app.route("/payout", methods=["POST", "GET"])
