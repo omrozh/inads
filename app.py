@@ -166,7 +166,7 @@ def pause_ad(ad_id):
     for i in PausedAds.query.all():
         all_paused_ads.append(i.paused_ad_id)
 
-    if ad_id not in all_paused_ads:
+    if int(ad_id) not in all_paused_ads:
         db.session.add(PausedAds(paused_ad_id=ad_id))
         db.session.commit()
         return flask.redirect("/dashboard")
@@ -189,8 +189,8 @@ def unpause_ad(ad_id):
     for i in PausedAds.query.all():
         all_paused_ads.append(i.paused_ad_id)
 
-    if ad_id in all_paused_ads:
-        db.session.delete(PausedAds.query.filter_by(paused_ad_id=ad_id).first())
+    if int(ad_id) in all_paused_ads:
+        db.session.delete(PausedAds.query.filter_by(paused_ad_id=int(ad_id)).first())
         db.session.commit()
         return flask.redirect("/dashboard")
 
