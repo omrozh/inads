@@ -1,1 +1,1 @@
-web: bin/start-pgbouncer-stunnel gunicorn app:app --timeout 5 WEB_CONCURRENCY=24
+web: bin/start-pgbouncer-stunnel gunicorn app:app --timeout 5
