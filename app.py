@@ -344,10 +344,16 @@ def adinfo(adid):
         ads.keywords = flask.request.values["keywords"]
         db.session.commit()
 
-    average_cpc = (ads.total_views * 0.0001 + ads.total_clicks * 0.01) / ads.total_clicks
-    average_cpm = ((ads.total_views * 0.0001 + ads.total_clicks * 0.01) / ads.total_views) * 1000
-    total_spending = ads.total_views * 0.0001 + ads.total_clicks * 0.01
-    click_rate = ads.total_views / ads.total_clicks
+    try:
+        average_cpc = (ads.total_views * 0.0001 + ads.total_clicks * 0.01) / ads.total_clicks
+        average_cpm = ((ads.total_views * 0.0001 + ads.total_clicks * 0.01) / ads.total_views) * 1000
+        total_spending = ads.total_views * 0.0001 + ads.total_clicks * 0.01
+        click_rate = ads.total_views / ads.total_clicks
+    except ZeroDivisionError:
+        average_cpc = 0
+        average_cpm = 0
+        total_spending = 0
+        click_rate = 0
 
     total_keyword_spending_list = []
     total_keyword_spending = 0
