@@ -805,7 +805,7 @@ def adclick(adname):
         domainobject = Domains.query.filter_by(domain=domain).first()
         domainobject.total_clicks += 1
 
-        Ads.query.get(int(adname) + 1).website_clicks += website
+        Ads.query.get(int(adname) + 1).website_clicks += website + ","
 
         if not User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
             domainobject.total_revenue += 0.01
