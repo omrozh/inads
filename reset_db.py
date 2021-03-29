@@ -11,6 +11,8 @@ print("Complete 2")
 domains = Domains.query.all()
 print("Complete 3")
 
+
+db.session.remove()
 db.drop_all()
 print("Complete 4")
 db.create_all()
