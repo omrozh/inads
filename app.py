@@ -403,12 +403,10 @@ def adinfo(adid):
     for i in PausedAds.query.all():
         all_paused_ads.append(i.paused_ad_id)
 
-    if adid in all_paused_ads:
+    if int(adid) in all_paused_ads:
         paused = True
-    elif adid not in all_paused_ads:
+    elif int(adid) not in all_paused_ads:
         paused = False
-
-    print(all_paused_ads)
 
     try:
         average_cpc = (ads.total_views * 0.0001 + ads.total_clicks * 0.01) / ads.total_clicks
