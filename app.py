@@ -767,8 +767,13 @@ def return_file(adtype):
                     totalads.append(i)
 
             suitablead = totalads[random.randint(0, len(totalads) - 1)]
+            all_paused_ads = []
+
+            for i in PausedAds.query.all():
+                all_paused_ads.append(i.paused_ad_id)
+
             for i in totalads:
-                if float(suitablead.budget) < 0.25 or suitablead.ad_type != adtype:
+                if float(suitablead.budget) < 0.25 or suitablead.ad_type != adtype or suitablead.id in all_paused_ads:
                     continue
                 suitablead = totalads[random.randint(0, len(totalads) - 1)]
 
