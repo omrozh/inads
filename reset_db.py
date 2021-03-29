@@ -1,4 +1,4 @@
-from app import db, User, Ads, Domains
+from app import db, User, Ads, Domains, PausedAds
 
 user = User.query.all()
 ads = Ads.query.all()
@@ -16,5 +16,7 @@ for i in ads:
 
 for i in domains:
     db.session.add(i)
+
+print(PausedAds.query.all())
 
 db.session.commit()
