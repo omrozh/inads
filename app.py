@@ -408,6 +408,8 @@ def adinfo(adid):
     elif adid not in all_paused_ads:
         paused = False
 
+    print(all_paused_ads)
+
     try:
         average_cpc = (ads.total_views * 0.0001 + ads.total_clicks * 0.01) / ads.total_clicks
         average_cpm = ((ads.total_views * 0.0001 + ads.total_clicks * 0.01) / ads.total_views) * 1000
