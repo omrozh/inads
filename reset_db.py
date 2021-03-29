@@ -1,5 +1,7 @@
 from app import db, User, Ads, Domains, PausedAds
 
+print("Process Started")
+
 user = User.query.all()
 ads = Ads.query.all()
 domains = Domains.query.all()
