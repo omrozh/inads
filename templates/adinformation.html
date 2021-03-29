@@ -51,14 +51,14 @@
                     <h3>Advertising websites: </h3>
                     <p>
                         {% for i in unique_publishers %}
-                             www.superhaber.tv  : {{ publishers.count(i) }}
+                             {{ i }}  : {{ publishers.count(i) }}
                             <br>
                         {% endfor %}
                     </p>
                     <h3>Advertising clicks: </h3>
                     <p>
                         {% for i in unique_publishers_clicks %}
-                            www.superhaber.tv : {{ publishers_clicks.count(i) }}
+                            {{ i }} : {{ publishers_clicks.count(i) }}
                             <br>
                         {% endfor %}
                     </p>
