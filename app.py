@@ -651,11 +651,6 @@ def return_file(adtype):
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     domainList = []
 
-    authorized = ["www.roketdizi.pw", "dizimia.org"]
-
-    if domain not in authorized:
-        return "o"
-
     pagelist = ""
 
     try:
