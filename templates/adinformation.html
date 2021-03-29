@@ -79,7 +79,7 @@
                     <h3>Average CPM for similar keywords: {{ average_cpm_of_keywords }}</h3>
                     {% if paused %}
                         <a href="/unpause/{{ ads.id }}" style="text-decoration=none; color: gray">Unpause ad</a>
-                    {% if not paused %}
+                    {% elif not paused %}
                         <a href="/pause/{{ ads.id }}" style="text-decoration=none; color: gray">Unpause ad</a>
                     {% endif %}
                 </div>
