@@ -53,6 +53,14 @@ class User(db.Model, UserMixin):
         return self.email
 
 
+class PausedAds(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    paused_ad_id = db.Column(db.Integer)
+
+    def __repr__(self):
+        return self.paused_ad_id
+
+
 class Payouts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     information = db.Column(db.String)
@@ -146,6 +154,52 @@ def before_request():
         url = flask.request.url.replace("http://", "https://", 1)
         code = 301
         return flask.redirect(url, code=code)
+
+
+@app.route("/pause/<ad_id>")
+@login_required
+def pause_ad(ad_id):
+    if Ads.query.get(ad_id).owner != current_user.email:
+        return "Not your ad"
+    all_paused_ads = []
+
+    for i in PausedAds.query.all():
+        all_paused_ads.append(i.paused_ad_id)
+
+    if ad_id not in all_paused_ads:
+        db.session.add(PausedAds(paused_ad_id=ad_id))
+        db.session.commit()
+        return flask.redirect("/dashboard")
+
+    return '''
+        <script>
+            alert("Ad is already paused")
+            document.location = "/dashboard"
+        </script>
+    '''
+
+
+@app.route("/unpause/<ad_id>")
+@login_required
+def unpause_ad(ad_id):
+    if Ads.query.get(ad_id).owner != current_user.email:
+        return "Not your ad"
+    all_paused_ads = []
+
+    for i in PausedAds.query.all():
+        all_paused_ads.append(i.paused_ad_id)
+
+    if ad_id in all_paused_ads:
+        db.session.delete(PausedAds.query.filter_by(paused_ad_id=ad_id).first())
+        db.session.commit()
+        return flask.redirect("/dashboard")
+
+    return '''
+        <script>
+            alert("Ad is already not paused")
+            document.location = "/dashboard"
+        </script>
+    '''
 
 
 @app.route("/loading")
@@ -344,6 +398,16 @@ def adinfo(adid):
         ads.keywords = flask.request.values["keywords"]
         db.session.commit()
 
+    all_paused_ads = []
+
+    for i in PausedAds.query.all():
+        all_paused_ads.append(i.paused_ad_id)
+
+    if adid in all_paused_ads:
+        paused = True
+    elif adid not in all_paused_ads:
+        paused = False
+
     try:
         average_cpc = (ads.total_views * 0.0001 + ads.total_clicks * 0.01) / ads.total_clicks
         average_cpm = ((ads.total_views * 0.0001 + ads.total_clicks * 0.01) / ads.total_views) * 1000
@@ -373,7 +437,7 @@ def adinfo(adid):
                                  publishers_clicks=publishers_clicks, unique_publishers_clicks=unique_publishers_clicks,
                                  unique_publishers=unique_publishers, publishers=publishers, numberofads=numberofads,
                                  average_cpc="%.2f" % average_cpc, average_cpm="%.2f" % average_cpm,
-                                 total_spending="%.2f" % total_spending,
+                                 total_spending="%.2f" % total_spending, paused=paused,
                                  click_rate="%.2f" % click_rate, average_cpm_of_keywords="%.2f" % average_cpm_of_keywords)
 
 

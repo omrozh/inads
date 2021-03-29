@@ -77,6 +77,11 @@
                     <h3>Total Spending: {{ total_spending }}</h3>
                     <h3>Ad Click Rate: 1 / {{ click_rate }}</h3>
                     <h3>Average CPM for similar keywords: {{ average_cpm_of_keywords }}</h3>
+                    {% if paused %}
+                        <a href="/unpause/{{ ads.id }}" style="text-decoration=none; color: gray">Unpause ad</a>
+                    {% if not paused %}
+                        <a href="/pause/{{ ads.id }}" style="text-decoration=none; color: gray">Unpause ad</a>
+                    {% endif %}
                 </div>
             </div>
         <br>
