@@ -773,12 +773,11 @@ def return_file(adtype):
                 all_paused_ads.append(i.paused_ad_id)
 
             for i in totalads:
-                if float(suitablead.budget) < 0.25 or suitablead.ad_type != adtype or int(suitablead.id) in \
-                        all_paused_ads:
+                if float(suitablead.budget) < 0.25 or suitablead.ad_type != adtype or suitablead.id in all_paused_ads:
                     continue
                 suitablead = totalads[random.randint(0, len(totalads) - 1)]
 
-        if suitablead and float(suitablead.budget > 0.25) and int(suitablead.id) not in all_paused_ads:
+        if suitablead and float(suitablead.budget > 0.25):
             return flask.redirect(f"/ads" + "/" + str(int(suitablead.id) - 1))
         else:
             return "No ads are suitable to your query."
