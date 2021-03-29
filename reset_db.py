@@ -18,5 +18,6 @@ for i in domains:
     db.session.add(i)
 
 print(PausedAds.query.all())
+print("Process Completed")
 
 db.session.commit()
