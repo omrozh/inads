@@ -781,7 +781,8 @@ def return_file(adtype):
             return flask.redirect(f"/ads" + "/" + str(int(suitablead.id) - 1))
         else:
             return "No ads are suitable to your query."
-    except:
+    except Exception as e:
+        print(e)
         return "Problem Occured"
 
 
