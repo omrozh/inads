@@ -741,6 +741,10 @@ def return_file(adtype):
     if domain not in domainList:
         return "Unauthorized request"
 
+    all_paused_ads = []
+    for i in PausedAds.query.all():
+        all_paused_ads.append(i.paused_ad_id)
+
     try:
         suitablead = None
         suitableads = []
@@ -750,7 +754,7 @@ def return_file(adtype):
         for i in Ads.query.filter_by(ad_type=adtype):
             if i.budget > 0.25:
                 for c in i.keywords.split("/"):
-                    if c in keywords:
+                    if c in keywords and i.id not in all_paused_ads:
                         suitableads.append(i)
 
         if len(suitableads) == 1:
@@ -758,8 +762,6 @@ def return_file(adtype):
 
         elif len(suitableads) > 1:
             suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
-
-        all_paused_ads = []
 
         if suitablead is None:
             totalads = []
@@ -769,9 +771,6 @@ def return_file(adtype):
                     totalads.append(i)
 
             suitablead = totalads[random.randint(0, len(totalads) - 1)]
-
-            for i in PausedAds.query.all():
-                all_paused_ads.append(i.paused_ad_id)
 
             for i in totalads:
                 if float(suitablead.budget) < 0.25 or suitablead.ad_type != adtype or int(suitablead.id) in all_paused_ads:
