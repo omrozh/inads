@@ -17,17 +17,16 @@ app = flask.Flask(__name__)
 app.config["UPLOAD_FOLDER"] = ""
 app.config["SECRET_KEY"] = "MAKEMEBILLIONAIRE"
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_URL']
-
-mail = Mail(app)
+app.config.from_object(__name__)
 
 app.config['MAIL_SERVER'] = 'smtp.yandex.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USERNAME'] = 'no-reply@inadsglobal.com'
 app.config['MAIL_PASSWORD'] = '05082004Oo'
-app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = False
 
-authorized_mails = ["omrozh@gmail.com"]
+mail = Mail(app)
 
 CORS(app, support_credentials=True)
 
