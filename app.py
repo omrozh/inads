@@ -409,9 +409,9 @@ def adinfo(adid):
         paused = False
 
     try:
-        average_cpc = (ads.total_views * 0.0001 + ads.total_clicks * 0.01) / ads.total_clicks
-        average_cpm = ((ads.total_views * 0.0001 + ads.total_clicks * 0.01) / ads.total_views) * 1000
-        total_spending = ads.total_views * 0.0001 + ads.total_clicks * 0.01
+        average_cpc = (ads.total_views * 0.00003 + ads.total_clicks * 0.01) / ads.total_clicks
+        average_cpm = ((ads.total_views * 0.00003 + ads.total_clicks * 0.01) / ads.total_views) * 1000
+        total_spending = ads.total_views * 0.00003 + ads.total_clicks * 0.01
         click_rate = ads.total_views / ads.total_clicks
     except ZeroDivisionError:
         average_cpc = 0
@@ -425,7 +425,7 @@ def adinfo(adid):
     for i in Ads.query.all():
         for c in ads.keywords.split("/"):
             if c in i.keywords:
-                total_keyword_spending_list.append(((i.total_views * 0.0001) + (i.total_clicks * 0.01)) /
+                total_keyword_spending_list.append(((i.total_views * 0.00003) + (i.total_clicks * 0.01)) /
                                                    i.total_views * 1000)
 
     for i in total_keyword_spending_list:
@@ -438,7 +438,8 @@ def adinfo(adid):
                                  unique_publishers=unique_publishers, publishers=publishers, numberofads=numberofads,
                                  average_cpc="%.2f" % average_cpc, average_cpm="%.2f" % average_cpm,
                                  total_spending="%.2f" % total_spending, paused=paused,
-                                 click_rate="%.2f" % click_rate, average_cpm_of_keywords="%.2f" % average_cpm_of_keywords)
+                                 click_rate="%.2f" % click_rate,
+                                 average_cpm_of_keywords="%.2f" % average_cpm_of_keywords)
 
 
 @app.route("/payout", methods=["POST", "GET"])
@@ -773,7 +774,8 @@ def return_file(adtype):
             suitablead = totalads[random.randint(0, len(totalads) - 1)]
 
             for i in totalads:
-                if float(suitablead.budget) < 0.25 or suitablead.ad_type != adtype or int(suitablead.id) in all_paused_ads:
+                if float(suitablead.budget) < 0.25 or suitablead.ad_type != adtype or \
+                        int(suitablead.id) in all_paused_ads:
                     continue
                 suitablead = totalads[random.randint(0, len(totalads) - 1)]
 
@@ -801,13 +803,13 @@ def returnActual(fileindex):
         urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc + ","
     domainobject = Domains.query.filter_by(domain=domain).first()
     domainobject.total_views += 1
-    domainobject.total_revenue += 0.00010
+    domainobject.total_revenue += 0.00003
     domainowner = \
         Domains.query.filter_by(domain=urllib.parse.urlparse(
             flask.request.environ.get('HTTP_REFERER', 'default value')).netloc).first().owner
     userowner = User.query.filter_by(email=domainowner).first().account_balance
-    Ads.query.get(int(fileindex) + 1).budget -= 0.00010
-    User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.00010
+    Ads.query.get(int(fileindex) + 1).budget -= 0.00003
+    User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.00003
     db.session.commit()
     if len(file.fileurl) > 4:
         response = flask.Response(requests.get(file.fileurl).content)
@@ -827,12 +829,12 @@ def returnActualMobile(fileindex, key):
     file.total_views += 1
     domainobject = Domains.query.filter_by(domain=domain).first()
     domainobject.total_views += 1
-    domainobject.total_revenue += 0.00010
+    domainobject.total_revenue += 0.00003
     domainowner = \
         Domains.query.filter_by(domain=domain).first().owner
     userowner = User.query.filter_by(email=domainowner).first().account_balance
-    Ads.query.get(int(fileindex) + 1).budget -= 0.00010
-    User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.00010
+    Ads.query.get(int(fileindex) + 1).budget -= 0.00003
+    User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.00003
     db.session.commit()
     if len(file.fileurl) > 4:
         response = flask.Response(requests.get(file.fileurl).content)
