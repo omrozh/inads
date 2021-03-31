@@ -411,6 +411,7 @@ def adinfo(adid):
         else:
             msg = Message(f"Ban request Ad({adid}): " + flask.request.values["bannedwebsites"],
                           recipients=["omrozh@inadsglobal.com"])
+            mail.send(msg)
 
     all_paused_ads = []
 
