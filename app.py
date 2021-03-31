@@ -20,12 +20,12 @@ app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_URL']
 
 mail = Mail(app)
 
-app.config["MAIL_SERVER"] = "smtp.yandex.com"
-app.config["MAIL_PORT"] = 465
-app.config["MAIL_USE_SSL"] = True
-app.config["MAIL_USERNAME"] = "no-reply@inadsglobal.com"
-app.config["MAIL_PASSWORD"] = "05082004Oo"
-app.config["MAIL_DEFAULT_SENDER"] = "no-reply@inadsglobal.com"
+app.config['MAIL_SERVER'] = 'smtp.yandex.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'no-reply@inadsglobal.com'
+app.config['MAIL_PASSWORD'] = '05082004Oo'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
 
 authorized_mails = ["omrozh@gmail.com"]
 
@@ -410,7 +410,7 @@ def adinfo(adid):
             db.session.commit()
         else:
             msg = Message(f"Ban request Ad({adid}): " + flask.request.values["bannedwebsites"],
-                          recipients=["omrozh@inadsglobal.com"])
+                          recipients=["omrozh@inadsglobal.com"], sender="no-reply@inadsglobal.com")
             mail.send(msg)
 
     all_paused_ads = []
