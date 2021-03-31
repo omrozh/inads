@@ -10,12 +10,22 @@ import string
 import random
 import time
 from flask_cors import CORS, cross_origin
+from flask_mail import Mail, Message
 from flask_login import LoginManager, UserMixin, current_user, logout_user, login_required, login_user
 
 app = flask.Flask(__name__)
 app.config["UPLOAD_FOLDER"] = ""
 app.config["SECRET_KEY"] = "MAKEMEBILLIONAIRE"
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_URL']
+
+mail = Mail(app)
+
+app.config["MAIL_SERVER"] = "smtp.yandex.com"
+app.config["MAIL_PORT"] = 465
+app.config["MAIL_USE_SSL"] = True
+app.config["MAIL_USERNAME"] = "no-reply@inadsglobal.com"
+app.config["MAIL_PASSWORD"] = "05082004Oo"
+app.config["MAIL_DEFAULT_SENDER"] = "no-reply@inadsglobal.com"
 
 authorized_mails = ["omrozh@gmail.com"]
 
@@ -395,8 +405,12 @@ def adinfo(adid):
         # For clicks
 
     if flask.request.method == "POST":
-        ads.keywords = flask.request.values["keywords"]
-        db.session.commit()
+        if len(flask.request.values["keywords"]) > 3:
+            ads.keywords = flask.request.values["keywords"]
+            db.session.commit()
+        else:
+            msg = Message(f"Ban request Ad({adid}): " + flask.request.values["bannedwebsites"] ,
+                          recipients=["omrozh@inadsglobal.com"])
 
     all_paused_ads = []
 
