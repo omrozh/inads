@@ -60,6 +60,9 @@
         .bar2::after{
           max-width: {{ average_cpm * 500}}%;
         }
+        .bar3::after{
+          max-width: {{ average_cpc * 500}}%;
+        }
         @-webkit-keyframes bar-before{
           0%{
             width: 0px;
@@ -168,7 +171,10 @@
                         <small>You are using too few keywords this may result in a high rate of inconsistency
                             and inaccuracy with targeted ads.</small>
                     {% endif %}
-                    <h3>Average CPC: {{ average_cpc }}</h3>
+                    <div class="graph-cont">
+                        <h1>Average CPC</h1>
+                        <div class="bar bar3">{{ average_cpm }} $</div>
+                    </div>
                     <h3>Total Spending: {{ total_spending }}</h3>
                     <h3>Ad Click Rate: 1 / {{ click_rate }}</h3>
                     {% if paused %}
