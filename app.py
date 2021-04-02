@@ -1008,15 +1008,3 @@ def handle_500(e):
 @cross_origin(supports_credentials=True)
 def handle_404(e):
     return flask.render_template("404.html")
-
-
-@app.after_request
-def after_request(response):
-    db.session.close()
-    return response
-
-
-@app.teardown_request
-def teardown_request_func(error=None):
-    db.session.close()
-
