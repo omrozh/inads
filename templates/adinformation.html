@@ -127,7 +127,12 @@
             <div style="margin-left: 10%">
                 <div>
                     <h3>{{ ads.advertiserwebsite }}</h3>
-                    <h3>{{ ads.keywords }}</h3>
+                    <h3>Keywords: </h3>
+                    {% for i in ads.keywords.split("/") %}
+                        {{ i }}
+                        <br>
+                    {% endfor %}
+
                     <h3>Total number of ad clicks: {{ ads.total_clicks }}</h3>
                     <h3>Total number of view: {{ ads.total_views }}</h3>
                     <h3>Remaining Budget: {{ "%.2f" % ads.budget }} $</h3>
