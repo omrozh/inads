@@ -55,10 +55,10 @@
           z-index: -1;
         }
         .bar1::after{
-          max-width: {{ average_cpm_of_keywords * 5000 }}%;
+          max-width: {{ average_cpm_of_keywords * 500 }}%;
         }
         .bar2::after{
-          max-width: {{ average_cpm * 5000}}%;
+          max-width: {{ average_cpm * 500}}%;
         }
         @-webkit-keyframes bar-before{
           0%{
@@ -119,15 +119,14 @@
     </div>
     <div style="float: left; width: 79%; margin-left: 20%">
         <h1 style="margin-left: 5%">Ad Information</h1>
-
+        <div class="graph-cont">
+            <h1>Average CPM for Similar Keywords | Average CPM</h1>
+            <div class="bar bar1">{{ average_cpm_of_keywords }}</div>
+            <div class="bar bar2">{{ average_cpm }}</div>
+        </div>
             <button style="margin-left: 10%; width: 80%" class="accordion">{{ ads.advertiserwebsite }}</button>
             <div style="margin-left: 10%" class="panel">
                 <div>
-                    <div class="graph-cont">
-                      <h1>Responsive CSS Only Animated Bar Graph</h1>
-                      <div class="bar bar1">{{ average_cpm_of_keywords }}</div>
-                      <div class="bar bar2">{{ average_cpm }}</div>
-                    </div>
                     <h3>{{ ads.advertiserwebsite }}</h3>
                     <h3>{{ ads.keywords }}</h3>
                     <h3>Total number of ad clicks: {{ ads.total_clicks }}</h3>
