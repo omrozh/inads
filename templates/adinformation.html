@@ -55,10 +55,10 @@
           z-index: -1;
         }
         .bar1::after{
-          max-width: {{ average_cpm_of_keywords * 500 }}%;
+          max-width: {{ float(average_cpm_of_keywords) * 500 }}%;
         }
         .bar2::after{
-          max-width: {{ average_cpm * 500}}%;
+          max-width: {{ float(average_cpm) * 500}}%;
         }
         @-webkit-keyframes bar-before{
           0%{
