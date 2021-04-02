@@ -5,10 +5,10 @@ let textcontent = ""
 
 function createAds(element, index){
   fetch("https://inads.herokuapp.com/view/" + element.getAttribute("name"))
-  .then(res=>{adname = res.url.substring(res.url.lastIndexOf("/") + 1); element.setAttribute('onclick', "inadsclick(" + adname + ")"); return res})
+  .then(res=>{adname = res.url.substring(res.url.lastIndexOf("/") + 1); element.setAttribute('onclick', "inadsclick(" + adname + ")"); return res.text()})
   .then(blob=>{
 
-    console.log(blob.text())
+    console.log(blob)
 
     if(!("http" in blob)){
         element.hidden = true;
