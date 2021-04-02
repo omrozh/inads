@@ -39,6 +39,8 @@
     </div>
     <div style="float: left; width: 79%; margin-left: 20%">
         <h1 style="margin-left: 5%">Ad Information</h1>
+            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
             <button style="margin-left: 10%; width: 80%" class="accordion">{{ ads.advertiserwebsite }}</button>
             <div style="margin-left: 10%" class="panel">
                 <div>
@@ -94,6 +96,36 @@
         <br>
     </div>
     <script>
+    window.onload = function () {
+
+    var chart = new CanvasJS.Chart("chartContainer", {
+        animationEnabled: true,
+
+        title:{
+            text:"Average CPM for similar keywords | This Campaign's CPM"
+        },
+        axisX:{
+            interval: 1
+        },
+        axisY2:{
+            interlacedColor: "rgba(1,77,101,.2)",
+            gridColor: "rgba(1,77,101,.1)",
+            title: "CPM"
+        },
+        data: [{
+            type: "bar",
+            name: "cpm",
+            axisYType: "secondary",
+            color: "#014D65",
+            dataPoints: [
+                { y: {{ average_cpm_of_keywords }} , label: "Similar Keywords" },
+                { y: {{ average_cpm }}, label: "This Ad" },
+            ]
+        }]
+    });
+    chart.render();
+
+    }
         var acc = document.getElementsByClassName("accordion");
         var i;
 
