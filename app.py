@@ -1010,7 +1010,7 @@ def handle_404(e):
     return flask.render_template("404.html")
 
 
-@app.after_request()
+@app.after_request
 def after_request(error=None):
     db.session.close()
 
