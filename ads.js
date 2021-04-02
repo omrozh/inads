@@ -5,14 +5,10 @@ let textcontent = ""
 
 function createAds(element, index){
   fetch("https://inads.herokuapp.com/view/" + element.getAttribute("name"))
-  .then(res=>{adname = res.url.substring(res.url.lastIndexOf("/") + 1); element.setAttribute('onclick', "inadsclick(" + adname + ")"); return res.blob()})
+  .then(res=>{adname = res.url.substring(res.url.lastIndexOf("/") + 1); element.setAttribute('onclick', "inadsclick(" + adname + ")"); return res})
   .then(blob=>{
 
-    if(blob.size < 1000){
-        element.hidden = "true"
-        return "Cannot complete action"
-    }
-    var img = URL.createObjectURL(blob);
+    var img = blob;
     element.setAttribute('src', img);
     element.insertAdjacentHTML("beforebegin", '<a href="http://www.inadsglobal.com" style="text-decoration: none; color:yellow; float: ' + window.getComputedStyle(element).float + '"><small style="font-size: 6px; margin-left: ' + window.getComputedStyle(element).marginLeft + '; margin-right: ' + window.getComputedStyle(element).marginRight + '">Ads by <span style="color: black;">InAds</small></span></a><br>')
 
