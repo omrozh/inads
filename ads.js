@@ -8,7 +8,7 @@ function createAds(element, index){
   .then(res=>{adname = res.url.substring(res.url.lastIndexOf("/") + 1); element.setAttribute('onclick', "inadsclick(" + adname + ")"); return res})
   .then(blob=>{
 
-    console.log(blob)
+    console.log(blob.text())
 
     if(!("http" in blob)){
         element.hidden = true;
