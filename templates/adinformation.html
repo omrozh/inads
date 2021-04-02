@@ -121,8 +121,8 @@
         <h1 style="margin-left: 5%">Ad Information</h1>
         <div class="graph-cont">
             <h1>Average CPM for Similar Keywords | Average CPM</h1>
-            <div class="bar bar1">{{ average_cpm_of_keywords }} $</div>
-            <div class="bar bar2">{{ average_cpm }} $</div>
+            Similar Keywords: <div class="bar bar1">{{ average_cpm_of_keywords }} $</div>
+            This ad: <div class="bar bar2">{{ average_cpm }} $</div>
         </div>
             <div style="margin-left: 10%">
                 <div>
@@ -168,11 +168,9 @@
                         <small>You are using too few keywords this may result in a high rate of inconsistency
                             and inaccuracy with targeted ads.</small>
                     {% endif %}
-                    <h3>Average CPM: {{ average_cpm }}</h3>
                     <h3>Average CPC: {{ average_cpc }}</h3>
                     <h3>Total Spending: {{ total_spending }}</h3>
                     <h3>Ad Click Rate: 1 / {{ click_rate }}</h3>
-                    <h3>Average CPM for similar keywords: {{ average_cpm_of_keywords }}</h3>
                     {% if paused %}
                         <a href="/unpause/{{ ads.id }}" style="text-decoration=none; color: gray">Unpause ad</a>
                     {% elif not paused %}
