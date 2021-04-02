@@ -8,6 +8,11 @@ function createAds(element, index){
   .then(res=>{adname = res.url.substring(res.url.lastIndexOf("/") + 1); element.setAttribute('onclick', "inadsclick(" + adname + ")"); return res})
   .then(blob=>{
 
+    if(!("http" in blob)){
+        element.hidden = true;
+        return "Nothing"
+    }
+
     var img = blob;
     element.setAttribute('src', img);
     element.insertAdjacentHTML("beforebegin", '<a href="http://www.inadsglobal.com" style="text-decoration: none; color:yellow; float: ' + window.getComputedStyle(element).float + '"><small style="font-size: 6px; margin-left: ' + window.getComputedStyle(element).marginLeft + '; margin-right: ' + window.getComputedStyle(element).marginRight + '">Ads by <span style="color: black;">InAds</small></span></a><br>')
