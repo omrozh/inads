@@ -667,12 +667,14 @@ def return_file_mobile(adtype, mobileapi):
             is_there_ad = True
 
     if not is_there_ad:
+        db.session.close()
         return "No ads"
 
     domain = mobileapi
 
     try:
         if domain not in Domains.query.all():
+            db.session.close()
             return "Unauthorized request"
 
         suitablead = None
@@ -706,13 +708,16 @@ def return_file_mobile(adtype, mobileapi):
                 suitablead = totalads[random.randint(0, len(totalads) - 1)]
 
             if float(suitablead.budget) < 0.25:
+                db.session.close()
                 return "No ads for query"
 
         if suitablead:
             return flask.redirect("/" + domain + "/ads" + "/" + str(int(suitablead.id) - 1))
         else:
+            db.session.close()
             return "No ads are suitable to your query."
     except:
+        db.session.close()
         return "Problem Occured"
 
 
@@ -726,6 +731,7 @@ def return_file(adtype):
             is_there_ad = True
 
     if not is_there_ad:
+        db.session.close()
         return "No ads"
 
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
@@ -797,9 +803,10 @@ def return_file(adtype):
         if suitablead and float(suitablead.budget > 0.25) and int(suitablead.id) not in all_paused_ads:
             return flask.redirect(f"/ads" + "/" + str(int(suitablead.id) - 1))
         else:
+            db.session.close()
             return "No ads are suitable to your query."
     except Exception as e:
-        print(e)
+        db.session.close()
         return "Problem Occured"
 
 
@@ -1002,6 +1009,10 @@ def handle_500(e):
 def handle_500(e):
     return flask.render_template("404.html")
 
+
+@app.after_request()
+def after_request(error=None):
+    return db.session.close()
 
 @app.teardown_request
 def teardown_request_func(error=None):
