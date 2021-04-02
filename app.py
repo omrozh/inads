@@ -1014,6 +1014,7 @@ def handle_500(e):
 def after_request(error=None):
     return db.session.close()
 
+
 @app.teardown_request
 def teardown_request_func(error=None):
     db.session.close()
