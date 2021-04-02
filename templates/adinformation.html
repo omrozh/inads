@@ -110,7 +110,7 @@
         axisY2:{
             interlacedColor: "rgba(1,77,101,.2)",
             gridColor: "rgba(1,77,101,.1)",
-            title: "CPM"
+            title: "CPM in cents"
         },
         data: [{
             type: "bar",
@@ -118,8 +118,8 @@
             axisYType: "secondary",
             color: "#014D65",
             dataPoints: [
-                { y: {{ average_cpm_of_keywords }} , label: "Similar Keywords" },
-                { y: {{ average_cpm }}, label: "This Ad" },
+                { y: {{ average_cpm_of_keywords }} * 100 , label: "Similar Keywords" },
+                { y: {{ average_cpm }} * 100, label: "This Ad" },
             ]
         }]
     });
