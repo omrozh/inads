@@ -1012,7 +1012,7 @@ def handle_500(e):
 
 @app.after_request()
 def after_request(error=None):
-    return db.session.close()
+    db.session.close()
 
 
 @app.teardown_request
