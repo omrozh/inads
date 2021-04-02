@@ -1006,7 +1006,7 @@ def handle_500(e):
 
 @app.errorhandler(404)
 @cross_origin(supports_credentials=True)
-def handle_500(e):
+def handle_404(e):
     return flask.render_template("404.html")
 
 
