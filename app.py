@@ -1013,6 +1013,7 @@ def handle_404(e):
 @app.after_request
 def after_request(response):
     db.session.close()
+    return response
 
 
 @app.teardown_request
