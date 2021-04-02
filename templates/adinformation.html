@@ -61,7 +61,7 @@
           max-width: {{ average_cpm * 500}}%;
         }
         .bar3::after{
-          max-width: {{ average_cpc * 500}}%;
+          max-width: {{ average_cpc * 250}}%;
         }
         @-webkit-keyframes bar-before{
           0%{
@@ -172,7 +172,7 @@
                             and inaccuracy with targeted ads.</small>
                     {% endif %}
                     <div class="graph-cont">
-                        <h1>Average CPC</h1>
+                        <h1>Average CPC | Compared to maximum cpc possible</h1>
                         <div class="bar bar3">{{ average_cpc }} $</div>
                     </div>
                     <h3>Total Spending: {{ total_spending }}</h3>
