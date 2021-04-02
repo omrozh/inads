@@ -827,8 +827,8 @@ def returnActual(fileindex):
     User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.00003
     db.session.commit()
     if len(file.fileurl) > 4:
-        # response = flask.Response(requests.get(file.fileurl).content)
-        return flask.redirect(file.fileurl, code=302)
+        response = flask.Response(requests.get(file.fileurl).content)
+        return response
 
 
 @app.route("/<key>/ads/<fileindex>")
