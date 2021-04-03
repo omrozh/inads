@@ -760,7 +760,10 @@ def return_file(adtype, pagetitlein):
 
     for i in Domains.query.all():
         domainList.append(str(i.domain))
+
     if domain not in domainList:
+        print(domain)
+        print(domainList)
         return "Unauthorized request"
 
     all_paused_ads = []
