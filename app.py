@@ -726,9 +726,7 @@ def return_file_mobile(adtype, mobileapi):
 def return_file(adtype):
     is_there_ad = False
 
-    ads = Ads.query.filter_by(ad_type=adtype)
-
-    for i in ads:
+    for i in Ads.query.filter_by(ad_type=adtype):
         if i.budget > 0.25:
             is_there_ad = True
 
@@ -736,14 +734,13 @@ def return_file(adtype):
         db.session.close()
         return "No ads"
 
-    url = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value'))
-    domain = url.netloc
+    domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     domainList = []
 
     pagelist = ""
 
     try:
-
+        url = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value'))
         url = "http://" + str(url.netloc) + str(url.path)
 
         requestobject = requests.get(url).content.decode("utf-8")
@@ -776,7 +773,7 @@ def return_file(adtype):
 
         keywords = Domains.query.filter_by(domain=domain).first().keywords + "/" + pagefinal
         keywords = keywords.split("/")
-        for i in ads:
+        for i in Ads.query.filter_by(ad_type=adtype):
             if i.budget > 0.25:
                 for c in i.keywords.split("/"):
                     if c in keywords and i.id not in all_paused_ads:
@@ -791,7 +788,7 @@ def return_file(adtype):
         if suitablead is None:
             totalads = []
 
-            for i in ads:
+            for i in Ads.query.all():
                 if i.budget > 0.25 and i.ad_type == adtype:
                     totalads.append(i)
 
@@ -802,7 +799,6 @@ def return_file(adtype):
                         int(suitablead.id) in all_paused_ads:
                     continue
                 suitablead = totalads[random.randint(0, len(totalads) - 1)]
-                break
 
         if suitablead and float(suitablead.budget > 0.25) and int(suitablead.id) not in all_paused_ads:
             return flask.redirect(f"/ads" + "/" + str(int(suitablead.id) - 1))
@@ -835,7 +831,7 @@ def returnActual(fileindex):
             flask.request.environ.get('HTTP_REFERER', 'default value')).netloc).first().owner
     userowner = User.query.filter_by(email=domainowner).first().account_balance
     Ads.query.get(int(fileindex) + 1).budget -= 0.00003
-    userowner += 0.00003
+    User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.00003
     db.session.commit()
     if len(file.fileurl) > 4:
         # response = flask.Response(requests.get(file.fileurl).content)
