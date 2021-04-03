@@ -632,6 +632,11 @@ def cancel_ad(idad):
     return flask.redirect("/dashboard")
 
 
+@app.route("/view/<ad_type>")
+def redirectads(ad_type):
+    return flask.redirect(f"/view/{ad_type}/n")
+
+
 @app.route("/add_payment_info", methods=["POST", "GET"])
 @login_required
 def add_payment_info():
