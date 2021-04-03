@@ -424,9 +424,13 @@ def adinfo(adid):
         paused = False
 
     try:
-        average_cpc = (ads.total_views * 0.00003 + ads.total_clicks * 0.01) / ads.total_clicks
-        average_cpm = ((ads.total_views * 0.00003 + ads.total_clicks * 0.01) / ads.total_views) * 1000
-        total_spending = ads.total_views * 0.00003 + ads.total_clicks * 0.01
+        if current_user.is_partner:
+            total_spending = float(ads.total_views * 0.00003)
+        if not current_user.is_partner:
+            total_spending = float(ads.total_views * 0.00003 + ads.total_clicks * 0.01)
+
+        average_cpc = total_spending / ads.total_clicks
+        average_cpm = (total_spending / ads.total_views) * 1000
         click_rate = ads.total_views / ads.total_clicks
     except ZeroDivisionError:
         average_cpc = 0
