@@ -16,7 +16,7 @@ public class unityextensioninads : MonoBehaviour {
     }
  
     IEnumerator GetTexture() {
-        url = "http://inads.herokuapp.com/view/" + adType + "/" + apiKey;
+        url = "http://inads.herokuapp.com/view/" + adType + "/" + apiKey + "/mobile";
         UnityWebRequest request = UnityWebRequestTexture.GetTexture(url);
         yield return request.SendWebRequest();
         if(request.isNetworkError || request.isHttpError) 

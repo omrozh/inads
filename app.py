@@ -657,7 +657,7 @@ def add_payment_info():
     return flask.render_template("payment_info.html")
 
 
-@app.route("/view/<adtype>/<mobileapi>")
+@app.route("/view/<adtype>/<mobileapi>/mobile")
 @cross_origin(supports_credentials=True)
 def return_file_mobile(adtype, mobileapi):
     is_there_ad = False
@@ -743,9 +743,6 @@ def return_file(adtype, titleinfo):
     pagelist = ""
 
     try:
-
-        url = "http://" + str(url.netloc) + str(url.path)
-
         requestobject = titleinfo.replace("%20", " ")
         pagetitle = requestobject[requestobject.find('<title>') + 7:requestobject.find('</title>')]
 
