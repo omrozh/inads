@@ -721,9 +721,9 @@ def return_file_mobile(adtype, mobileapi):
         return "Problem Occured"
 
 
-@app.route("/view/<adtype>/<pagetitlein>")
+@app.route("/view/<adtype>")
 @cross_origin(supports_credentials=True)
-def return_file(adtype, pagetitlein):
+def return_file(adtype):
     is_there_ad = False
 
     ads = Ads.query.filter_by(ad_type=adtype)
@@ -743,7 +743,10 @@ def return_file(adtype, pagetitlein):
     pagelist = ""
 
     try:
-        requestobject = pagetitlein
+
+        url = "http://" + str(url.netloc) + str(url.path)
+
+        requestobject = requests.get(url).content.decode("utf-8")
         pagetitle = requestobject[requestobject.find('<title>') + 7:requestobject.find('</title>')]
 
         pagetitle.replace("|", "")
@@ -760,10 +763,8 @@ def return_file(adtype, pagetitlein):
 
     for i in Domains.query.all():
         domainList.append(str(i.domain))
-
     if domain not in domainList:
-        print("This is unauthorized")
-        return "Unauthorized request" + "1"
+        return "Unauthorized request"
 
     all_paused_ads = []
     for i in PausedAds.query.all():
