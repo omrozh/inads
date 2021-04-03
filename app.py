@@ -721,9 +721,9 @@ def return_file_mobile(adtype, mobileapi):
         return "Problem Occured"
 
 
-@app.route("/view/<adtype>")
+@app.route("/view/<adtype>/<titleinfo>")
 @cross_origin(supports_credentials=True)
-def return_file(adtype):
+def return_file(adtype, titleinfo):
     is_there_ad = False
 
     ads = Ads.query.filter_by(ad_type=adtype)
@@ -746,12 +746,13 @@ def return_file(adtype):
 
         url = "http://" + str(url.netloc) + str(url.path)
 
-        requestobject = requests.get(url).content.decode("utf-8")
+        requestobject = titleinfo.replace("%20", " ")
         pagetitle = requestobject[requestobject.find('<title>') + 7:requestobject.find('</title>')]
 
         pagetitle.replace("|", "")
         pagelist = pagetitle.replace(" ", "/")
     except Exception as e:
+        print("Exception")
         pass
     pagefinal = []
 
