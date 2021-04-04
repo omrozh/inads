@@ -3,6 +3,11 @@ let adname = ""
 let apiKey = ""
 let textcontent = ""
 
+function adGroupCreate(element){
+    var insertadgrouper = '<img class="inads" name=inadstandard src="" alt="" style="margin-left: 12.5%; float: left; width: 50%; margin-right: 12.5%">';
+    element.insertAdjacentHTML("afterbegin", insertadgrouper + insertadgrouper + insertadgrouper + insertadgrouper)
+}
+
 function createAds(element, index){
   fetch("https://inads.herokuapp.com/view/" + element.getAttribute("name") + "/" + document.title)
   .then(res=>{adname = res.url.substring(res.url.lastIndexOf("/") + 1); element.setAttribute('onclick', "inadsclick(" + adname + ")"); return res.text()})
@@ -49,6 +54,12 @@ function createAds(element, index){
         element.setAttribute("padding-bottom", "100%")
     }
 })
+}
+
+let adGroups = document.getElementsByClassName("inadsgroup");
+
+for(var i = 0; i < adGroups.length; i++){
+    adGroupCreate(adGroups[i]);
 }
 
 let adElements = document.getElementsByClassName("inads");
