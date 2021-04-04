@@ -4,7 +4,7 @@ let apiKey = ""
 let textcontent = ""
 
 function adGroupCreate(element){
-    var insertadgrouper = '<img class="inads" name=inadstandard src="" alt="" style="margin-left: 12.5%; float: left; width: 50%; margin-right: 12.5%">';
+    var insertadgrouper = '<img class="inads" name=inadstandard src="" alt="" style="float: left; width: 50%;">';
     element.insertAdjacentHTML("afterbegin", insertadgrouper + insertadgrouper + insertadgrouper + insertadgrouper)
 }
 
