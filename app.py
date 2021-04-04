@@ -747,8 +747,6 @@ def return_file(adtype, titleinfo):
 
     url = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value'))
     domain = url.netloc
-    if not domain == "storefiles.ml":
-        return "No ads"
     domainList = []
 
     pagelist = ""
