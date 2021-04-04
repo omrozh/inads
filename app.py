@@ -337,9 +337,14 @@ def addDomain():
             print(pagefinal)
         except Exception as e:
             print(e)
+            return '''
+                <script>
+                    alert("Domain Unconfirmed")
+                    document.location = "/dashboard"
+                </script>
+            '''
 
-
-        if False:
+        if requestinfo.decode("utf-8") != current_user.email:
             print(requestinfo)
             return '''
                 <script>
