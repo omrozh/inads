@@ -754,8 +754,6 @@ def return_file(adtype, titleinfo):
 
     url = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value'))
     domain = url.netloc
-    if domain != "www.aorhan.com":
-        return "No Ads"
     domainList = []
 
     pagelist = ""
