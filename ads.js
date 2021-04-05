@@ -68,7 +68,7 @@ let adElements = document.getElementsByClassName("inads");
 
 if(adElements.length == 0){
     var insertbanner = '<div id=autoplacedb style="width: 10%; position: sticky; position: -webkit-sticky; right: 0; top: 0; z-index: 1;"><img class="inads" name=inadsbanner src="" alt="" style="float: left">';
-    var insertad = '<img class="inads" name=inadstandard src="" alt="" style="margin-left: 12.5%; width: 30%">';
+    var insertad = '<img class="inads" name=inadstandard src="" alt="" style="margin-left: 12.5%; width: 50%">';
     document.body.insertAdjacentHTML("beforeEnd", insertad);
     // document.body.insertAdjacentHTML("afterbegin", insertbanner);
     document.body.insertAdjacentHTML("afterbegin", insertad);
