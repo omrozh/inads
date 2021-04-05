@@ -408,10 +408,13 @@ def adinfo(adid):
         if len(flask.request.values["keywords"]) > 3:
             ads.keywords = flask.request.values["keywords"]
             db.session.commit()
-        else:
+        elif len(flask.request.values["bannedwebsites"]) > 3:
             msg = Message(f"Ban request Ad({adid}): " + flask.request.values["bannedwebsites"],
                           recipients=["omrozh@inadsglobal.com"], sender="no-reply@inadsglobal.com")
             mail.send(msg)
+        else:
+            ads.budget += flask.request.values["budgetinc"]
+            db.session.commit()
 
     all_paused_ads = []
 
