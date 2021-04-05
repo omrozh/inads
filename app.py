@@ -883,6 +883,8 @@ def returnActualMobile(fileindex, key):
 @app.route("/adclick/<adname>")
 @cross_origin(supports_credentials=True)
 def adclick(adname):
+    if Ads.query.get(int(adname) + 1).budget < 0.02:
+        return "No budget"
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     domainList = []
 
@@ -907,7 +909,7 @@ def adclick(adname):
     if True:
 
         domainobject = Domains.query.filter_by(domain=domain).first()
-        domainobject.total_clicks += 1
+        Domains.query.filter_by(domain=domain).first().total_clicks += 1
 
         Ads.query.get(int(adname) + 1).website_clicks += website + ","
 
