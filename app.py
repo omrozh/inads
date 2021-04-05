@@ -416,6 +416,8 @@ def adinfo(adid):
             ads.budget += float(flask.request.values["budgetinc"])
             if ads.budget > current_user.account_balance:
                 return flask.redirect("/")
+
+            User.query.get(current_user.id).account_balance -= float(flask.request.values["budgetinc"])
             db.session.commit()
 
     all_paused_ads = []
