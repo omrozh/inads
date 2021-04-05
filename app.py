@@ -919,9 +919,8 @@ def adclick(adname):
             Domains.query.filter_by(
                 domain=urllib.parse.urlparse(
                     flask.request.environ.get('HTTP_REFERER', 'default value')).netloc).first().owner
-        userowner = User.query.filter_by(email=domainowner).first().account_balance
-        if not User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
-            User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.01
+        User.query.filter_by(email=domainowner).first().account_balance = \
+            float(User.query.filter_by(email=domainowner).first().account_balance) + 0.01
 
         if User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
             User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().account_balance += 0.01
