@@ -8,6 +8,11 @@ function adGroupCreate(element){
     element.insertAdjacentHTML("afterbegin", insertadgrouper + insertadgrouper + insertadgrouper + insertadgrouper)
 }
 
+function adGroupCreate(element){
+    var insertadgroupersquare = '<img class="inads" name=inadsquare src="" alt="" style="float: left; width: 20%; margin-left: 2%">';
+    element.insertAdjacentHTML("afterbegin", insertadgroupersquare + insertadgroupersquare + insertadgroupersquare + insertadgroupersquare)
+}
+
 function createAds(element, index){
   fetch("https://inads.herokuapp.com/view/" + element.getAttribute("name") + "/" + document.title)
   .then(res=>{adname = res.url.substring(res.url.lastIndexOf("/") + 1); element.setAttribute('onclick', "inadsclick(" + adname + ")"); return res.text()})
@@ -57,9 +62,14 @@ function createAds(element, index){
 }
 
 let adGroups = document.getElementsByClassName("inadsgroup");
+let adGroupsSquare = document.getElementsByClassName("inadsgroupsquare");
 
 for(var i = 0; i < adGroups.length; i++){
     adGroupCreate(adGroups[i]);
+}
+
+for(var i = 0; i < adGroupsSquare.length; i++){
+    adGroupCreateSquare(adGroupsSquare[i]);
 }
 
 let adElements = document.getElementsByClassName("inads");
