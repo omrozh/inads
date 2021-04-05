@@ -31,8 +31,6 @@ function createAds(element, index){
         element.insertAdjacentHTML("beforebegin", '<a href="http://www.inadsglobal.com" style="text-decoration: none; color:yellow; float: ' + window.getComputedStyle(element).float + '"><small style="font-size: 6px; margin-left: ' + window.getComputedStyle(element).marginLeft + '; margin-right: ' + window.getComputedStyle(element).marginRight + '">Ads by <span style="color: black;">InAds</small></span></a><br>')
 
     if(element.getAttribute("name") == "inadstandard"){
-        element.style.removeProperty("width")
-        element.style.removeProperty("height")
         element.className = "";
         element.removeAttribute("class")
         element.removeAttribute("name")
@@ -40,8 +38,6 @@ function createAds(element, index){
         element.insertAdjacentHTML("beforeend", "<small> Ads by InAds </small>")
     }
     if(element.getAttribute("name") == "inadsbanner"){
-        element.style.removeProperty("width")
-        element.style.removeProperty("height")
         element.className = "";
         element.removeAttribute("class")
         element.removeAttribute("name")
@@ -49,8 +45,6 @@ function createAds(element, index){
         element.insertAdjacentHTML("beforeend", "<small> Ads by InAds </small>")
     }
     if(element.getAttribute("name") == "inadsquare"){
-        element.style.removeProperty("width")
-        element.style.removeProperty("height")
         element.className = "";
         element.removeAttribute("class")
         element.removeAttribute("name")
