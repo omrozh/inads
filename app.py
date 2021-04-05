@@ -890,15 +890,6 @@ def adclick(adname):
 
     requestip = domain
 
-    if suspected_ips.get(requestip):
-        if time.time() - float(suspected_ips.get(requestip)) < 10:
-            suspected_ips[requestip] = \
-                time.time()
-            return "Invalid Request"
-
-    suspected_ips[requestip] = \
-        time.time()
-
     for i in Domains.query.all():
         domainList.append(str(i.domain))
 
@@ -906,32 +897,27 @@ def adclick(adname):
         return "Unauthorized request"
 
     website = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
-    if True:
 
-        domainobject = Domains.query.filter_by(domain=domain).first()
-        Domains.query.filter_by(domain=domain).first().total_clicks += 1
+    domainobject = Domains.query.filter_by(domain=domain).first()
+    Domains.query.filter_by(domain=domain).first().total_clicks += 1
 
-        Ads.query.get(int(adname) + 1).website_clicks += website + ","
+    Ads.query.get(int(adname) + 1).website_clicks += website + ","
 
-        if not User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
-            domainobject.total_revenue += 0.01
-        domainowner = \
-            Domains.query.filter_by(
-                domain=urllib.parse.urlparse(
-                    flask.request.environ.get('HTTP_REFERER', 'default value')).netloc).first().owner
-        User.query.filter_by(email=domainowner).first().account_balance = \
-            float(User.query.filter_by(email=domainowner).first().account_balance) + 0.01
+    if not User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
+        Domains.query.filter_by(domain=domain).first().total_revenue += 0.01
+        domainowner = Domains.query.filter_by(domain=website).first().owner
+        User.query.filter_by(email=domainowner).first().account_balance += 0.01
 
-        if User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
-            User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().account_balance += 0.01
+    if User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
+        User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().account_balance += 0.01
 
-        Ads.query.get(int(adname) + 1).budget -= 0.01
-        Ads.query.get(int(adname) + 1).total_clicks += 1
+    Ads.query.get(int(adname) + 1).budget -= 0.01
+    Ads.query.get(int(adname) + 1).total_clicks += 1
 
-        db.session.commit()
-        if "http" not in Ads.query.get(int(adname) + 1).advertiserwebsite:
-            return f"<script> document.location = 'https://{Ads.query.get(int(adname) + 1).advertiserwebsite}' </script>"
-        return f"<script> document.location = '{Ads.query.get(int(adname) + 1).advertiserwebsite}' </script>"
+    db.session.commit()
+    if "http" not in Ads.query.get(int(adname) + 1).advertiserwebsite:
+        return f"<script> document.location = 'https://{Ads.query.get(int(adname) + 1).advertiserwebsite}' </script>"
+    return f"<script> document.location = '{Ads.query.get(int(adname) + 1).advertiserwebsite}' </script>"
 
 
 @app.route("/adclickmobile/<adname>/<apikey>")
