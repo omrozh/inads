@@ -905,8 +905,6 @@ def adclick(adname):
 
     website = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     if True:
-        Ads.query.get(int(adname) + 1).budget -= 0.01
-        Ads.query.get(int(adname) + 1).total_clicks += 1
 
         domainobject = Domains.query.filter_by(domain=domain).first()
         domainobject.total_clicks += 1
@@ -924,6 +922,9 @@ def adclick(adname):
 
         if User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().is_partner:
             User.query.filter_by(email=Ads.query.get(int(adname) + 1).owner).first().account_balance += 0.01
+
+        Ads.query.get(int(adname) + 1).budget -= 0.01
+        Ads.query.get(int(adname) + 1).total_clicks += 1
 
         db.session.commit()
         if "http" not in Ads.query.get(int(adname) + 1).advertiserwebsite:
