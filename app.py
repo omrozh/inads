@@ -847,7 +847,6 @@ def returnActual(fileindex):
     domainowner = \
         Domains.query.filter_by(domain=urllib.parse.urlparse(
             flask.request.environ.get('HTTP_REFERER', 'default value')).netloc).first().owner
-    userowner = User.query.filter_by(email=domainowner).first().account_balance
     Ads.query.get(int(fileindex) + 1).budget -= 0.00003
     User.query.filter_by(email=domainowner).first().account_balance += 0.00003
     db.session.commit()
