@@ -413,7 +413,7 @@ def adinfo(adid):
                           recipients=["omrozh@inadsglobal.com"], sender="no-reply@inadsglobal.com")
             mail.send(msg)
         else:
-            ads.budget += flask.request.values["budgetinc"]
+            ads.budget += float(flask.request.values["budgetinc"])
             db.session.commit()
 
     all_paused_ads = []
