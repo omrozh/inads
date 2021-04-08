@@ -919,6 +919,11 @@ def adclick(adname):
     return f"<script> document.location = '{Ads.query.get(int(adname) + 1).advertiserwebsite}' </script>"
 
 
+@app.route("/subtest", subdomain="<sub>")
+def subtest(sub):
+    return sub
+
+
 @app.route("/adclickmobile/<adname>/<apikey>")
 @cross_origin(supports_credentials=True)
 def adclickmobile(adname, apikey):
