@@ -919,6 +919,11 @@ def adclick(adname):
     return f"<script> document.location = '{Ads.query.get(int(adname) + 1).advertiserwebsite}' </script>"
 
 
+@app.route("/information/inads")
+def informationads():
+    return flask.render_template("inadspitch.html")
+
+
 @app.route("/adclickmobile/<adname>/<apikey>")
 @cross_origin(supports_credentials=True)
 def adclickmobile(adname, apikey):
