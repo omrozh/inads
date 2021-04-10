@@ -344,7 +344,7 @@ def addDomain():
                 </script>
             '''
 
-        if False:
+        if requestinfo.decode("utf-8") != current_user.email:
             print(requestinfo)
             return '''
                 <script>
