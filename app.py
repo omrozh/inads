@@ -607,7 +607,11 @@ def advertise():
             blob.upload_from_filename(filename)
             blob.make_public()
 
-            db.session.add(Ads(fileurl=blob.public_url, keywords=flask.request.values["keywords"],
+            f = open(filename, "rb")
+            data = f.read()
+            f.close()
+
+            db.session.add(Ads(fileurl=str(data), keywords=flask.request.values["keywords"],
                                budget=flask.request.values["budget"],
                                advertiserwebsite=flask.request.values['website'], publishing_sites="",
                                ad_type=flask.request.values['typeAd'], owner=current_user.email, total_clicks=0,
@@ -851,7 +855,11 @@ def returnActual(fileindex):
     db.session.commit()
     if len(file.fileurl) > 4:
         # response = flask.Response(requests.get(file.fileurl).content)
-        return file.fileurl
+        imgdata = file.fileurl
+        imgdata = imgdata.replace("b'", "")
+        imgdata = imgdata.replace("'", "")
+        imgdata = str.encode(imgdata)
+        return imgdata
 
 
 @app.route("/<key>/ads/<fileindex>")
