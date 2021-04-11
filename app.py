@@ -857,7 +857,10 @@ def returnActual(fileindex):
     db.session.commit()
     if len(file.fileurl) > 4:
         # response = flask.Response(requests.get(file.fileurl).content)
-        return file.fileurl
+        a = file.fileurl
+        b = list(a)
+        returnfinal = bytes(b)
+        return returnfinal
 
 
 @app.route("/<key>/ads/<fileindex>")
