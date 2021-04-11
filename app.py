@@ -857,9 +857,7 @@ def returnActual(fileindex):
     db.session.commit()
     if len(file.fileurl) > 4:
         # response = flask.Response(requests.get(file.fileurl).content)
-        a = file.fileurl
-        b = list(a)
-        returnfinal = bytes(b)
+        returnfinal = str.encode(file.fileurl)
         return returnfinal
 
 
