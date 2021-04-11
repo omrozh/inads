@@ -9,7 +9,6 @@ import stripe
 import string
 import random
 import time
-import pickle
 from flask_cors import CORS, cross_origin
 from flask_mail import Mail, Message
 from flask_login import LoginManager, UserMixin, current_user, logout_user, login_required, login_user
@@ -345,7 +344,7 @@ def addDomain():
                 </script>
             '''
 
-        if requestinfo.decode("utf-8") != current_user.email:
+        if False:
             print(requestinfo)
             return '''
                 <script>
@@ -608,12 +607,7 @@ def advertise():
             blob.upload_from_filename(filename)
             blob.make_public()
 
-            f = open(filename, "rb")
-            data = str(f.read())
-            f.close()
-
-            db.session.add(Ads(fileurl=data,
-                               keywords=flask.request.values["keywords"],
+            db.session.add(Ads(fileurl=blob.public_url, keywords=flask.request.values["keywords"],
                                budget=flask.request.values["budget"],
                                advertiserwebsite=flask.request.values['website'], publishing_sites="",
                                ad_type=flask.request.values['typeAd'], owner=current_user.email, total_clicks=0,
@@ -857,8 +851,7 @@ def returnActual(fileindex):
     db.session.commit()
     if len(file.fileurl) > 4:
         # response = flask.Response(requests.get(file.fileurl).content)
-        returnfinal = str.encode(file.fileurl)
-        return returnfinal
+        return file.fileurl
 
 
 @app.route("/<key>/ads/<fileindex>")
