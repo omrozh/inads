@@ -9,6 +9,7 @@ import stripe
 import string
 import random
 import time
+import pickle
 from flask_cors import CORS, cross_origin
 from flask_mail import Mail, Message
 from flask_login import LoginManager, UserMixin, current_user, logout_user, login_required, login_user
@@ -607,7 +608,7 @@ def advertise():
             blob.upload_from_filename(filename)
             blob.make_public()
 
-            db.session.add(Ads(fileurl="data:image/jpg;base64,"+str(requests.get(blob.public_url).content),
+            db.session.add(Ads(fileurl="data:image/jpg;base64,"+str(pickle.dumps(requests.get(blob.public_url).content)),
                                keywords=flask.request.values["keywords"],
                                budget=flask.request.values["budget"],
                                advertiserwebsite=flask.request.values['website'], publishing_sites="",
