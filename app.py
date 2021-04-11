@@ -858,7 +858,6 @@ def returnActual(fileindex):
         imgdata = file.fileurl
         imgdata = imgdata.replace("b'", "")
         imgdata = imgdata.replace("'", "")
-        imgdata = str.encode(imgdata)
         return imgdata
 
 
