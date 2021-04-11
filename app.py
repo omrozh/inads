@@ -858,7 +858,9 @@ def returnActual(fileindex):
         imgdata = file.fileurl
         imgdata = imgdata.replace("b'", "")
         imgdata = imgdata.replace("'", "")
-        return flask.Response(str.encode(imgdata))
+        response = flask.make_response(imgdata)
+        response.headers.set('Content-Type', 'image/jpg')
+        return response
 
 
 @app.route("/<key>/ads/<fileindex>")
