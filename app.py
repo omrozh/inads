@@ -609,7 +609,7 @@ def advertise():
             blob.make_public()
 
             f = open(filename, "rb")
-            data = f.read().decode("utf-8")
+            data = str(f.read())
             f.close()
 
             db.session.add(Ads(fileurl="data:image/jpg;base64,"+data,
