@@ -610,13 +610,6 @@ def advertise():
 
             f = open(filename, "rb")
             data = str(f.read())
-            data = list(data)
-
-            data.remove(-1)
-            data.remove(0)
-            data.remove(1)
-
-            data = "".join(data)
             f.close()
 
             db.session.add(Ads(fileurl=data,
