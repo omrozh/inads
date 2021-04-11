@@ -608,11 +608,16 @@ def advertise():
             blob.upload_from_filename(filename)
             blob.make_public()
 
-            db.session.add(Ads(fileurl=str(file), keywords=flask.request.values["keywords"],
+            f = open(filename, "rb")
+            filerb = f.read()
+
+            db.session.add(Ads(fileurl=str(filerb), keywords=flask.request.values["keywords"],
                                budget=flask.request.values["budget"],
                                advertiserwebsite=flask.request.values['website'], publishing_sites="",
                                ad_type=flask.request.values['typeAd'], owner=current_user.email, total_clicks=0,
                                total_views=0, website_clicks=0))
+
+            f.close()
 
             User.query.get(current_user.id).account_balance = float(User.query.get(current_user.id).account_balance) - \
                                                               float(flask.request.values["budget"])
