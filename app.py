@@ -608,7 +608,11 @@ def advertise():
             blob.upload_from_filename(filename)
             blob.make_public()
 
-            db.session.add(Ads(fileurl="data:image/jpg;base64,"+str(pickle.dumps(requests.get(blob.public_url).content)),
+            f = open(filename, "rb")
+            data = f.read().decode("utf-8")
+            f.close()
+
+            db.session.add(Ads(fileurl="data:image/jpg;base64,"+data)),
                                keywords=flask.request.values["keywords"],
                                budget=flask.request.values["budget"],
                                advertiserwebsite=flask.request.values['website'], publishing_sites="",
