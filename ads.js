@@ -20,7 +20,7 @@ function createAds(element, index){
 
     console.log(blob)
 
-    if(!(blob.includes("http"))){
+    if(false){
         element.hidden = true;
         return "Nothing"
     }
