@@ -858,7 +858,7 @@ def returnActual(fileindex):
         imgdata = file.fileurl
         imgdata = imgdata.replace("b'", "")
         imgdata = imgdata.replace("'", "")
-        return imgdata
+        return str(imgdata)
 
 
 @app.route("/<key>/ads/<fileindex>")
