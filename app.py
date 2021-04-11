@@ -8,7 +8,6 @@ import requests
 import stripe
 import string
 import random
-import base64
 import time
 from flask_cors import CORS, cross_origin
 from flask_mail import Mail, Message
@@ -608,16 +607,11 @@ def advertise():
             blob.upload_from_filename(filename)
             blob.make_public()
 
-            f = open(filename, "rb")
-            filerb = f.read()
-
-            db.session.add(Ads(fileurl=str(filerb), keywords=flask.request.values["keywords"],
+            db.session.add(Ads(fileurl=blob.public_url, keywords=flask.request.values["keywords"],
                                budget=flask.request.values["budget"],
                                advertiserwebsite=flask.request.values['website'], publishing_sites="",
                                ad_type=flask.request.values['typeAd'], owner=current_user.email, total_clicks=0,
                                total_views=0, website_clicks=0))
-
-            f.close()
 
             User.query.get(current_user.id).account_balance = float(User.query.get(current_user.id).account_balance) - \
                                                               float(flask.request.values["budget"])
@@ -857,10 +851,7 @@ def returnActual(fileindex):
     db.session.commit()
     if len(file.fileurl) > 4:
         # response = flask.Response(requests.get(file.fileurl).content)
-        data = str(file.fileurl)
-        data = data.encode("ascii")
-        data = base64.b64encode(data).decode("ascii")
-        return "data:image/png;base64," + str(data)
+        return file.fileurl
 
 
 @app.route("/<key>/ads/<fileindex>")
