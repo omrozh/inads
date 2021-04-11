@@ -858,8 +858,6 @@ def returnActual(fileindex):
     if len(file.fileurl) > 4:
         # response = flask.Response(requests.get(file.fileurl).content)
         data = str(file.fileurl)
-        data = data.replace("b'", "")
-        data = data.replace("'", "")
         data = str.encode(data)
         return "data:image/png;base64," + str(base64.b64encode(data))
 
