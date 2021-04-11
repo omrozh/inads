@@ -8,6 +8,7 @@ import requests
 import stripe
 import string
 import random
+import base64
 import time
 from flask_cors import CORS, cross_origin
 from flask_mail import Mail, Message
@@ -858,8 +859,7 @@ def returnActual(fileindex):
         imgdata = file.fileurl
         imgdata = imgdata.replace("b'", "")
         imgdata = imgdata.replace("'", "")
-        response = flask.make_response(imgdata)
-        response.headers.set('Content-Type', 'image/jpg')
+        response = base64.b64encode(imgdata)
         return response
 
 
