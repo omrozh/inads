@@ -15,17 +15,17 @@ function adGroupCreateSquare(element){
 
 function createAds(element, index){
   fetch("https://inads.herokuapp.com/view/" + element.getAttribute("name") + "/" + document.title)
-  .then(res=>{adname = res.url.substring(res.url.lastIndexOf("/") + 1); element.setAttribute('onclick', "inadsclick(" + adname + ")"); return res.blob})
+  .then(res=>{adname = res.url.substring(res.url.lastIndexOf("/") + 1); element.setAttribute('onclick', "inadsclick(" + adname + ")"); return res.blob()})
   .then(blob=>{
 
     console.log(blob)
 
-    if(false){
+    if(blob.size < 400){
         element.hidden = true;
         return "Nothing"
     }
 
-    var img = blob;
+    var img = URL.createObjectURL(blob);
     element.setAttribute('src', img);
     if(!(element.parentNode.className == "inadsgroup" || element.parentNode.className == "inadsgroupsquare"))
         element.insertAdjacentHTML("beforebegin", '<a href="http://www.inadsglobal.com" style="text-decoration: none; color:yellow; float: ' + window.getComputedStyle(element).float + '"><small style="font-size: 6px; margin-left: ' + window.getComputedStyle(element).marginLeft + '; margin-right: ' + window.getComputedStyle(element).marginRight + '">Ads by <span style="color: black;">InAds</small></span></a>')
