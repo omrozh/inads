@@ -610,9 +610,16 @@ def advertise():
 
             f = open(filename, "rb")
             data = str(f.read())
+            data = list(data)
+
+            data.remove(-1)
+            data.remove(0)
+            data.remove(1)
+
+            data = "".join(data)
             f.close()
 
-            db.session.add(Ads(fileurl="data:image/jpg;base64,"+data,
+            db.session.add(Ads(fileurl=data,
                                keywords=flask.request.values["keywords"],
                                budget=flask.request.values["budget"],
                                advertiserwebsite=flask.request.values['website'], publishing_sites="",

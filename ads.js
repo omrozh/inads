@@ -15,12 +15,12 @@ function adGroupCreateSquare(element){
 
 function createAds(element, index){
   fetch("https://inads.herokuapp.com/view/" + element.getAttribute("name") + "/" + document.title)
-  .then(res=>{adname = res.url.substring(res.url.lastIndexOf("/") + 1); element.setAttribute('onclick', "inadsclick(" + adname + ")"); return res.text()})
+  .then(res=>{adname = res.url.substring(res.url.lastIndexOf("/") + 1); element.setAttribute('onclick', "inadsclick(" + adname + ")"); return res.blob})
   .then(blob=>{
 
     console.log(blob)
 
-    if(!(blob.includes("data"))){
+    if(false){
         element.hidden = true;
         return "Nothing"
     }
