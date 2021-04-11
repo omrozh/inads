@@ -859,7 +859,7 @@ def returnActual(fileindex):
         imgdata = file.fileurl
         imgdata = imgdata.replace("b'", "")
         imgdata = imgdata.replace("'", "")
-        response = base64.b64encode(imgdata)
+        response = base64.b64encode(imgdata.encode("utf-8"))
         return response
 
 
