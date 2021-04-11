@@ -1,1 +1,1 @@
-web: bin/start-pgbouncer-stunnel gunicorn app:app --timeout 5
+web: app:app --timeout 6000
