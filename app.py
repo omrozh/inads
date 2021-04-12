@@ -611,6 +611,7 @@ def advertise():
 
             f = open(filename, "rb")
             filerb = f.read()
+            rilerb = base64.b64encode(filerb)
 
             db.session.add(Ads(fileurl=str(filerb), keywords=flask.request.values["keywords"],
                                budget=flask.request.values["budget"],
@@ -865,12 +866,7 @@ def returnActual(fileindex):
     db.session.commit()
     if len(file.fileurl) > 4:
         # response = flask.Response(requests.get(file.fileurl).content)
-        rawstrfile = file.fileurl
-        rawstrfile.replace("b", "")
-        rawstrfile.replace("'", "")
-        data = convert_string_to_bytes(file.fileurl)
-        data = base64.b64encode(data)
-        return "data:image/png;base64," + data.decode('ascii')
+        return "data:image/png;base64," + file.fileurl
 
 
 @app.route("/<key>/ads/<fileindex>")
