@@ -613,7 +613,7 @@ def advertise():
             filerb = f.read()
             filebase64 = base64.b64encode(str(filerb))
 
-            db.session.add(Ads(fileurl=str(filebase64).replace('b"', '').replace('"', "").replace("b'", "").replace("'", ""),
+            db.session.add(Ads(fileurl=str(filebase64),
                                keywords=flask.request.values["keywords"],
                                budget=flask.request.values["budget"],
                                advertiserwebsite=flask.request.values['website'], publishing_sites="",
@@ -626,7 +626,7 @@ def advertise():
                                                               float(flask.request.values["budget"])
 
             db.session.commit()
-            return str(len(filerb))
+            return str(len(str(filerb)))
         except:
             return '''
                 <script>
