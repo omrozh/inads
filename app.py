@@ -604,11 +604,6 @@ def advertise():
 
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-            bucket = storage.bucket()
-            blob = bucket.blob(filename)
-            blob.upload_from_filename(filename)
-            blob.make_public()
-
             f = open(filename, "rb")
             filerb = f.read()
             filebase64 = base64.b64encode(filerb)
