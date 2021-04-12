@@ -611,7 +611,7 @@ def advertise():
 
             f = open(filename, "rb")
             filerb = f.read()
-            filebase64 = base64.b64encode(str(filerb))
+            filebase64 = base64.b64encode(filerb)
 
             db.session.add(Ads(fileurl=str(filebase64),
                                keywords=flask.request.values["keywords"],
