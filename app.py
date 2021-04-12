@@ -627,10 +627,10 @@ def advertise():
 
             db.session.commit()
             return str(len(str(filerb)))
-        except:
-            return '''
+        except Exception as e:
+            return f'''
                 <script>
-                    alert("Please fill all the available spaces. Only image files are accepted. (SVG, PNG, JPG, WebP, GIF, AVIF, GIF) ")
+                    alert("Please fill all the available spaces. Only image files are accepted. (SVG, PNG, JPG, WebP, GIF, AVIF, GIF) Exception: {e}")
                     window.location.reload()
                 </script>
             '''
