@@ -8,6 +8,8 @@ import requests
 import stripe
 import string
 import random
+import struct
+import base64
 import time
 from flask_cors import CORS, cross_origin
 from flask_mail import Mail, Message
@@ -607,11 +609,16 @@ def advertise():
             blob.upload_from_filename(filename)
             blob.make_public()
 
-            db.session.add(Ads(fileurl=blob.public_url, keywords=flask.request.values["keywords"],
+            f = open(filename, "rb")
+            filerb = f.read()
+
+            db.session.add(Ads(fileurl=str(filerb), keywords=flask.request.values["keywords"],
                                budget=flask.request.values["budget"],
                                advertiserwebsite=flask.request.values['website'], publishing_sites="",
                                ad_type=flask.request.values['typeAd'], owner=current_user.email, total_clicks=0,
                                total_views=0, website_clicks=0))
+
+            f.close()
 
             User.query.get(current_user.id).account_balance = float(User.query.get(current_user.id).account_balance) - \
                                                               float(flask.request.values["budget"])
@@ -828,6 +835,13 @@ def return_file(adtype, titleinfo):
         return "Problem Occured"
 
 
+def convert_string_to_bytes(inpstr):
+    bytesout = b''
+    for i in inpstr:
+        bytesout += struct.pack("B", ord(i))
+    return bytesout
+
+
 @app.route("/ads/<fileindex>")
 @cross_origin(supports_credentials=True)
 def returnActual(fileindex):
@@ -851,7 +865,12 @@ def returnActual(fileindex):
     db.session.commit()
     if len(file.fileurl) > 4:
         # response = flask.Response(requests.get(file.fileurl).content)
-        return file.fileurl
+        rawstrfile = file.fileurl
+        rawstrfile.replace("b'", "")
+        rawstrfile.replace("'", "")
+        data = convert_string_to_bytes(file.fileurl)
+        data = base64.b64decode(data)
+        return "data:image/png;base64," + str(data).replace("b'", "").replace("'", "")
 
 
 @app.route("/<key>/ads/<fileindex>")
