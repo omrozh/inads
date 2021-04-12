@@ -866,11 +866,12 @@ def returnActual(fileindex):
     if len(file.fileurl) > 4:
         # response = flask.Response(requests.get(file.fileurl).content)
         rawstrfile = file.fileurl
-        rawstrfile.replace("b'", "")
+        rawstrfile.replace("b", "")
         rawstrfile.replace("'", "")
         data = convert_string_to_bytes(file.fileurl)
-        data = base64.b64decode(data)
-        return "data:image/png;base64," + str(data).replace("b'", "").replace("'", "")
+        data = base64.b64encode(data)
+        return "data:image/png;base64," + str(data).replace("b'", "").replace("'", "").\
+            replace('b"', "").replace('"', "")
 
 
 @app.route("/<key>/ads/<fileindex>")
