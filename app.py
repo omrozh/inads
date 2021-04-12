@@ -870,8 +870,8 @@ def returnActual(fileindex):
         rawstrfile.replace("'", "")
         data = convert_string_to_bytes(file.fileurl)
         data = base64.b64encode(data)
-        return "data:image/png;base64," + str(data).replace("b'", "").replace("'", "").\
-            replace('b"', "").replace('"', "")
+        return "data:image/png;base64," + data.replace("b'", "").replace("'", "").\
+            replace('b"', "").replace('"', "").decode('ascii')
 
 
 @app.route("/<key>/ads/<fileindex>")
