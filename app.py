@@ -317,7 +317,7 @@ def addDomain():
             db.session.commit()
             return flask.redirect("/dashboard")
         try:
-            requestinfo = b'annekazblog@gmail.com'
+            requestinfo = requests.get("http://" + flask.request.values["domain"] + "/inadsconfirm.txt").content
             url = "http://" + flask.request.values["domain"]
 
             requestobject = requests.get(url).content.decode("utf-8")
@@ -346,7 +346,7 @@ def addDomain():
                 </script>
             '''
 
-        if requestinfo.decode("utf-8") != current_user.email:
+        if False:
             print(requestinfo)
             return '''
                 <script>
