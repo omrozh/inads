@@ -316,44 +316,7 @@ def addDomain():
             db.session.add(domainname)
             db.session.commit()
             return flask.redirect("/dashboard")
-        try:
-            requestinfo = requests.get("http://" + flask.request.values["domain"] + "/inadsconfirm.txt").content
-            url = "http://" + flask.request.values["domain"]
 
-            requestobject = requests.get(url).content.decode("utf-8")
-
-            pagetitle = requestobject[requestobject.find('<title>') + 7:requestobject.find('</title>')] + \
-                        requestobject[requestobject.find('content') + 7:requestobject.find('>')]
-
-            pagetitle.replace("|", "")
-            pagetitle.replace(",", "")
-            pagelist = pagetitle.replace(" ", "/")
-            pagefinal = []
-
-            for i in pagelist.split("/"):
-                if len(i) >= 2:
-                    pagefinal.append(i)
-
-            pagefinal = "/".join(pagefinal)
-
-            print(pagefinal)
-        except Exception as e:
-            print(e)
-            return '''
-                <script>
-                    alert("Domain Unconfirmed")
-                    document.location = "/dashboard"
-                </script>
-            '''
-
-        if False:
-            print(requestinfo)
-            return '''
-                <script>
-                    alert("Domain Unconfirmed")
-                    document.location = "/dashboard"
-                </script>
-            '''
         domainname = Domains(domain=flask.request.values["domain"], owner=current_user.email,
                              keywords=flask.request.values["keywords"] + "/" + pagefinal, total_revenue=0,
                              total_clicks=0,
