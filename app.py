@@ -318,7 +318,7 @@ def addDomain():
             return flask.redirect("/dashboard")
 
         domainname = Domains(domain=flask.request.values["domain"], owner=current_user.email,
-                             keywords=flask.request.values["keywords"] + "/" + pagefinal, total_revenue=0,
+                             keywords=flask.request.values["keywords"] + "/", total_revenue=0,
                              total_clicks=0,
                              total_views=0)
         db.session.add(domainname)
