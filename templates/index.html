@@ -20,7 +20,7 @@
             <a class="navbarElement" style="float:right; margin-right: 2%;" href="/login">Login</a>
         </div>
         <hr style="opacity: .3">
-        <img src="/logos/title.png" alt=""  style="height: 100vh">
+        <img id="titleimage" src="/logos/title.png" alt=""  style="height: 100vh">
         <br>
     </div>
 
@@ -83,5 +83,11 @@
     <center style="background-color: rgb(180, 180, 185);">
         <h1 style="color: white">InAds by InGames, Inc.</h1>
     </center>
+
+    <script>
+        if(window.innerWidth < window.innerHeight){
+            document.getElementById("titleimage").setAttribute('src', "/logos/titlemobile.png");
+        }
+    </script>
 </body>
 </html>
