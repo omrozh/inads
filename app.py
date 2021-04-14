@@ -768,16 +768,10 @@ def return_file(adtype, titleinfo):
         pagetitle = requestobject[requestobject.find('<title>') + 7:requestobject.find('</title>')]
 
         pagetitle.replace("|", "")
-        pagelist = pagetitle.replace(" ", "/")
     except Exception as e:
         print("Exception")
         pass
     pagefinal = []
-
-    for i in pagelist.split("/"):
-        if len(i) >= 2:
-            pagefinal.append(i)
-
     pagefinal = "/".join(pagefinal)
 
     for i in Domains.query.all():
