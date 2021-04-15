@@ -11,6 +11,11 @@ for i in all_ad_ids:
     db.session.delete(Ads.query.get(i))
 
 for i in all_ads:
-    db.session.add(i)
+    db.session.add(Ads(fileurl=i.fileurl,
+                       keywords=i.keywords,
+                       budget=i.budget,
+                       advertiserwebsite=i.advertiserwebsite, publishing_sites=i.publishing_sites,
+                       ad_type=i.ad_type, owner=i.owner, total_clicks=i.total_clicks,
+                       total_views=i.total_views, website_clicks=i.website_clicks))
 
 db.session.commit()
