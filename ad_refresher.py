@@ -1,4 +1,5 @@
 from app import db, Ads
+import time
 
 all_ad_ids = []
 all_ads = []
@@ -11,6 +12,8 @@ for i in all_ad_ids:
     db.session.delete(Ads.query.get(i))
 
 db.session.commit()
+
+time.sleep(5)
 
 for i in all_ads:
     db.session.add(Ads(fileurl=i.fileurl,
