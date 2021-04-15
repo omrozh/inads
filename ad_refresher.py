@@ -10,6 +10,8 @@ for i in Ads.query.all():
 for i in all_ad_ids:
     db.session.delete(Ads.query.get(i))
 
+db.session.commit()
+
 for i in all_ads:
     db.session.add(Ads(fileurl=i.fileurl,
                        keywords=i.keywords,
