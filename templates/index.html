@@ -6,9 +6,88 @@
     <title>InAds</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
 </head>
-<body style="width: 100%; height: 100%; font-family: Open Sans; font-size: 12; line-height: 1.5;  padding: 0; margin: 0; outline: 0; border: 0"">
+<body style="width: 100%; height: 100%; font-family: Open Sans; font-size: 12; line-height: 1.5;  padding: 0; margin: 0; outline: 0; border: 0">
     <link rel="stylesheet" type="text/css" href="/styles">
+    <style>
+        html,body{
+          font-family: 'Source Sans Pro', sans-serif;
+          margin: 0;
+          padding: 0;
+        }
+        .graph-cont{
+          width: calc(100% - 40px);
+          width: 100%;
+          max-width: 800px;
+          margin: 0 auto;
+        }
+        h1{
+          text-align: center;
+          color: #34495e;
+        }
+        .bar{
+          height: 30px;
+          max-width: 800px;
+          margin: 0 auto 10px auto;
+          line-height: 30px;
+          font-size: 16px;
+          color: light-blue;
+          padding: 0 0 0 10px;
+          position: relative;
+        }
+        .bar::before{
+          content: '';
+          width: 100%;
+          position: absolute;
+          left: 0;
+          height: 30px;
+          top: 0;
+          z-index: -2;
+          background: #ecf0f1;
+        }
+        .bar::after{
+          content: '';
+          background: #2ecc71;
+          height: 30px;
+          transition: 0.7s;
+          display: block;
+          width: 100%;
+          -webkit-animation: bar-before 1 1.8s;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: -1;
+        }
+        .bar1::after{
+          max-width: 2%
+        }
+        .bar2::after{
+          max-width: 80%;
+        }
+        @-webkit-keyframes bar-before{
+          0%{
+            width: 0px;
+          }
+          100%{
+            width: 100%;
+          }
+        }
 
+        .how-cont{
+          width: calc(100% - 40px);
+          width: 100%;
+          max-width: 800px;
+          margin: 0 auto;
+        }
+        code {
+          padding: 5px;
+          background: #ecf0f1;
+          display: block;
+        }
+        pre{
+          padding: 0;
+          margin: 0;
+        }
+    </style>
     <div>
         <div style="width: 100%; color: gray; margin-top: 1%; margin-bottom: 0%">
             <img src="https://firebasestorage.googleapis.com/v0/b/file-store-6094b.appspot.com/o/files%2F9130410?alt=media&token=709b6728-023d-4c7e-b118-d459bc2794c3" style="height: 5%; width: 5%; margin-left: 3%; vertical-align: middle; display:inline-block;">
@@ -61,6 +140,11 @@
         <button class="buttonGray" onclick="document.location = '/estimated_earnings'">Calculate</button>
         <p style="opacity: 0; margin-top: 3%">InAds</p>
     </center>
+    <div class="graph-cont">
+        <h1>Avg. InAds CPC vs. Avg. Other Networks CPC</h1>
+        InAds: <div class="bar bar1">0.005 USD</div>
+        Other Networks <div class="bar bar2">0.2 USD</div>
+    </div>
     <div style="margin-left: 15%; margin-top: 4%; margin-right: 15%">
         <h3>Advantages</h3>
         <h2 style="margin-top: 5%">Cheapest possible</h2>
@@ -80,8 +164,10 @@
         <button style="margin-top: 5%; margin-bottom: 5%" class="buttonBlue" onclick="document.location = '/register'">Start Now</button>
     </center>
     <br>
-    <center style="background-color: rgb(180, 180, 185);">
-        <strong style="color: white; font-size: 2rem">InAds by InGames, Inc.</strong>
+    <center style="background-color: rgb(50, 50, 50); color: gray">
+        <strong>2021, InGames, Inc. New Castle, Delaware</strong>
+        <a style="margin-left: 20%" class="navbarElement" href="mailto: contact@inadsglobal.com">Contact</a>
+        <span style="margin-left: 5%">+90 506 163 1326</span>
     </center>
 
     <script>
