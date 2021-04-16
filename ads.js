@@ -33,6 +33,7 @@ function createAds(element, index){
         var store = element.onclick;
         element.onclick = ""
         element.ondblclick = store
+        element.muted = false
         element.volume = 0.4
         element.setAttribute("controls","controls");
 
