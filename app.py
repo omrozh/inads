@@ -390,6 +390,9 @@ def adinfo(adid):
     for c in ads.publishing_sites.split(","):
         publishers.append(c)
     unique_publishers = []
+    for i in publishers:
+        if i not in unique_publishers and len(i) > 4:
+            unique_publishers.append(i)
     # For views
 
     publishers_clicks = []
@@ -842,9 +845,9 @@ def returnActual(fileindex):
         return "Unauthorized request"
     file = Ads.query.get(int(fileindex) + 1)
     file.total_views += 1
-    if domain not in file.publishing_sites:
-        file.publishing_sites += domain + ","
-
+    if not domain in file.publishing_sites.split(","):
+        file.publishing_sites += \
+            urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc + ","
     Domains.query.filter_by(domain=domain).first().total_views += 1
     Domains.query.filter_by(domain=domain).first().total_revenue += 0.00003
     domainowner = \
@@ -858,7 +861,7 @@ def returnActual(fileindex):
         if not file.ad_type == "inadsvideo":
             return "data:image/png;base64," + file.fileurl
         else:
-            return "data:video/mp4;base64," + file.fileurl
+            return "data:video/mp4; base64," + file.fileurl
 
 
 @app.route("/<key>/ads/<fileindex>")
