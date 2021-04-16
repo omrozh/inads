@@ -30,7 +30,7 @@ function createAds(element, index){
 
     if(element.getAttribute("name") == "inadsvideo")
         element.play()
-        element.muted = !element.muted;
+        element.onplay = element.muted = !element.muted;
         element.volume = 0.4
         element.setAttribute("controls","controls");
 
