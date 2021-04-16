@@ -32,7 +32,6 @@ function createAds(element, index){
         element.play()
         var store = element.onclick;
         element.onclick = "element.onclick = " + store
-        element.onplay = element.muted = !element.muted;
         element.volume = 0.4
         element.setAttribute("controls","controls");
 
