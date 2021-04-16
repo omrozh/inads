@@ -390,9 +390,6 @@ def adinfo(adid):
     for c in ads.publishing_sites.split(","):
         publishers.append(c)
     unique_publishers = []
-    for i in publishers:
-        if i not in unique_publishers and len(i) > 4:
-            unique_publishers.append(i)
     # For views
 
     publishers_clicks = []
@@ -845,8 +842,9 @@ def returnActual(fileindex):
         return "Unauthorized request"
     file = Ads.query.get(int(fileindex) + 1)
     file.total_views += 1
-    file.publishing_sites += \
-        urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc + ","
+    if domain not in file.publishing_sites:
+        file.publishing_sites += domain + ","
+
     Domains.query.filter_by(domain=domain).first().total_views += 1
     Domains.query.filter_by(domain=domain).first().total_revenue += 0.00003
     domainowner = \
