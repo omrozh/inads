@@ -31,6 +31,7 @@ function createAds(element, index){
     if(element.getAttribute("name") == "inadsvideo")
         element.play()
         var store = element.onclick;
+        element.onended = "createAds(" + element + "," + index ")"
         element.onclick = ""
         element.ondblclick = store
         element.muted = false
