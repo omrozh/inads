@@ -30,7 +30,6 @@ function createAds(element, index){
 
     if(element.getAttribute("name") == "inadsvideo")
         element.setAttribute("onclick", "")
-        element.insertAdjacentHTML("afterend", "<a onlick='inadsclick(" + adname + ")' style='text-decoration=none'>Get More Info</a>")
         element.setAttribute("controls","controls");
 
     if(!(element.parentNode.className == "inadsgroup" || element.parentNode.className == "inadsgroupsquare"))
