@@ -30,6 +30,8 @@ function createAds(element, index){
 
     if(element.getAttribute("name") == "inadsvideo")
         element.setAttribute("onclick", "")
+        element.play()
+        element.volume = 0.4
         element.setAttribute("controls","controls");
 
     if(!(element.parentNode.className == "inadsgroup" || element.parentNode.className == "inadsgroupsquare"))
