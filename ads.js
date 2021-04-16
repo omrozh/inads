@@ -31,10 +31,7 @@ function createAds(element, index){
     if(element.getAttribute("name") == "inadsvideo")
         element.play()
         var store = element.onclick;
-        element.onclick = ""
-        if(element.paused){
-            element.onclick = "element.onclick = " + store
-        }
+        element.onclick = "element.onclick = " + store
         element.onplay = element.muted = !element.muted;
         element.volume = 0.4
         element.setAttribute("controls","controls");
