@@ -29,11 +29,9 @@ function createAds(element, index){
     element.setAttribute('src', img);
 
     if(element.getAttribute("name") == "inadsvideo")
-        element.play()
         var store = element.onclick;
         element.onclick = ""
         element.ondblclick = store
-        element.setAttribute("onended", "createAds(" + element + "," + index + ")")
         element.muted = false
         element.volume = 0.4
         element.setAttribute("controls","controls");
