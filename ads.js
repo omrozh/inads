@@ -29,7 +29,6 @@ function createAds(element, index){
     element.setAttribute('src', img);
 
     if(element.getAttribute("name") == "inadsvideo")
-        element.setAttribute("onclick", "")
         element.play()
         element.volume = 0.4
         element.setAttribute("controls","controls");
