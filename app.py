@@ -625,7 +625,7 @@ def advertise():
         except Exception as e:
             return f'''
                 <script>
-                    alert("Please fill all the available spaces. Only image files are accepted. (SVG, PNG, JPG, WebP, GIF, AVIF, GIF) Exception: {e}")
+                    alert("Please fill all the available spaces. Only image files are accepted. (SVG, PNG, JPG, WebP, GIF, AVIF, GIF)")
                     window.location.reload()
                 </script>
             '''
@@ -857,7 +857,10 @@ def returnActual(fileindex):
     db.session.commit()
     if len(file.fileurl) > 4:
         # response = flask.Response(requests.get(file.fileurl).content)
-        return "data:image/png;base64," + file.fileurl
+        if not file.ad_type == "inadsvideo":
+            return "data:image/png;base64," + file.fileurl
+        else:
+            return "data:video/mp4; base64," + file.fileurl
 
 
 @app.route("/<key>/ads/<fileindex>")
