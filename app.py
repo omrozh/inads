@@ -861,7 +861,7 @@ def returnActual(fileindex):
         if not file.ad_type == "inadsvideo":
             return "data:image/png;base64," + file.fileurl
         else:
-            fileresp = base64.decodebytes(file.fileurl)
+            fileresp = base64.b64decode(file.fileurl)
             return flask.Response(fileresp)
 
 
