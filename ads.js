@@ -19,10 +19,11 @@ function createAds(element, index){
   .then(blob=>{
 
     console.log(blob)
-
-    if(!(blob.includes("data"))){
-        element.hidden = true;
-        return "Nothing"
+    if (false){
+        if(!(blob.includes("data"))){
+            element.hidden = true;
+            return "Nothing"
+        }
     }
 
     var img = blob;

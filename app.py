@@ -862,7 +862,7 @@ def returnActual(fileindex):
             return "data:image/png;base64," + file.fileurl
         else:
             fileresp = base64.b64decode(file.fileurl)
-            return flask.Response(fileresp)
+            return flask.send_file(fileresp)
 
 
 @app.route("/<key>/ads/<fileindex>")
