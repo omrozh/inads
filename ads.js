@@ -19,11 +19,10 @@ function createAds(element, index){
   .then(blob=>{
 
     console.log(blob)
-    if (false){
-        if(!(blob.includes("data"))){
-            element.hidden = true;
-            return "Nothing"
-        }
+
+    if(!(blob.includes("data"))){
+        element.hidden = true;
+        return "Nothing"
     }
 
     var img = blob;
@@ -32,7 +31,6 @@ function createAds(element, index){
     if(element.getAttribute("name") == "inadsvideo")
         var store = element.onclick;
         element.onclick = ""
-        element.setAttribute('src', URL.createObjectURL(blob));
         element.ondblclick = store
         element.muted = false
         element.volume = 0.4
