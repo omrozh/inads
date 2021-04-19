@@ -145,21 +145,26 @@
         InAds: <div class="bar bar1">0.005 USD</div>
         Other Networks <div class="bar bar2">0.2 USD</div>
     </div>
-    <div style="margin-left: 15%; margin-top: 4%; margin-right: 15%">
-        <h3>Advantages</h3>
-        <h2 style="margin-top: 5%">Cheapest possible</h2>
-        <h3>Our no commission policy allows us to offer the cheapest price in the market to our customers.</h3>
-        <hr>
-        <h2 style="margin-top: 5%">Targeted ads</h2>
-        <h3>Our powerful network enables our advertisers to advertise directly to their target audience.
-            Through picking keywords and interests.</h3>
-        <hr>
-        <h2 style="margin-top: 5%">You control your content</h2>
-        <h3>You can customise the shape and place of the ads on your website and receive feedback on your advertised content.</h3>
-        <hr>
+    <div id="infoDiv" style="margin-left: 100px; margin-top: 4%;">
+        <center style="width: 250px; box-shadow: 0px 0px 0px 3px rgba(0,0,0,0.3); border-radius: 3px; float: left; margin-left: 120px; margin-top: 25px">
+            <h2 style="margin-top: 5%;">Cheapest possible</h2>
+            <h3 style="opacity: 0.5;">Our no commission policy allows us to offer the cheapest price in the market to our customers.</h3>
+            <a href="/plans"><button style="background-color: gray; color: white; border-radius: 3px; width: 40%; height: 20px; padding: 0; border: none; margin-bottom: 5%; opacity: 0.7; margin-top: 25%">Learn More</button></a>
+        </center>
+        <center style="width: 250px; box-shadow: 0px 0px 0px 3px rgba(0,0,0,0.3); border-radius: 3px; float: left; margin-left: 120px; margin-top: 25px">
+            <h2 style="margin-top: 5%">Targeted ads</h2>
+            <h3 style="opacity: 0.5;">Our powerful network enables our advertisers to advertise directly to their target audience.
+                Through picking keywords and interests.</h3>
+            <a href="/register"><button style="background-color: gray; color: white; border-radius: 3px; width: 40%; height: 20px; padding: 0; border: none; margin-bottom: 5%; opacity: 0.7; margin-top: 5%">Learn More</button></a>
+        </center>
+        <center style="width: 250px; box-shadow: 0px 0px 0px 3px rgba(0,0,0,0.3); border-radius: 3px; float: left; margin-left: 120px; margin-top: 25px">
+            <h2 style="margin-top: 5%">You control your content</h2>
+            <h3 style="opacity: 0.5;">You can customise the shape and place of the ads on your website and receive feedback on your advertised content.</h3>
+            <a href="/register"><button style="background-color: gray; color: white; border-radius: 3px; width: 40%; height: 20px; padding: 0; border: none; margin-bottom: 5%; opacity: 0.7">Learn More</button></a>
+        </center>
     </div>
-
-    <center style="margin-top: 10%; margin-left: 20%; margin-right: 20%">
+    <br style="clear: both">
+    <center style="margin-top: 10%; margin-left: 20%; margin-right: 20%; clear: both">
         <h1>Copy and paste a single line of code and place the ads on your website to 5x your income.</h1>
         <button style="margin-top: 5%; margin-bottom: 5%" class="buttonBlue" onclick="document.location = '/register'">Start Now</button>
     </center>
@@ -172,6 +177,7 @@
 
     <script>
         if(window.innerWidth < window.innerHeight){
+            document.getElementById("infoDiv").style.marginLeft = "40px";
             document.getElementById("titleimage").setAttribute('src', "/logos/titlemobile.png");
         }
     </script>
