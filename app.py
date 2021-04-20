@@ -761,6 +761,9 @@ def return_file(adtype, titleinfo):
     domain = url.netloc
     domainList = []
 
+    if not str(domain) == "usluer.net" or not "www.anamurekspres.com":
+        return "No Ads"
+
     pagelist = ""
 
     try:
