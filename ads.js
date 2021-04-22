@@ -39,31 +39,28 @@ function createAds(element, index){
         element.setAttribute("height", "210")
     }
 
-    if(!(element.parentNode.className == "inadsgroup" || element.parentNode.className == "inadsgroupsquare"))
+    if(!(element.parentNode.className == "inadsgroup" || element.parentNode.className == "inadsgroupsquare")){
         element.insertAdjacentHTML("beforebegin", '<a href="http://www.inadsglobal.com" style="text-decoration: none; color:yellow; float: ' + window.getComputedStyle(element).float + '"><small style="font-size: 6px; margin-left: ' + window.getComputedStyle(element).marginLeft + '; margin-right: ' + window.getComputedStyle(element).marginRight + '">Ads by <span style="color: black;">InAds</small></span></a>')
+        element.insertAdjacentHTML("afterend", "<a href='https://www.inadsglobal.com' style='color: red; clear: both; text-decoration: none'> Advertise Here! </a>")
+    }
 
     if(element.getAttribute("name") == "inadstandard"){
         element.className = "";
         element.removeAttribute("class")
         element.removeAttribute("name")
         element.setAttribute("padding-bottom", "9.25%")
-        element.insertAdjacentHTML("beforeend", "<small> Ads by InAds </small>")
-        element.insertAdjacentHTML("afterend", "<a href='https://www.inadsglobal.com' style='color: red; clear: both; text-decoration: none'> Advertise Here! </a>")
     }
     if(element.getAttribute("name") == "inadsbanner"){
         element.className = "";
         element.removeAttribute("class")
         element.removeAttribute("name")
         element.setAttribute("padding-bottom", "70%")
-        element.insertAdjacentHTML("beforeend", "<small> Ads by InAds </small>")
-        element.insertAdjacentHTML("afterend", "<a href='https://www.inadsglobal.com' style='color: red; clear: both; text-decoration: none'> Advertise Here! </a>")
     }
     if(element.getAttribute("name") == "inadsquare"){
         element.className = "";
         element.removeAttribute("class")
         element.removeAttribute("name")
         element.setAttribute("padding-bottom", "100%")
-        element.insertAdjacentHTML("afterend", "<a href='https://www.inadsglobal.com' style='color: red; clear: both; text-decoration: none'> Advertise Here! </a>")
     }
 })
 }
