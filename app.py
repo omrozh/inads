@@ -772,6 +772,9 @@ def return_file(adtype, titleinfo):
     domain = url.netloc
     domainList = []
 
+    if domain == "www.roketdizi.pw" or domain == "dizimia.org" or domain == "dizimag2.org":
+        return "No ads"
+
     pagelist = ""
 
     try:
