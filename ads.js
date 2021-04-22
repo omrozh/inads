@@ -3,7 +3,7 @@ let adname = ""
 let apiKey = ""
 let textcontent = ""
 
-function addFeedCreate(element){
+function adFeedCreate(element){
     var insertfeed = '<center style="margin-left: 10%; width: 70%"> <span style="float: left">Discover by InAds Global</span>   <hr style="clear:both; color: black;">  <div class="inadsgroupsquare"></div>         <br style="clear: both">         <div style="margin-top: 5%; clear: both" class="inadsgroupsquare"></div>         <br style="clear: both">         <div style="margin-top: 5%; clear: both"><img class=inads name=inadstandard></div></center>'
     element.insertAdjacentHTML("afterbegin", insertfeed)
 }
