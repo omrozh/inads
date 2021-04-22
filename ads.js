@@ -22,6 +22,7 @@ function createAds(element, index){
 
     if(!(blob.includes("data"))){
         element.hidden = true;
+        element.insertAdjacentHTML("afterend", "<a href='https://www.inadsglobal.com' style='color: red; clear: both; text-decoration: none  position: absolute; bottom: 8px; left: 16px;'> <small>Advertise Here!</small> </a>")
         return "Nothing"
     }
 
