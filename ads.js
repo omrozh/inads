@@ -63,7 +63,7 @@ function createAds(element, index){
         element.removeAttribute("class")
         element.removeAttribute("name")
         element.setAttribute("padding-bottom", "100%")
-        element.insertAdjacentHTML("afterend", "<span style='color: red'> Advertise Here! </span>")
+        element.insertAdjacentHTML("afterend", "<a href='https://www.inadsglobal.com' style='color: red; clear: both;'> Advertise Here! </a>")
     }
 })
 }
