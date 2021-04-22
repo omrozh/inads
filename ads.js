@@ -48,6 +48,7 @@ function createAds(element, index){
         element.removeAttribute("name")
         element.setAttribute("padding-bottom", "9.25%")
         element.insertAdjacentHTML("beforeend", "<small> Ads by InAds </small>")
+        element.insertAdjacentHTML("afterend", "<span style='color: red'> Advertise Here! </span>")
     }
     if(element.getAttribute("name") == "inadsbanner"){
         element.className = "";
@@ -55,12 +56,14 @@ function createAds(element, index){
         element.removeAttribute("name")
         element.setAttribute("padding-bottom", "70%")
         element.insertAdjacentHTML("beforeend", "<small> Ads by InAds </small>")
+        element.insertAdjacentHTML("afterend", "<span style='color: red'> Advertise Here! </span>")
     }
     if(element.getAttribute("name") == "inadsquare"){
         element.className = "";
         element.removeAttribute("class")
         element.removeAttribute("name")
         element.setAttribute("padding-bottom", "100%")
+        element.insertAdjacentHTML("afterend", "<span style='color: red'> Advertise Here! </span>")
     }
 })
 }
