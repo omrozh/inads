@@ -683,7 +683,9 @@ def add_payment_info():
 def return_file_mobile(adtype, mobileapi):
     is_there_ad = False
 
-    for i in Ads.query.filter_by(ad_type=adtype):
+    ads = Ads.query.filter_by(ad_type=adtype)
+
+    for i in ads:
         if i.budget > 0.25:
             is_there_ad = True
 
@@ -692,52 +694,61 @@ def return_file_mobile(adtype, mobileapi):
         return "No ads"
 
     domain = mobileapi
+    domainList = []
+
+    pagelist = ""
+    pagefinal = []
+    pagefinal = "/".join(pagefinal)
+
+    for i in Domains.query.all():
+        domainList.append(str(i.domain))
+    if domain not in domainList:
+        return "Unauthorized request"
+
+    all_paused_ads = []
+    for i in PausedAds.query.all():
+        all_paused_ads.append(i.paused_ad_id)
 
     try:
-        if domain not in Domains.query.all():
-            db.session.close()
-            return "Unauthorized request"
-
         suitablead = None
         suitableads = []
 
-        keywords = Domains.query.filter_by(domain=domain).first().keywords.split("/")
-        for i in Ads.query.filter_by(ad_type=adtype):
-            if i.budget > 0.20:
+        keywords = Domains.query.filter_by(domain=domain).first().keywords + "/" + pagefinal
+        keywords = keywords.split("/")
+        for i in ads:
+            if i.budget > 0.25:
                 for c in i.keywords.split("/"):
-                    if c in keywords:
+                    if c in keywords and i.id not in all_paused_ads:
                         suitableads.append(i)
 
         if len(suitableads) == 1:
             suitablead = suitableads[0]
 
-        elif len(suitableads) < 1:
+        elif len(suitableads) > 1:
             suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
 
         if suitablead is None:
             totalads = []
 
-            for i in Ads.query.filter_by(ad_type=adtype):
-                if i.budget > 0.25:
+            for i in ads:
+                if i.budget > 0.25 and i.ad_type == adtype:
                     totalads.append(i)
-            print(totalads)
 
             suitablead = totalads[random.randint(0, len(totalads) - 1)]
+
             for i in totalads:
-                if float(suitablead.budget) < 0.25:
+                if float(suitablead.budget) < 0.25 or suitablead.ad_type != adtype or \
+                        int(suitablead.id) in all_paused_ads:
                     continue
                 suitablead = totalads[random.randint(0, len(totalads) - 1)]
+                break
 
-            if float(suitablead.budget) < 0.25:
-                db.session.close()
-                return "No ads for query"
-
-        if suitablead:
-            return flask.redirect("/" + domain + "/ads" + "/" + str(int(suitablead.id) - 1))
+        if suitablead and float(suitablead.budget > 0.25) and int(suitablead.id) not in all_paused_ads:
+            return flask.redirect(f"/ads" + "/" + str(int(suitablead.id) - 1))
         else:
             db.session.close()
             return "No ads are suitable to your query."
-    except:
+    except Exception as e:
         db.session.close()
         return "Problem Occured"
 
@@ -875,18 +886,22 @@ def returnActualMobile(fileindex, key):
         return "Unauthorized request"
     file = Ads.query.get(int(fileindex) + 1)
     file.total_views += 1
-    domainobject = Domains.query.filter_by(domain=domain).first()
-    domainobject.total_views += 1
-    domainobject.total_revenue += 0.00003
+    if not domain in file.publishing_sites.split(","):
+        file.publishing_sites += \
+            urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc + ","
+    Domains.query.filter_by(domain=domain).first().total_views += 1
+    Domains.query.filter_by(domain=domain).first().total_revenue += 0.00003
     domainowner = \
         Domains.query.filter_by(domain=domain).first().owner
-    userowner = User.query.filter_by(email=domainowner).first().account_balance
     Ads.query.get(int(fileindex) + 1).budget -= 0.00003
-    User.query.filter_by(email=domainowner).first().account_balance = float(userowner) + 0.00003
+    User.query.filter_by(email=domainowner).first().account_balance += 0.00003
     db.session.commit()
     if len(file.fileurl) > 4:
-        response = flask.Response(requests.get(file.fileurl).content)
-        return response
+        # response = flask.Response(requests.get(file.fileurl).content)
+        if not file.ad_type == "inadsvideo":
+            return "data:image/png;base64," + file.fileurl
+        else:
+            return "data:video/mp4;base64," + file.fileurl
 
 
 @app.route("/adclick/<adname>")
