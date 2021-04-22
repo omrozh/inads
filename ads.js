@@ -48,7 +48,6 @@ function createAds(element, index){
 
     if(!(element.parentNode.className == "inadsgroup" || element.parentNode.className == "inadsgroupsquare")){
         element.insertAdjacentHTML("beforebegin", '<a href="http://www.inadsglobal.com" style="text-decoration: none; color:yellow; float: ' + window.getComputedStyle(element).float + '"><small style="font-size: 6px; margin-left: ' + window.getComputedStyle(element).marginLeft + '; margin-right: ' + window.getComputedStyle(element).marginRight + '">Ads by <span style="color: black;">InAds</small></span></a>')
-        element.insertAdjacentHTML("afterend", "<a href='https://www.inadsglobal.com' style='color: red; clear: both; text-decoration: none  position: absolute; bottom: 8px; left: 16px;'> Advertise Here! </a>")
     }
 
     if(element.getAttribute("name") == "inadstandard"){
