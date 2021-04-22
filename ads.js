@@ -3,6 +3,11 @@ let adname = ""
 let apiKey = ""
 let textcontent = ""
 
+function addFeedCreate(element){
+    var insertfeed = '<center style="margin-left: 10%; width: 70%"> <span style="float: left">Discover by InAds Global</span>   <hr style="clear:both; color: black;">  <div class="inadsgroupsquare"></div>         <br style="clear: both">         <div style="margin-top: 5%; clear: both" class="inadsgroupsquare"></div>         <br style="clear: both">         <div style="margin-top: 5%; clear: both"><img class=inads name=inadstandard></div></center>'
+    element.insertAdjacentHTML("afterbegin", insertfeed)
+}
+
 function adGroupCreate(element){
     var insertadgrouper = '<img class="inads" name=inadstandard src="" alt="" style="float: left; width: 50%;">';
     element.insertAdjacentHTML("afterbegin", insertadgrouper + insertadgrouper + insertadgrouper + insertadgrouper)
@@ -65,6 +70,12 @@ function createAds(element, index){
         element.setAttribute("padding-bottom", "100%")
     }
 })
+}
+
+let adFeed = document.getElementsByClassName("inadsfeed")
+
+for(var i = 0; i < adFeed.length; i++){
+    adFeedCreate(adFeed[i]);
 }
 
 let adGroups = document.getElementsByClassName("inadsgroup");
