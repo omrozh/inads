@@ -446,20 +446,22 @@ def adinfo(adid):
         average_cpm = 0
         total_spending = 0
         click_rate = 0
+    try:
+        total_keyword_spending_list = []
+        total_keyword_spending = 0
 
-    total_keyword_spending_list = []
-    total_keyword_spending = 0
+        for i in Ads.query.all():
+            for c in ads.keywords.split("/"):
+                if c in i.keywords:
+                    total_keyword_spending_list.append(((i.total_views * 0.00003) + (i.total_clicks * 0.01)) /
+                                                       i.total_views * 1000)
 
-    for i in Ads.query.all():
-        for c in ads.keywords.split("/"):
-            if c in i.keywords:
-                total_keyword_spending_list.append(((i.total_views * 0.00003) + (i.total_clicks * 0.01)) /
-                                                   i.total_views * 1000)
+        for i in total_keyword_spending_list:
+            total_keyword_spending += i
 
-    for i in total_keyword_spending_list:
-        total_keyword_spending += i
-
-    average_cpm_of_keywords = total_keyword_spending / len(total_keyword_spending_list)
+        average_cpm_of_keywords = total_keyword_spending / len(total_keyword_spending_list)
+    except ZeroDivisionError:
+        total_keyword_spending = 0
 
     return flask.render_template("adinformation.html", user=user, ads=ads, is_admin=is_admin,
                                  publishers_clicks=publishers_clicks, unique_publishers_clicks=unique_publishers_clicks,
