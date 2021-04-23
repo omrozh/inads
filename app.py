@@ -462,6 +462,7 @@ def adinfo(adid):
         average_cpm_of_keywords = total_keyword_spending / len(total_keyword_spending_list)
     except ZeroDivisionError:
         total_keyword_spending = 0
+        average_cpm_of_keywords = 0
 
     return flask.render_template("adinformation.html", user=user, ads=ads, is_admin=is_admin,
                                  publishers_clicks=publishers_clicks, unique_publishers_clicks=unique_publishers_clicks,
