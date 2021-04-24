@@ -872,6 +872,11 @@ def return_file(adtype, titleinfo):
                 if float(suitablead.budget) < 0.25 or suitablead.ad_type != adtype or \
                         int(suitablead.id) in all_paused_ads:
                     continue
+                for m in keywords:
+                    if "!" in m:
+                        if domain == m.replace("!", ""):
+                            continue
+
                 suitablead = totalads[random.randint(0, len(totalads) - 1)]
                 break
 
