@@ -872,7 +872,7 @@ def return_file(adtype, titleinfo):
                 if float(suitablead.budget) < 0.25 or suitablead.ad_type != adtype or \
                         int(suitablead.id) in all_paused_ads:
                     continue
-                for m in keywords:
+                for m in suitablead.keywords.split("/"):
                     if "!" in m:
                         if domain == m.replace("!", ""):
                             continue
@@ -885,6 +885,7 @@ def return_file(adtype, titleinfo):
         else:
             db.session.close()
             return "No ads are suitable to your query."
+
     except Exception as e:
         db.session.close()
         return "Problem Occured"
