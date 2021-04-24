@@ -880,6 +880,11 @@ def return_file(adtype, titleinfo):
                 suitablead = totalads[random.randint(0, len(totalads) - 1)]
                 break
 
+        for i in suitablead.keywords.split("/"):
+            if "!" in i:
+                if domain == i.replace("!", ""):
+                    return "No Ads"
+
         if suitablead and float(suitablead.budget > 0.25) and int(suitablead.id) not in all_paused_ads:
             return flask.redirect(f"/ads" + "/" + str(int(suitablead.id) - 1))
         else:
