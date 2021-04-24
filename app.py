@@ -413,38 +413,6 @@ def adinfo(adid):
         elif len(flask.request.values["bannedwebsites"]) > 3:
             msg = Message(f"Ban request Ad({adid}): " + flask.request.values["bannedwebsites"],
                           recipients=["omrozh@inadsglobal.com"], sender="no-reply@inadsglobal.com")
-            msg.html = '''
-            <head>
-                <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
-            </head>
-            <body style="background-color: rgb(220, 220, 220); font-family: Open Sans;">
-                <style>
-                    .center {
-                        margin: 0;
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        -ms-transform: translate(-50%, -50%);
-                        transform: translate(-50%, -50%);
-                    }
-                </style>
-                <div style="background-color: white; box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.3); border-radius: 5px; width: 50%;" class="center">
-                    <div style="margin-left: 5%;">
-                        <p style="color: white;">InAds</p>
-                        <p">
-                            Welcome to InAds!
-                        </p>
-                        <p>
-                            Thank you for registering InAds. You have reveived a free 5 USD coupon at InAds as a registration gift to be able to start advertising with InAds for free.
-                        </p>
-                    </div>
-                    <center>
-                        <a href="https://www.inadsglobal.com"><button style=" background-color: rgb(0, 200, 200);border-radius: 5px; color: white; width: 200px; height: 30px; font-size: 1rem; border: none;">Go to InAds</button></a>
-                    </center>
-                    <p style="margin-left: 5%;">Best, <br> InAds Team</p>
-                    <p style="color: white;">InAds</p>
-                </div>
-            </body>'''
             mail.send(msg)
         else:
             ads.budget += float(flask.request.values["budgetinc"])
@@ -548,10 +516,44 @@ def register():
     user = ""
     if flask.request.method == "POST":
         user = User(email=flask.request.values["email"], password=flask.request.values["password"],
-                    purpose=flask.request.values["purpose"], account_balance=0)
+                    purpose=flask.request.values["purpose"], account_balance=5)
 
         db.session.add(user)
         db.session.commit()
+        msg = Message("", recipients=[flask.request.values["email"]], sender="no-reply@inadsglobal.com")
+        msg.html = '''
+                    <head>
+                        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
+                    </head>
+                    <body style="background-color: rgb(255, 255, 255); font-family: Open Sans;">
+                        <style>
+                            .center {
+                                margin: 0;
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                -ms-transform: translate(-50%, -50%);
+                                transform: translate(-50%, -50%);
+                            }
+                        </style>
+                        <div style="background-color: white; box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.3); border-radius: 5px; width: 50%;" class="center">
+                            <div style="margin-left: 5%;">
+                                <p style="color: white;">InAds</p>
+                                <p">
+                                    Welcome to InAds!
+                                </p>
+                                <p>
+                                    Thank you for registering InAds. You have reveived a free 5 USD coupon at InAds as a registration gift to be able to start advertising with InAds for free.
+                                </p>
+                            </div>
+                            <center>
+                                <a href="https://www.inadsglobal.com"><button style=" background-color: rgb(0, 200, 200);border-radius: 5px; color: white; width: 200px; height: 30px; font-size: 1rem; border: none;">Go to InAds</button></a>
+                            </center>
+                            <p style="margin-left: 5%;">Best, <br> InAds Team</p>
+                            <p style="color: white;">InAds</p>
+                        </div>
+                    </body>'''
+        mail.send(msg)
         return '''
             <script>
                 alert("Registered")
