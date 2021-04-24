@@ -520,7 +520,7 @@ def register():
 
         db.session.add(user)
         db.session.commit()
-        msg = Message("", recipients=[flask.request.values["email"]], sender="no-reply@inadsglobal.com")
+        msg = Message("Welcome", recipients=[flask.request.values["email"]], sender="no-reply@inadsglobal.com")
         msg.html = '''
                     <head>
                         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
