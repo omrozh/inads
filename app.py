@@ -519,7 +519,6 @@ def register():
                     purpose=flask.request.values["purpose"], account_balance=5)
 
         db.session.add(user)
-        db.session.commit()
         msg = Message("Welcome", recipients=[flask.request.values["email"]], sender="no-reply@inadsglobal.com")
         msg.html = '''
                     <head>
@@ -553,7 +552,17 @@ def register():
                             <p style="color: white;">InAds</p>
                         </div>
                     </body>'''
-        mail.send(msg)
+        try:
+            mail.send(msg)
+        except:
+            return '''
+                <script>
+                    alert("Email Cannot Be Reached")
+                    document.location = "/"
+                </script>
+            '''
+
+        db.session.commit()
         return '''
             <script>
                 alert("Registered")
