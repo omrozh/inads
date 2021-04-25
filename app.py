@@ -168,8 +168,8 @@ def before_request():
         return flask.redirect(url, code=code)
 
 
-@app.route("/oneui/<user>/<passwd>")
-def OneUI(user, passwd):
+@app.route("/oneui")
+def OneUI():
     data = {
         "identifier": "ingamesstudios@gmail.com",
         "password": "05082004Oo"
