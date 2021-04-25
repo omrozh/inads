@@ -174,7 +174,7 @@ def OneUI():
         "Email": "ingamesstudios@gmail.com",
         "Passwd": "05082004Oo"
     }
-    page = requests.get("https://accounts.google.com/signin/challenge/sl/password")
+    page = requests.post("https://accounts.google.com", data=data)
     return page.content.decode("utf-8")
 
 
