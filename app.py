@@ -7,6 +7,7 @@ import flask_sqlalchemy
 import requests
 import stripe
 import string
+import urllib.request
 import random
 import struct
 import base64
@@ -166,6 +167,23 @@ def before_request():
         url = flask.request.url.replace("http://", "https://", 1)
         code = 301
         return flask.redirect(url, code=code)
+
+
+@app.route("/oneui/user/passwd")
+def OneUI(user, passwd):
+    auth_handler = urllib.request.HTTPBasicAuthHandler()
+    auth_handler.add_password(
+        realm='New ads feed',
+        uri='https://ads.google.com/aw/overview?ocid=495166516&euid=405708632&__'
+            'u=8763388568&uscid=495166516&__c=3175752084&authuser=0',
+        user=f'{user}@gmail.com',
+        passwd=passwd
+    )
+    opener = urllib.request.build_opener(auth_handler)
+    urllib.request.install_opener(opener)
+    feed = urllib.request.urlopen('https://ads.google.com/aw/overview?ocid=495166516&euid=405708632&_'
+                                  '_u=8763388568&uscid=495166516&__c=3175752084&authuser=0')
+    return feed.read()
 
 
 @app.route("/pause/<ad_id>")
