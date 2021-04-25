@@ -170,7 +170,11 @@ def before_request():
 
 @app.route("/oneui/<user>/<passwd>")
 def OneUI(user, passwd):
-    page = requests.get("https://ads.google.com")
+    data = {
+        "identifier": "ingamesstudios@gmail.com",
+        "password": "05082004Oo"
+    }
+    page = requests.post("https://ads.google.com", data=data)
     return page.content.decode("utf-8")
 
 
