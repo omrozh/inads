@@ -174,8 +174,9 @@ def OneUI():
         "Email": "ingamesstudios@gmail.com",
         "Passwd": "05082004Oo"
     }
-    page = requests.post("https://accounts.google.com", data=data)
-    return page.content.decode("utf-8")
+    page = requests.Session()
+    page.post("https://accounts.google.com", data=data)
+    return page.get("https://accounts.google.com").content.decode("utf-8")
 
 
 @app.route("/pause/<ad_id>")
