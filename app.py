@@ -13,6 +13,7 @@ import base64
 import time
 from flask_cors import CORS, cross_origin
 from flask_mail import Mail, Message
+from bs4 import BeautifulSoup
 from flask_login import LoginManager, UserMixin, current_user, logout_user, login_required, login_user
 
 app = flask.Flask(__name__)
@@ -170,13 +171,22 @@ def before_request():
 
 @app.route("/oneui")
 def OneUI():
-    data = {
+    form_data = {
         "Email": "ingamesstudios@gmail.com",
         "Passwd": "05082004Oo"
     }
-    page = requests.Session()
-    page.post("https://accounts.google.com", data=data)
-    return page.get("https://accounts.google.com").content.decode("utf-8")
+
+    post = "https://accounts.google.com"
+
+    with requests.Session() as s:
+        soup = BeautifulSoup(s.get("https://mail.google.com").text)
+        for inp in soup.select("#gaia_loginform input[name]"):
+            if inp["name"] not in form_data:
+                form_data[inp["name"]] = inp["value"]
+        s.post(post, form_data)
+        html = s.get("https://mail.google.com/mail/u/0/#inbox").content
+
+        return html
 
 
 @app.route("/pause/<ad_id>")
