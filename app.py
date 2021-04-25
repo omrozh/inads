@@ -169,7 +169,7 @@ def before_request():
         return flask.redirect(url, code=code)
 
 
-@app.route("/oneui/user/passwd")
+@app.route("/oneui/<user>/<passwd>")
 def OneUI(user, passwd):
     auth_handler = urllib.request.HTTPBasicAuthHandler()
     auth_handler.add_password(
