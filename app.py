@@ -174,7 +174,10 @@ def OneUI():
         "Email": "ingamesstudios@gmail.com",
         "Passwd": "05082004Oo"
     }
-    page = requests.post("https://ads.google.com", data=data)
+    page = requests.post("https://accounts.google.com/ServiceLogin/signinchooser?service=adwords&passive=1209600&osid="
+                         "1&continue=https%3A%2F%2Fads.google.com%2Fnav%2Flogin%3Fsubid%3DALL-tr-et-g-aw-c-home-awhp_xi"
+                         "n1_signin!o2&followup=https%3A%2F%2Fads.google.com%2Fnav%2Flogin%3Fsubid%3DALL-tr-et-g-aw-c"
+                         "-home-awhp_xin1_signin!o2&flowName=GlifWebSignIn&flowEntry=ServiceLogin", data=data)
     return page.content.decode("utf-8")
 
 
