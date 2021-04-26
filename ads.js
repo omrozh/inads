@@ -108,8 +108,8 @@ if(adElements.length == 0){
 
 for(var i = 0; i < adElements.length; i++) {
   setInterval(function () {
-    console.log("Test")
-  }, 1000)
+    createAds(adElements[i], i);
+  }, 60000)
   createAds(adElements[i], i);
 }
 
