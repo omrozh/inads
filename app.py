@@ -226,15 +226,15 @@ def status():
     return flask.render_template("status.html", user=current_user)
 
 
-@app.route("/report/<adid>", methods=["POST", "GET"])
-def reportAd(adid):
+@app.route("/report/<adid>/<incomingurl>", methods=["POST", "GET"])
+def reportAd(adid, incomingurl):
     if flask.request.method == "POST":
         msg = Message(f"Report Ad {int(adid) - 1}", recipients=["contact@inadsglobal.com"],
                       sender="no-reply@inadsglobal.com")
         msg.body = f"Reason: {flask.request.values['reason']}"
         mail.send(msg)
         return "<script> document.location = '" + \
-               urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).geturl() +\
+               incomingurl +\
                "' </script>"
     return flask.render_template("ad_report.html", adid=adid)
 

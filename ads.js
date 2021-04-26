@@ -51,10 +51,10 @@ function createAds(element, index){
     }
 
     if(element.getAttribute("name") != "inadsvideo"){
-        element.setAttribute("ondblclick", "document.location='https://www.inadsglobal.com/report/" + adname + "'")
+        element.setAttribute("ondblclick", "document.location='https://www.inadsglobal.com/report/" + adname + "/" + document.location +"'")
     }
     else{
-        element.setAttribute("oncontextmenu", "document.location='https://www.inadsglobal.com/report/" + adname + "'")
+        element.setAttribute("oncontextmenu", "document.location='https://www.inadsglobal.com/report/" + adname + "/" + document.location +"'")
     }
 
     if(element.getAttribute("name") == "inadstandard"){
