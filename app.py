@@ -227,14 +227,15 @@ def status():
 
 
 @app.route("/report/<adid>", methods=["POST", "GET"])
-def reportAd(adid, incomingurl):
+def reportAd(adid):
+    incomingurl = flask.request.referrer
     if flask.request.method == "POST":
         msg = Message(f"Report Ad {int(adid) - 1}", recipients=["contact@inadsglobal.com"],
                       sender="no-reply@inadsglobal.com")
         msg.body = f"Reason: {flask.request.values['reason']}"
         mail.send(msg)
         return "<script> document.location = '" + \
-               incomingurl.replace("i*i", "/") +\
+               incomingurl +\
                "' </script>"
     return flask.render_template("ad_report.html", adid=adid)
 
