@@ -108,7 +108,7 @@ if(adElements.length == 0){
 
 for(var i = 0; i < adElements.length; i++) {
   createAds(adElements[i], i)
-  window.setInterval(createAds, 1000, adElements[i], i);
+  window.setInterval(createAds, 10000, adElements[i], i);
 }
 
 function inadsclick(index){
