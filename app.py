@@ -234,7 +234,8 @@ def reportAd(adid):
         msg.body = f"Reason: {flask.request.values['reason']}"
         mail.send(msg)
         return "<script> document.location = '" + \
-               urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')) + "' </script>"
+               urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).geturl() +\
+               "' </script>"
     return flask.render_template("ad_report.html", adid=adid)
 
 
