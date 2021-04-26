@@ -229,7 +229,7 @@ def status():
 @app.route("/report/<adid>", methods=["POST", "GET"])
 def reportAd(adid):
     if flask.request.method == "POST":
-        msg = Message(f"Report Ad {adid - 1}", recipients=["contact@inadsglobal.com"],
+        msg = Message(f"Report Ad {int(adid) - 1}", recipients=["contact@inadsglobal.com"],
                       sender="no-reply@inadsglobal.com")
         msg.body = f"Reason: {flask.request.values['reason']}"
         mail.send(msg)
