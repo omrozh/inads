@@ -108,7 +108,7 @@ if(adElements.length == 0){
 
 for(var i = 0; i < adElements.length; i++) {
   createAds(adElements[i], i);
-  window.setInterval(console.log("Hi"), 1000);
+  window.setInterval(console.log("Hi"), 10000);
 
 }
 
