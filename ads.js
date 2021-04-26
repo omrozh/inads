@@ -51,7 +51,7 @@ function createAds(element, index){
     }
 
     if(element.getAttribute("name") != "inadsvideo"){
-        element.setAttribute("ondblclick", "document.location='https://www.inadsglobal.com/report/" + adname + "/" + document.location +"'")
+        element.setAttribute("ondblclick", "document.location='https://www.inadsglobal.com/report/" + adname + "/" + document.location.replace("/", "i*i") +"'")
     }
     else{
         element.setAttribute("oncontextmenu", "document.location='https://www.inadsglobal.com/report/" + adname + "/" + document.location +"'")

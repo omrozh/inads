@@ -234,7 +234,7 @@ def reportAd(adid, incomingurl):
         msg.body = f"Reason: {flask.request.values['reason']}"
         mail.send(msg)
         return "<script> document.location = '" + \
-               incomingurl +\
+               incomingurl.replace("i*i", "/") +\
                "' </script>"
     return flask.render_template("ad_report.html", adid=adid)
 
