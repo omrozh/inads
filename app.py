@@ -226,6 +226,15 @@ def status():
     return flask.render_template("status.html", user=current_user)
 
 
+@app.route("/report/<adid>")
+def reportAd(adid):
+    if flask.request.method == "POST":
+        msg = Message(f"Report Ad {adid - 1}", recipients=[flask.request.values["email"]], sender="no-reply@inadsglobal.com")
+        mail.send(msg)
+        return urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value'))
+    return flask.render_template("ad_report.html", adid=adid)
+
+
 @app.route("/web_traffic")
 @login_required
 def trafficController():
