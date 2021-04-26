@@ -107,6 +107,9 @@ if(adElements.length == 0){
 }
 
 for(var i = 0; i < adElements.length; i++) {
+  setInterval(function () {
+    console.log("Test")
+  })
   createAds(adElements[i], i);
 }
 
