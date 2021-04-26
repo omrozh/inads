@@ -226,7 +226,7 @@ def status():
     return flask.render_template("status.html", user=current_user)
 
 
-@app.route("/report/<adid>/<incomingurl>", methods=["POST", "GET"])
+@app.route("/report/<adid>", methods=["POST", "GET"])
 def reportAd(adid, incomingurl):
     if flask.request.method == "POST":
         msg = Message(f"Report Ad {int(adid) - 1}", recipients=["contact@inadsglobal.com"],
