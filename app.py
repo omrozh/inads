@@ -1063,6 +1063,17 @@ def adclickmobile(adname, apikey):
         return f"<script> document.location = '{Ads.query.get(int(adname) + 1).advertiserwebsite}' </script>"
 
 
+@app.route("/", methods=["POST", "GET"])
+@cross_origin()
+def authenticator():
+    if flask.request.method == "POST":
+        jsondata = flask.request.get_json()
+        if User.query.filter_by(email=str(jsondata["username"])).first().password == str(jsondata["password"]):
+            return flask.jsonify({"status": "Logged In", "content": "Nothing"})
+        else:
+            return flask.jsonify({"status": "Unable to Authenticate User"})
+
+
 @app.route("/inads/<adblockcanceller>")
 @cross_origin(supports_credentials=True)
 def addscript(adblockcanceller):
