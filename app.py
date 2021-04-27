@@ -1063,7 +1063,7 @@ def adclickmobile(adname, apikey):
         return f"<script> document.location = '{Ads.query.get(int(adname) + 1).advertiserwebsite}' </script>"
 
 
-@app.route("/", methods=["POST", "GET"])
+@app.route("/inauth", methods=["POST", "GET"])
 @cross_origin()
 def authenticator():
     if flask.request.method == "POST":
