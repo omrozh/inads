@@ -1074,6 +1074,11 @@ def authenticator():
             return flask.jsonify({"status": "Unable to Authenticate User"})
 
 
+@app.route("/inauth/script")
+def inauthscript():
+    return flask.send_file("inauthscript.js")
+
+
 @app.route("/inads/<adblockcanceller>")
 @cross_origin(supports_credentials=True)
 def addscript(adblockcanceller):
