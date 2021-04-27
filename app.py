@@ -1079,6 +1079,11 @@ def inauthscript():
     return flask.send_file("inauthscript.js")
 
 
+@app.route("/authstyles")
+def authstyles():
+    return flask.send_file("authstyles.css")
+
+
 @app.route("/inads/<adblockcanceller>")
 @cross_origin(supports_credentials=True)
 def addscript(adblockcanceller):

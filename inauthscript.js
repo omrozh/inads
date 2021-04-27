@@ -42,7 +42,7 @@ function checkLogin(){
 
 function formCreator(){
     var formcreate = document.getElementById("InAuthForm")
-    formcreate.insertAdjacentHTML("beforebegin", '<link rel="stylesheet" href="/styleform.css">')
+    formcreate.insertAdjacentHTML("beforebegin", '<link rel="stylesheet" href="https://www.inadsglobal.com/authstyles">')
 
     formcreate.insertAdjacentHTML("afterbegin", "<input type='button' value='Login' onclick='login()' id=loginbutton>")
     formcreate.insertAdjacentHTML("afterbegin", "<input type='password' id='password' placeholder='password'>")

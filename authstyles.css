@@ -1,0 +1,39 @@
+#password{
+    padding: 12px 20px;
+    margin-left: 1%;
+    font-size: 1rem;
+    border-width: calc(var(--border-width) * 1px);
+    border-style: solid;
+    border-color: var(--accent);
+    border-radius: calc(var(--border-radius) * 1px);
+    text-align: center;
+    outline: transparent;
+    width: 25%;
+    border-color: calc(var(--transition, 0.2) * 1s) ease;
+}
+
+#username{
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-width: calc(var(--border-width) * 1px);
+    border-style: solid;
+    border-color: var(--accent);
+    border-radius: calc(var(--border-radius) * 1px);
+    text-align: center;
+    outline: transparent;
+    width: 25%;
+    border-color: calc(var(--transition, 0.2) * 1s) ease;
+}
+
+
+#loginbutton{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 1%;
+}
