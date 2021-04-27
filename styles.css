@@ -111,3 +111,9 @@
       100% { transform: rotate(360deg); }
     }
 
+    .centerflex {
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+
