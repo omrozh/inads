@@ -23,6 +23,9 @@ function checkLogin(){
     xhr.open("POST", "https://www.inadsglobal.com/inauth", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    if(!localStorage.setItem("username")){
+        return false;
+    }
     xhr.send(JSON.stringify({
         "username":localStorage.setItem("username"),
         "password":localStorage.getItem("password")
