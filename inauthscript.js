@@ -40,7 +40,7 @@ function checkLogin(){
           }
         }
       }
-     return logged
+     return xhr.onreadystatechange()
 }
 
 function formCreator(){
