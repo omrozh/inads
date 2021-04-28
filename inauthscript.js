@@ -20,7 +20,7 @@ function login(){
       }
 }
 
-function checkLogin(redloc){
+function checkLogin(redloc, conloc = "/"){
     if(!localStorage.getItem("username")){
         document.location = redloc
         return false;
@@ -44,6 +44,7 @@ function checkLogin(redloc){
             }
         }
     }
+    document.location = conloc
 }
 
 function formCreator(){
