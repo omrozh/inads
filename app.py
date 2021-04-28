@@ -881,7 +881,7 @@ def return_file(adtype, titleinfo):
                 pass
 
             if len(totalads) == 1:
-                suitablead = totalads[1]
+                suitablead = totalads[0]
             if len(totalads) == 0:
                 return "No Ads Are Suitable"
 
