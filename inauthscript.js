@@ -1,4 +1,4 @@
-function login(){
+function login(redirrect){
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://www.inadsglobal.com/inauth", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -13,6 +13,7 @@ function login(){
           if(response.status == "Logged In"){
               localStorage.setItem("username", document.getElementById("username").value)
               localStorage.setItem("password", document.getElementById("password").value)
+              document.location = redirrect
           }
         }
       }
