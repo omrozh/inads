@@ -20,6 +20,7 @@ function login(){
 
 function checkLogin(redloc){
     if(!localStorage.getItem("username")){
+        document.location = redloc
         return false;
     }
     var xhr = new XMLHttpRequest();
