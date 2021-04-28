@@ -37,12 +37,11 @@ function checkConfirm(conloc){
         if (xhr.readyState == 4 && xhr.status == 200) {
             let response = JSON.parse(xhr.responseText);
             var logged = false;
-            if(response.status != "Logged In"){
-                throw 401;
+            if(response.status == "Logged In"){
+                document.location = conloc
             }
         }
     }
-    document.location = conloc
 }
 
 function checkLogin(redloc){
