@@ -33,15 +33,13 @@ function checkLogin(){
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
-        let response = JSON.parse(xhr.responseText);
-        var logged = false;
-          if(response.status == "Logged In"){
-
-          }
+            let response = JSON.parse(xhr.responseText);
+            var logged = false;
+            if(response.status != "Logged In"){
+                throw 401;
+            }
         }
-      }
-
-    return logged
+    }
 }
 
 function formCreator(){
