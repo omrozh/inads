@@ -84,3 +84,7 @@ function formCreator(){
 if(document.getElementById("InAuthForm")){
     formCreator()
 }
+
+window.addEventListener("storage", function () {
+    checkLogin("/")
+}, false);
