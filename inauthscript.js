@@ -30,14 +30,17 @@ function checkLogin(){
         "username":localStorage.getItem("username"),
         "password":localStorage.getItem("password")
     }))
+    var login = false;
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
         let response = JSON.parse(xhr.responseText);
           if(response.status == "Logged In"){
+          login = true;
               return true
           }
         }
       }
+     return login
 }
 
 function formCreator(){
