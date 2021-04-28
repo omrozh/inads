@@ -13,6 +13,8 @@ function login(){
           if(response.status == "Logged In"){
               localStorage.setItem("username", document.getElementById("username").value)
               localStorage.setItem("password", document.getElementById("password").value)
+              alert("Logged In")
+              document.location = "/"
           }
         }
       }
