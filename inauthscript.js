@@ -22,7 +22,8 @@ function login(){
 
 function checkLogin(redloc, conloc = "/"){
     if(!localStorage.getItem("username")){
-        document.location = redloc
+        if(document.location != redloc)
+            document.location = redloc
         return false;
     }
     var xhr = new XMLHttpRequest();
@@ -39,7 +40,8 @@ function checkLogin(redloc, conloc = "/"){
             let response = JSON.parse(xhr.responseText);
             var logged = false;
             if(response.status != "Logged In"){
-                document.location = redloc
+                if(document.location != redloc)
+                    document.location = redloc
                 throw 401;
             }
         }
