@@ -885,8 +885,6 @@ def return_file(adtype, titleinfo):
             if len(totalads) == 0:
                 return "No Ads Are Suitable"
 
-            suitablead = totalads[random.randint(0, len(totalads) - 1)]
-
         return flask.redirect(f"/ads" + "/" + str(int(suitablead.id) - 1))
 
     except Exception as e:
