@@ -19,13 +19,13 @@ function login(){
 }
 
 function checkLogin(){
+    if(!localStorage.getItem("username")){
+        return false;
+    }
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://www.inadsglobal.com/inauth", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-    if(!localStorage.getItem("username")){
-        return false;
-    }
     xhr.send(JSON.stringify({
         "username":localStorage.getItem("username"),
         "password":localStorage.getItem("password")
