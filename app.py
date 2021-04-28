@@ -889,7 +889,7 @@ def return_file(adtype, titleinfo):
 
     except Exception as e:
         db.session.close()
-        return "Problem Occured"
+        return "Problem Occured" + str(e)
 
 
 def convert_string_to_bytes(inpstr):
