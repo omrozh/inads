@@ -18,7 +18,7 @@ function login(){
       }
 }
 
-function checkLogin(){
+function checkLogin(redloc){
     if(!localStorage.getItem("username")){
         return false;
     }
@@ -36,6 +36,7 @@ function checkLogin(){
             let response = JSON.parse(xhr.responseText);
             var logged = false;
             if(response.status != "Logged In"){
+                document.location = redloc
                 throw 401;
             }
         }
