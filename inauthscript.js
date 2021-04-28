@@ -31,16 +31,17 @@ function checkLogin(){
         "password":localStorage.getItem("password")
     }))
 
-    logged = false;
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
         let response = JSON.parse(xhr.responseText);
+        var logged = false;
           if(response.status == "Logged In"){
-                alert("Login Confirmed")
+
           }
         }
       }
-     return xhr.onreadystatechange()
+
+    return logged
 }
 
 function formCreator(){
