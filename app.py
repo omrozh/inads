@@ -793,23 +793,17 @@ def return_file_mobile(adtype, mobileapi):
             totalads = []
 
             for i in ads:
-                if i.budget > 0.25 and i.ad_type == adtype:
+                if i.budget > 0.25 and i.ad_type == adtype and i.id not in all_paused_ads:
                     totalads.append(i)
 
             suitablead = totalads[random.randint(0, len(totalads) - 1)]
 
-            for i in totalads:
-                if float(suitablead.budget) < 0.25 or suitablead.ad_type != adtype or \
-                        int(suitablead.id) in all_paused_ads:
-                    continue
-                suitablead = totalads[random.randint(0, len(totalads) - 1)]
-                break
+            if len(totalads) == 1:
+                suitablead = totalads[1]
+            if len(totalads) == 0:
+                return flask.redirect(f"/ads" + "/" + str(int(suitablead.id) - 1))
 
-        if suitablead and float(suitablead.budget > 0.25) and int(suitablead.id) not in all_paused_ads:
-            return flask.redirect(f"/ads" + "/" + str(int(suitablead.id) - 1))
-        else:
-            db.session.close()
-            return "No ads are suitable to your query."
+        return flask.redirect(f"/ads" + "/" + str(int(suitablead.id) - 1))
     except Exception as e:
         db.session.close()
         return "Problem Occured"
