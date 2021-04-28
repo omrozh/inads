@@ -872,33 +872,17 @@ def return_file(adtype, titleinfo):
             totalads = []
 
             for i in ads:
-                if i.budget > 0.25 and i.ad_type == adtype:
+                if i.budget > 0.25 and i.ad_type == adtype and i.id not in all_paused_ads:
                     totalads.append(i)
 
             suitablead = totalads[random.randint(0, len(totalads) - 1)]
 
-            for i in totalads:
-                if float(suitablead.budget) < 0.25 or suitablead.ad_type != adtype or \
-                        int(suitablead.id) in all_paused_ads:
-                    continue
-                for m in suitablead.keywords.split("/"):
-                    if "!" in m:
-                        if domain == m.replace("!", ""):
-                            continue
+            if len(totalads) == 1:
+                suitablead = totalads[1]
+            if len(totalads) == 0:
+                return "No Ads Are Suitable"
 
-                suitablead = totalads[random.randint(0, len(totalads) - 1)]
-                break
-
-        for i in suitablead.keywords.split("/"):
-            if "!" in i:
-                if domain == i.replace("!", ""):
-                    return "No Ads"
-
-        if suitablead and float(suitablead.budget > 0.25) and int(suitablead.id) not in all_paused_ads:
-            return flask.redirect(f"/ads" + "/" + str(int(suitablead.id) - 1))
-        else:
-            db.session.close()
-            return "No ads are suitable to your query."
+        return flask.redirect(f"/ads" + "/" + str(int(suitablead.id) - 1))
 
     except Exception as e:
         db.session.close()
