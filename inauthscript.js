@@ -20,10 +20,8 @@ function login(){
       }
 }
 
-function checkLogin(redloc, conloc = "/"){
+function checkConfirm(conloc){
     if(!localStorage.getItem("username")){
-        if(document.location != redloc)
-            document.location = redloc
         return false;
     }
     var xhr = new XMLHttpRequest();
@@ -40,13 +38,37 @@ function checkLogin(redloc, conloc = "/"){
             let response = JSON.parse(xhr.responseText);
             var logged = false;
             if(response.status != "Logged In"){
-                if(document.location != redloc)
-                    document.location = redloc
                 throw 401;
             }
         }
     }
     document.location = conloc
+}
+
+function checkLogin(redloc){
+    if(!localStorage.getItem("username")){
+        document.location = redloc
+        return false;
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://www.inadsglobal.com/inauth", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xhr.send(JSON.stringify({
+        "username":localStorage.getItem("username"),
+        "password":localStorage.getItem("password")
+    }))
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            let response = JSON.parse(xhr.responseText);
+            var logged = false;
+            if(response.status != "Logged In"){
+                document.location = redloc
+                throw 401;
+            }
+        }
+    }
 }
 
 function formCreator(){
