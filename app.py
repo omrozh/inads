@@ -875,7 +875,10 @@ def return_file(adtype, titleinfo):
                 if i.budget > 0.25 and i.ad_type == adtype and i.id not in all_paused_ads:
                     totalads.append(i)
 
-            suitablead = totalads[random.randint(0, len(totalads) - 1)]
+            try:
+                suitablead = totalads[random.randint(0, len(totalads) - 1)]
+            except:
+                pass
 
             if len(totalads) == 1:
                 suitablead = totalads[1]
