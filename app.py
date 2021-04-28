@@ -1068,6 +1068,8 @@ def adclickmobile(adname, apikey):
 def authenticator():
     if flask.request.method == "POST":
         jsondata = flask.request.get_json()
+        if not User.query.filter_by(email=str(jsondata["username"])).first():
+            return flask.jsonify({"status": "Unable to Authenticate User"})
         if User.query.filter_by(email=str(jsondata["username"])).first().password == str(jsondata["password"]):
             return flask.jsonify({"status": "Logged In", "content": "Nothing"})
         else:
