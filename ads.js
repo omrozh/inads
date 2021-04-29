@@ -111,5 +111,5 @@ for(var i = 0; i < adElements.length; i++) {
 }
 
 function inadsclick(index){
-    document.location = "https://inads.herokuapp.com/adclick/" + index
+    window.open("https://inads.herokuapp.com/adclick/" + index)
 }
