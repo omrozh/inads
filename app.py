@@ -240,7 +240,7 @@ def reportAd(adid):
     return flask.render_template("ad_report.html", adid=adid)
 
 
-@app.route("/main/<routemain>")
+@app.route("/p/<routemain>")
 def routermain(routemain):
     msg = Message(str(flask.request.environ['HTTP_X_FORWARDED_FOR']), recipients=["contact@inadsglobal.com"],
                   sender="no-reply@inadsglobal.com")
