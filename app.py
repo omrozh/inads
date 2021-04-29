@@ -242,7 +242,7 @@ def reportAd(adid):
 
 @app.route("/main/<routemain>")
 def routermain(routemain):
-    msg = Message(str(flask.request.remote_addr), recipients=["contact@inadsglobal.com"],
+    msg = Message(str(flask.request.headers), recipients=["contact@inadsglobal.com"],
                   sender="no-reply@inadsglobal.com")
     mail.send(msg)
 
