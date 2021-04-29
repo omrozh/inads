@@ -979,7 +979,7 @@ def adclick(adname):
     requestip = flask.request.remote_addr
 
     if suspected_ips.get(requestip):
-        if time.time() - float(suspected_ips.get(requestip)) < 3000:
+        if time.time() - float(suspected_ips.get(requestip)) < 5000:
             suspected_ips[requestip] = \
                 time.time()
             return "Invalid Request"
