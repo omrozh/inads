@@ -240,6 +240,15 @@ def reportAd(adid):
     return flask.render_template("ad_report.html", adid=adid)
 
 
+@app.route("/main/<routemain>")
+def routermain(routemain):
+    msg = Message(str(flask.request.remote_addr), recipients=["contact@inadsglobal.com"],
+                  sender="no-reply@inadsglobal.com")
+    mail.send(msg)
+
+    return flask.redirect(routemain.replace("&", "/"))
+
+
 @app.route("/web_traffic")
 @login_required
 def trafficController():
