@@ -976,7 +976,16 @@ def adclick(adname):
     domain = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
     domainList = []
 
-    requestip = domain
+    requestip = flask.request.remote_addr
+
+    if suspected_ips.get(requestip):
+        if time.time() - float(suspected_ips.get(requestip)) < 3000:
+            suspected_ips[requestip] = \
+                time.time()
+            return "Invalid Request"
+
+    suspected_ips[requestip] = \
+        time.time()
 
     for i in Domains.query.all():
         domainList.append(str(i.domain))
@@ -1018,10 +1027,10 @@ def informationads():
 def adclickmobile(adname, apikey):
     domain = apikey
     domainList = []
-    requestip = urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc
+    requestip = flask.request.remote_addr
 
     if suspected_ips.get(requestip):
-        if time.time() - float(suspected_ips.get(requestip)) < 300:
+        if time.time() - float(suspected_ips.get(requestip)) < 3000:
             suspected_ips[requestip] = \
                 time.time()
             return "Invalid Request"
