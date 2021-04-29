@@ -242,7 +242,7 @@ def reportAd(adid):
 
 @app.route("/main/<routemain>")
 def routermain(routemain):
-    msg = Message(str(flask.request.environ['HTTP_X_FORWARDED_FOR'].), recipients=["contact@inadsglobal.com"],
+    msg = Message(str(flask.request.environ['HTTP_X_FORWARDED_FOR']), recipients=["contact@inadsglobal.com"],
                   sender="no-reply@inadsglobal.com")
     mail.send(msg)
 
