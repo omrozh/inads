@@ -20,7 +20,7 @@ function adGroupCreateSquare(element){
 
 function createAds(element, index){
   fetch("https://inads.herokuapp.com/view/" + element.getAttribute("name") + "/" + document.title)
-  .then(res=>{adname = res.url.substring(res.url.lastIndexOf("/") + 1); element.setAttribute('onclick', "inadsclick(" + adname + ")"); return res.text()})
+  .then(res=>{adname = res.url.substring(res.url.lastIndexOf("/") + 1); element.setAttribute('onclick', "inadsclick(" + adname + "), this"); return res.text()})
   .then(blob=>{
 
     console.log(blob)
@@ -110,6 +110,7 @@ for(var i = 0; i < adElements.length; i++) {
   createAds(adElements[i], i);
 }
 
-function inadsclick(index){
+function inadsclick(index, elemnt){
     window.open("https://inads.herokuapp.com/adclick/" + index)
+    elemnt.setAttribute("onclick", "")
 }
