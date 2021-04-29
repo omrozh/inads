@@ -246,7 +246,8 @@ def routermain(routemain):
                   sender="no-reply@inadsglobal.com")
     mail.send(msg)
 
-    return flask.redirect(flask.request.url.replace("/main", "").replace("%26", "/"), code=302)
+    return flask.redirect(flask.request.url.replace("/main", "").replace("%26", "/").
+                          replace("i", "information").replace("ina", "inads"), code=302)
 
 
 @app.route("/web_traffic")
