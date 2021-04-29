@@ -112,5 +112,5 @@ for(var i = 0; i < adElements.length; i++) {
 
 function inadsclick(index, elemnt){
     window.open("https://inads.herokuapp.com/adclick/" + index)
-    elemnt.setAttribute("onclick", "")
+    elemnt.setAttribute("onclick", "window.open('https://www.inadsglobal.com/adclick/" + index + "/secondclick')")
 }

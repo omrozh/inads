@@ -1017,6 +1017,14 @@ def adclick(adname):
     return f"<script> document.location = '{Ads.query.get(int(adname) + 1).advertiserwebsite}' </script>"
 
 
+@app.route("/adclick/<adname>/secondclick")
+@cross_origin(supports_credentials=True)
+def adclicksecond(adname):
+    if "http" not in Ads.query.get(int(adname) + 1).advertiserwebsite:
+        return f"<script> document.location = 'https://{Ads.query.get(int(adname) + 1).advertiserwebsite}' </script>"
+    return f"<script> document.location = '{Ads.query.get(int(adname) + 1).advertiserwebsite}' </script>"
+
+
 @app.route("/information/inads")
 def informationads():
     return flask.render_template("inadspitch.html")
