@@ -774,8 +774,6 @@ def return_file_mobile(adtype, mobileapi):
 
     for i in Domains.query.all():
         domainList.append(str(i.domain))
-    if domain not in domainList:
-        return "Unauthorized request"
 
     all_paused_ads = []
     for i in PausedAds.query.all():
