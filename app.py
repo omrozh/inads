@@ -778,7 +778,7 @@ def return_file_mobile(adtype, mobileapi):
 
     suitablead = totalads[random.randint(0, len(totalads) - 1)]
 
-    return flask.redirect(f"/ads" + "/" + str(int(suitablead.id) - 1))
+    return flask.redirect(f"/{mobileapi}/ads/{str(int(suitablead.id) - 1)}")
 
 
 @app.route("/view/<adtype>/<titleinfo>")
