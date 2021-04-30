@@ -333,7 +333,7 @@ def confirmationFile():
 def addDomain():
     domains = Domains.query.filter_by(owner=current_user.email)
     if flask.request.method == "POST":
-        if flask.request.values["domain"] == "unity":
+        if flask.request.values["domain"] == "unity" or flask.request.values["domain"] == "extension":
             api_key = ''.join(random.choice(string.ascii_uppercase) for i in range(30))
             domainname = Domains(domain=api_key, owner=current_user.email,
                                  keywords=flask.request.values["keywords"], total_revenue=0, total_clicks=0,
