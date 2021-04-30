@@ -968,6 +968,11 @@ def returnActualMobile(fileindex, key):
             return "data:video/mp4;base64," + file.fileurl
 
 
+@app.route("/inadscript/extension")
+def retScriptExt():
+    return flask.send_file("inadsextension.js")
+
+
 @app.route("/adclick/<adname>")
 @cross_origin(supports_credentials=True)
 def adclick(adname):
