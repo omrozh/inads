@@ -235,7 +235,7 @@ def reportAd(adid):
         msg.body = f"Reason: {flask.request.values['reason']}"
         mail.send(msg)
         return "<script> document.location = '" + \
-               incomingurl +\
+               incomingurl + \
                "' </script>"
     return flask.render_template("ad_report.html", adid=adid)
 
@@ -766,55 +766,19 @@ def return_file_mobile(adtype, mobileapi):
         return "No ads"
 
     domain = mobileapi
-    domainList = []
-
-    pagelist = ""
-    pagefinal = []
-    pagefinal = "/".join(pagefinal)
-
-    for i in Domains.query.all():
-        domainList.append(str(i.domain))
 
     all_paused_ads = []
     for i in PausedAds.query.all():
         all_paused_ads.append(i.paused_ad_id)
 
-    try:
-        suitablead = None
-        suitableads = []
+    totalads = []
+    for i in ads:
+        if i.budget > 0.25 and i.ad_type == adtype and i.id not in all_paused_ads:
+            totalads.append(i)
 
-        keywords = Domains.query.filter_by(domain=domain).first().keywords + "/" + pagefinal
-        keywords = keywords.split("/")
-        for i in ads:
-            if i.budget > 0.25:
-                for c in i.keywords.split("/"):
-                    if c in keywords and i.id not in all_paused_ads:
-                        suitableads.append(i)
+    suitablead = totalads[random.randint(0, len(totalads) - 1)]
 
-        if len(suitableads) == 1:
-            suitablead = suitableads[0]
-
-        elif len(suitableads) > 1:
-            suitablead = suitableads[random.randint(0, len(suitableads) - 1)]
-
-        if suitablead is None:
-            totalads = []
-
-            for i in ads:
-                if i.budget > 0.25 and i.ad_type == adtype and i.id not in all_paused_ads:
-                    totalads.append(i)
-
-            suitablead = totalads[random.randint(0, len(totalads) - 1)]
-
-            if len(totalads) == 1:
-                suitablead = totalads[1]
-            if len(totalads) == 0:
-                return flask.redirect(f"/ads" + "/" + str(int(suitablead.id) - 1))
-
-        return flask.redirect(f"/ads" + "/" + str(int(suitablead.id) - 1))
-    except Exception as e:
-        db.session.close()
-        return "Problem Occured"
+    return flask.redirect(f"/ads" + "/" + str(int(suitablead.id) - 1))
 
 
 @app.route("/view/<adtype>/<titleinfo>")
@@ -946,13 +910,13 @@ def returnActualMobile(fileindex, key):
         domainList.append(str(i.domain))
     file = Ads.query.get(int(fileindex) + 1)
     file.total_views += 1
-    if not domain in file.publishing_sites.split(","):
+    if domain not in file.publishing_sites.split(","):
         file.publishing_sites += \
             urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc + ","
     Domains.query.filter_by(domain=domain).first().total_views += 1
     Domains.query.filter_by(domain=domain).first().total_revenue += 0.00003
     domainowner = \
-        Domains.query.filter_by(domain=domain).first().owner
+        Domains.query.filter_by(domain=key).first().owner
     Ads.query.get(int(fileindex) + 1).budget -= 0.00003
     User.query.filter_by(email=domainowner).first().account_balance += 0.00003
     db.session.commit()
@@ -962,11 +926,6 @@ def returnActualMobile(fileindex, key):
             return "data:image/png;base64," + file.fileurl
         else:
             return "data:video/mp4;base64," + file.fileurl
-
-
-@app.route("/inadscript/extension")
-def retScriptExt():
-    return flask.send_file("inadsextension.js")
 
 
 @app.route("/adclick/<adname>")
