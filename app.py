@@ -944,8 +944,6 @@ def returnActualMobile(fileindex, key):
     domain = key
     for i in Domains.query.all():
         domainList.append(str(i.domain))
-    if domain not in domainList:
-        return "Unauthorized request"
     file = Ads.query.get(int(fileindex) + 1)
     file.total_views += 1
     if not domain in file.publishing_sites.split(","):
