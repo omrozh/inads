@@ -910,7 +910,7 @@ def returnActualMobile(fileindex, key):
         domainList.append(str(i.domain))
     file = Ads.query.get(int(fileindex) + 1)
     file.total_views += 1
-    if False:
+    if domain not in file.publishing_sites.split(","):
         file.publishing_sites += \
             urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc + ","
     Domains.query.filter_by(domain=domain).first().total_views += 1
