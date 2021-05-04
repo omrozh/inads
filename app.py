@@ -763,7 +763,7 @@ def return_file_mobile(adtype, mobileapi):
 
     if not is_there_ad:
         db.session.close()
-        return "No ads"
+        return "No Ads Available"
 
     domain = mobileapi
 
