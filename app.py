@@ -801,7 +801,8 @@ def return_file(adtype, titleinfo):
     domain = url.netloc
     domainList = []
 
-    if domain == "dizimag2.org"
+    if domain == "dizimag2.org":
+        return "No ads"
 
     pagelist = ""
 
