@@ -785,7 +785,8 @@ def return_file_mobile(adtype, mobileapi):
 @cross_origin(supports_credentials=True)
 def return_file(adtype, titleinfo):
     is_there_ad = False
-
+    if "inadsbanner" in adtype:
+        adtype = "inadsbanner"
     ads = Ads.query.filter_by(ad_type=adtype)
 
     for i in ads:
