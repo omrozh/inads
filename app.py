@@ -860,13 +860,9 @@ def return_file(adtype, titleinfo):
 
             for i in ads:
                 if i.budget > 0.25 and i.ad_type == adtype and i.id not in all_paused_ads:
-                    totalads.append(i)
-
-            for i in range(len(totalads)):
-                for c in totalads[i].keywords.split("/"):
-                    if "!" in c:
-                        if domain in c:
-                            totalads.pop(i)
+                    for c in i.keywords.split("/"):
+                        if f"!{domain}" != c:
+                            totalads.append(i)
 
             try:
                 suitablead = totalads[random.randint(0, len(totalads) - 1)]
