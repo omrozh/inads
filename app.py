@@ -861,6 +861,8 @@ def return_file(adtype, titleinfo):
             for i in ads:
                 if i.budget > 0.25 and i.ad_type == adtype and i.id not in all_paused_ads:
                     for c in i.keywords.split("/"):
+                        print(domain)
+                        print(c)
                         if f"!{domain}" != c:
                             totalads.append(i)
 
