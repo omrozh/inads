@@ -840,8 +840,9 @@ def return_file(adtype, titleinfo):
         for i in ads:
             if i.budget > 0.25:
                 for c in i.keywords.split("/"):
-                    if c in keywords and i.id not in all_paused_ads:
-                        suitableads.append(i)
+                    if c in keywords and i.id not in all_paused_ads and "!" + domain not in \
+                        i.keywords.split("/"):
+                            suitableads.append(i)
 
         for i in range(len(suitableads)):
             for c in suitableads[i].keywords:
