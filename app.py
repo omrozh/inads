@@ -901,15 +901,11 @@ def returnActual(fileindex):
             urllib.parse.urlparse(flask.request.environ.get('HTTP_REFERER', 'default value')).netloc + ","
     Domains.query.filter_by(domain=domain).first().total_views += 1
     Domains.query.filter_by(domain=domain).first().total_revenue += 0.00003
-    if domain == "anamurekspres.com":
-        Domains.query.filter_by(domain=domain).first().total_revenue += 0.0002
     domainowner = \
         Domains.query.filter_by(domain=urllib.parse.urlparse(
             flask.request.environ.get('HTTP_REFERER', 'default value')).netloc).first().owner
     Ads.query.get(int(fileindex) + 1).budget -= 0.00003
     User.query.filter_by(email=domainowner).first().account_balance += 0.00003
-    if domain == "anamurekspres.com":
-        User.query.filter_by(email=domainowner).first().account_balance += 0.0002
     db.session.commit()
     if len(file.fileurl) > 4:
         # response = flask.Response(requests.get(file.fileurl).content)
