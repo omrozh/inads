@@ -15,7 +15,7 @@ function adGroupCreate(element){
 
 function adGroupCreateSquare(element){
     var insertadgroupersquare = '<img class="inads" name=inadsquare src="" alt="" style="float: left; width: 20%; margin-left: 2%">';
-    element.insertAdjacentHTML("afterbegin", insertadgroupersquare + insertadgroupersquare + insertadgroupersquare + insertadgroupersquare + insertadgroupersquare)
+    element.insertAdjacentHTML("afterbegin", insertadgroupersquare + insertadgroupersquare + insertadgroupersquare + insertadgroupersquare)
 }
 
 function createAds(element, index){
