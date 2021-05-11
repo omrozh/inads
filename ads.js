@@ -117,6 +117,7 @@ function inadsclick(index, elemnt){
 
 setTimeout(function(){
     const ads = document.getElementsByClassName("inads")
+    alert("a")
     for(var i = 0; i < ads.length; i++){
         createAds(ads[i], i)
     }
