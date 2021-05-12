@@ -127,11 +127,5 @@ setTimeout(function(){
     for(var i = 0; i < ads.length; i++){
         createAds(ads[i], i)
     }
-}, 30000)
+}, 60000)
 
-setTimeout(function(){
-    const ads = document.getElementsByClassName("inads")
-    for(var i = 0; i < ads.length; i++){
-        createAds(ads[i], i)
-    }
-}, 45000)
