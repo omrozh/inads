@@ -121,3 +121,17 @@ setTimeout(function(){
         createAds(ads[i], i)
     }
 }, 15000)
+
+setTimeout(function(){
+    const ads = document.getElementsByClassName("inads")
+    for(var i = 0; i < ads.length; i++){
+        createAds(ads[i], i)
+    }
+}, 30000)
+
+setTimeout(function(){
+    const ads = document.getElementsByClassName("inads")
+    for(var i = 0; i < ads.length; i++){
+        createAds(ads[i], i)
+    }
+}, 45000)
