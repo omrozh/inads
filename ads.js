@@ -117,15 +117,8 @@ function inadsclick(index, elemnt){
 
 setTimeout(function(){
     const ads = document.getElementsByClassName("inads")
+    alert(len(ads))
     for(var i = 0; i < ads.length; i++){
         createAds(ads[i], i)
     }
-}, 15000)
-
-setTimeout(function(){
-    const ads = document.getElementsByClassName("inads")
-    for(var i = 0; i < ads.length; i++){
-        createAds(ads[i], i)
-    }
-}, 60000)
-
+}, 2000)
