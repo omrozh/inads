@@ -142,3 +142,6 @@ function timerAdsRefresh(){
         }
     }, 4000)
 }
+
+timerAdsRefresh()
+
