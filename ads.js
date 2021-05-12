@@ -128,6 +128,7 @@ function elementInViewport(el) {
 
 function timerAdsRefresh(){
     const ads = document.getElementsByClassName("inads")
+    alert(ads.length)
     for(var i = 0; i < ads.length; i++){
         if(!elementInViewport(ads[i])){
             console.log("Hi1")
