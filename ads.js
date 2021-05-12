@@ -131,13 +131,17 @@ setTimeout(function(){
     for(var i = 0; i < ads.length; i++){
         setTimeout(function(){
             if(!elementInViewport(adverts[i])){
+                console.log("Hi2")
                 return
             }
             createAds(adverts[i], i)
+            console.log("perfect2")
         }, 2000)
         if(!elementInViewport(ads[i])){
+            console.log("Hi1")
             continue
         }
         createAds(ads[i], i)
+        console.log("perfect1")
     }
 }, 4000)
