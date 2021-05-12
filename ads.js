@@ -131,7 +131,7 @@ function timerAdsRefresh(){
         const ads = document.getElementsByClassName("inads")
         for(var i = 0; i < ads.length; i++){
             setTimeout(function(){
-                timerAdsRefresh
+                timerAdsRefresh()
             }, 2000)
             if(!elementInViewport(ads[i])){
                 console.log("Hi1")
