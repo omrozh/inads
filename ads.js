@@ -58,21 +58,12 @@ function createAds(element, index){
     }
 
     if(element.getAttribute("name") == "inadstandard"){
-        element.className = "";
-        element.removeAttribute("class")
-        element.removeAttribute("name")
         element.setAttribute("padding-bottom", "9.25%")
     }
     if(element.getAttribute("name") == "inadsbanner"){
-        element.className = "";
-        element.removeAttribute("class")
-        element.removeAttribute("name")
         element.setAttribute("padding-bottom", "70%")
     }
     if(element.getAttribute("name") == "inadsquare"){
-        element.className = "";
-        element.removeAttribute("class")
-        element.removeAttribute("name")
         element.setAttribute("padding-bottom", "100%")
     }
 })
