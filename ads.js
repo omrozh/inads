@@ -138,7 +138,7 @@ function timerAdsRefresh(){
     }
     setTimeout(function(){
         timerAdsRefresh()
-    }, 6000)
+    }, 15000)
 }
 
 setTimeout(function(){
