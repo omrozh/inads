@@ -126,24 +126,19 @@ function elementInViewport(el) {
   );
 }
 
-setTimeout(function(){
-    const ads = document.getElementsByClassName("inads")
-    for(var i = 0; i < ads.length; i++){
-        if(!elementInViewport(ads[i])){
-            continue
+function timerAdsRefresh(){
+    setTimeout(function(){
+        const ads = document.getElementsByClassName("inads")
+        for(var i = 0; i < ads.length; i++){
+            if(!elementInViewport(ads[i])){
+                console.log("Hi1")
+                continue
+            }
+            createAds(ads[i], i)
+            console.log("perfect1")
         }
-        createAds(ads[i], i)
-    }
-}, 4000)
-
-
-setTimeout(function(){
-    const ads = document.getElementsByClassName("inads")
-    for(var i = 0; i < ads.length; i++){
-        if(!elementInViewport(ads[i])){
-            continue
-        }
-        createAds(ads[i], i)
-    }
-}, 8000)
-
+        setTimeout(function(){
+            timerAdsRefresh()
+        }, 2000)
+    }, 4000)
+}
