@@ -106,10 +106,38 @@ function inadsclick(index, elemnt){
     elemnt.setAttribute("onclick", "window.open('https://www.inadsglobal.com/adclick/" + index + "/secondclick')")
 }
 
+function elementInViewport(el) {
+  var top = el.offsetTop;
+  var left = el.offsetLeft;
+  var width = el.offsetWidth;
+  var height = el.offsetHeight;
+
+  while(el.offsetParent) {
+    el = el.offsetParent;
+    top += el.offsetTop;
+    left += el.offsetLeft;
+  }
+
+  return (
+    top >= window.pageYOffset &&
+    left >= window.pageXOffset &&
+    (top + height) <= (window.pageYOffset + window.innerHeight) &&
+    (left + width) <= (window.pageXOffset + window.innerWidth)
+  );
+}
+
 setTimeout(function(){
     const ads = document.getElementsByClassName("inads")
-    alert(ads.length)
     for(var i = 0; i < ads.length; i++){
+        setTimeout(function(){
+            if(!elementInViewport(adverts[i])){
+                return
+            }
+            createAds(adverts[i], i)
+        }, 2000)
+        if(!elementInViewport(ads[i])){
+            continue
+        }
         createAds(ads[i], i)
     }
-}, 15000)
+}, 4000)
