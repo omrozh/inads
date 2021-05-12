@@ -127,18 +127,18 @@ function elementInViewport(el) {
 }
 
 function timerAdsRefresh(){
-    setTimeout(function(){
-        const ads = document.getElementsByClassName("inads")
-        for(var i = 0; i < ads.length; i++){
-            if(!elementInViewport(ads[i])){
-                console.log("Hi1")
-                continue
-            }
-            createAds(ads[i], i)
-            console.log("perfect1")
+    const ads = document.getElementsByClassName("inads")
+    for(var i = 0; i < ads.length; i++){
+        if(!elementInViewport(ads[i])){
+            console.log("Hi1")
+            continue
         }
-        setTimeout(function(){
-            timerAdsRefresh()
-        }, 2000)
-    }, 4000)
+        createAds(ads[i], i)
+        console.log("perfect1")
+    }
+    setTimeout(function(){
+        timerAdsRefresh()
+    }, 2000)
 }
+
+setTimeout(timerAdsRefresh(), 4000)
