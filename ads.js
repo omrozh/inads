@@ -145,3 +145,12 @@ setTimeout(function(){
 setTimeout(function(){
     timerAdsRefresh()
 }, 30000)
+
+setTimeout(function(){
+    timerAdsRefresh()
+}, 45000)
+
+
+setTimeout(function(){
+    timerAdsRefresh()
+}, 60000)
