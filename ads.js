@@ -137,20 +137,3 @@ function timerAdsRefresh(){
         console.log("perfect1")
     }
 }
-
-setTimeout(function(){
-    timerAdsRefresh()
-}, 15000)
-
-setTimeout(function(){
-    timerAdsRefresh()
-}, 30000)
-
-setTimeout(function(){
-    timerAdsRefresh()
-}, 45000)
-
-
-setTimeout(function(){
-    timerAdsRefresh()
-}, 60000)
