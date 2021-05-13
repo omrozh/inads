@@ -136,11 +136,12 @@ function timerAdsRefresh(){
         createAds(ads[i], i)
         console.log("perfect1")
     }
-    setTimeout(function(){
-        timerAdsRefresh()
-    }, 15000)
 }
 
 setTimeout(function(){
     timerAdsRefresh()
 }, 15000)
+
+setTimeout(function(){
+    timerAdsRefresh()
+}, 30000)
