@@ -13,6 +13,11 @@ function adGroupCreate(element){
     element.insertAdjacentHTML("afterbegin", insertadgrouper + insertadgrouper + insertadgrouper + insertadgrouper)
 }
 
+function adGroupCreateScroll(element){
+    var insertadgroupersquare = '<img class="inads" name=inadsquare src="" alt="" style="float: left; width: 50%;">';
+    element.insertAdjacentHTML("afterbegin", insertadgroupersquare + insertadgroupersquare + insertadgroupersquare + insertadgroupersquare)
+}
+
 function adGroupCreateSquare(element){
     var insertadgroupersquare = '<img class="inads" name=inadsquare src="" alt="" style="float: left; width: 20%; margin-left: 2%">';
     element.insertAdjacentHTML("afterbegin", insertadgroupersquare + insertadgroupersquare + insertadgroupersquare + insertadgroupersquare)
@@ -137,3 +142,7 @@ function timerAdsRefresh(){
         console.log("perfect1")
     }
 }
+
+setTimeout(function(){
+    timerAdsRefresh()
+}, 15000)
