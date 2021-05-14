@@ -51,7 +51,7 @@ function createAds(element, index){
         element.setAttribute("height", "210")
     }
 
-    if(!(element.parentNode.className == "inadsgroup" || element.parentNode.className == "inadsgroupsquare")){
+    if(!(element.parentNode.className == "inadsgroup" || element.parentNode.className == "inadsgroupsquare" || element.parentNode.className == "inadsgroupscroll")){
         element.insertAdjacentHTML("beforebegin", '<a href="http://www.inadsglobal.com" style="text-decoration: none; color:yellow; float: ' + window.getComputedStyle(element).float + '"><small style="font-size: 6px; margin-left: ' + window.getComputedStyle(element).marginLeft + '; margin-right: ' + window.getComputedStyle(element).marginRight + '">Ads by <span style="color: black;">InAds</small></span></a>')
     }
 
