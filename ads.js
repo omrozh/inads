@@ -82,6 +82,11 @@ for(var i = 0; i < adFeed.length; i++){
 
 let adGroups = document.getElementsByClassName("inadsgroup");
 let adGroupsSquare = document.getElementsByClassName("inadsgroupsquare");
+let adGroupsScroll = document.getElementsByClassName("inadsgroupscroll");
+
+for(var i = 0; i < adGroupsScroll.length; i++){
+    adGroupCreateScroll(adGroupsScroll[i]);
+}
 
 for(var i = 0; i < adGroups.length; i++){
     adGroupCreate(adGroups[i]);
