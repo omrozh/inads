@@ -32,7 +32,7 @@ function createAds(element, index){
 
     if(!(blob.includes("data"))){
         element.hidden = true;
-        if(!(element.parentNode.className == "inadsgroup" || element.parentNode.className == "inadsgroupsquare"))
+        if(!(element.parentNode.className == "inadsgroup" || element.parentNode.className == "inadsgroupsquare" || element.parentNode.className == "inadsgroupscroll"))
             element.insertAdjacentHTML("afterend", "<a href='https://www.inadsglobal.com' style='color: red; clear: both; text-decoration: none  position: absolute; bottom: 8px; left: 16px;'> <small>Advertise Here!</small> </a>")
         return "Nothing"
     }
