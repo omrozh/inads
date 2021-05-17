@@ -544,7 +544,7 @@ def register():
                     purpose=flask.request.values["purpose"], account_balance=5)
 
         db.session.add(user)
-        if flask.request.values["purpose"] == "Advertiser":
+        if True:
             msg = Message("Welcome", recipients=[flask.request.values["email"]], sender="no-reply@inadsglobal.com")
             msg.html = '''
                         <head>
