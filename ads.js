@@ -103,7 +103,7 @@ for(var i = 0; i < adGroupsScroll.length; i++){
 }
 
 for(var i = 0; i < adGroupsHorizontal.length; i++){
-    adGroupsHorizontal(adGroupCreateHorizontal[i]);
+    adGroupCreateHorizontal(adGroupsHorizontal[i]);
 }
 
 for(var i = 0; i < adGroupsSmall.length; i++){
