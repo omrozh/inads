@@ -14,7 +14,7 @@ function adGroupCreate(element){
 }
 
 function adGroupCreateHorizontal(element){
-    var insertadgrouper = '<img class="inads" name=inadstandard src="" alt="" style="float: left; width: 23%; margin-left: 2%">';
+    var insertadgrouper = '<img class="inads" name=inadstandard src="" alt="" style="float: left; width: 23%; margin-left: 1%; margin-right:1%">';
     element.insertAdjacentHTML("afterbegin", insertadgrouper + insertadgrouper + insertadgrouper + insertadgrouper)
 }
 
