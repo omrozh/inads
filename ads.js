@@ -18,6 +18,16 @@ function adGroupCreateScroll(element){
     element.insertAdjacentHTML("afterbegin", insertadgroupersquare + insertadgroupersquare + insertadgroupersquare + insertadgroupersquare)
 }
 
+function adGroupCreateScrollSmall(element){
+    var insertadgroupersquare = '<img class="inads" name=inadsquare src="" alt="" style="float: left; width: 50%;">';
+    element.insertAdjacentHTML("afterbegin", insertadgroupersquare + insertadgroupersquare)
+}
+
+function adGroupCreateVertical(element){
+    var insertadgroupersquare = '<img class="inads" name=inadsquare src="" alt="" style="float: left; width: 100%;">';
+    element.insertAdjacentHTML("afterbegin", insertadgroupersquare + "<br style='clear: both'>" + insertadgroupersquare + "<br style='clear: both'>" + insertadgroupersquare  + "<br style='clear: both'>" + insertadgroupersquare)
+}
+
 function adGroupCreateSquare(element){
     var insertadgroupersquare = '<img class="inads" name=inadsquare src="" alt="" style="float: left; width: 20%; margin-left: 2%">';
     element.insertAdjacentHTML("afterbegin", insertadgroupersquare + insertadgroupersquare + insertadgroupersquare + insertadgroupersquare)
@@ -83,9 +93,19 @@ for(var i = 0; i < adFeed.length; i++){
 let adGroups = document.getElementsByClassName("inadsgroup");
 let adGroupsSquare = document.getElementsByClassName("inadsgroupsquare");
 let adGroupsScroll = document.getElementsByClassName("inadsgroupscroll");
+let adGroupsSmall = document.getElementsByClassName("inadsgroupscrollsmall");
+let adGroupsVertical = document.getElementsByClassName("inadsgroupvertical");
 
 for(var i = 0; i < adGroupsScroll.length; i++){
     adGroupCreateScroll(adGroupsScroll[i]);
+}
+
+for(var i = 0; i < adGroupsSmall.length; i++){
+    adGroupCreateScrollSmall(adGroupsSmall[i]);
+}
+
+for(var i = 0; i < adGroupsVertical.length; i++){
+    adGroupCreateVertical(adGroupsVertical[i]);
 }
 
 for(var i = 0; i < adGroups.length; i++){
