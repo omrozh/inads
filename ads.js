@@ -174,6 +174,11 @@ function timerAdsRefresh(){
     }
 }
 
-setTimeout(function(){
-    timerAdsRefresh()
-}, 15000)
+function recurrAds(){
+    setTimeout(function(){
+        timerAdsRefresh()
+        recurrAds()
+    }, 15000)
+}
+
+recurrAds()
