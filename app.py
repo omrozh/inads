@@ -904,7 +904,7 @@ def returnActual(fileindex):
     domainowner = \
         Domains.query.filter_by(domain=urllib.parse.urlparse(
             flask.request.environ.get('HTTP_REFERER', 'default value')).netloc).first().owner
-    Ads.query.get(int(fileindex) + 1).budget -= 0.00003
+    Ads.query.get(int(fileindex) + 1).budget -= 0.000032
     User.query.filter_by(email=domainowner).first().account_balance += 0.00003
     db.session.commit()
     if len(file.fileurl) > 4:
@@ -931,7 +931,7 @@ def returnActualMobile(fileindex, key):
     Domains.query.filter_by(domain=domain).first().total_revenue += 0.00003
     domainowner = \
         Domains.query.filter_by(domain=key).first().owner
-    Ads.query.get(int(fileindex) + 1).budget -= 0.00003
+    Ads.query.get(int(fileindex) + 1).budget -= 0.000032
     User.query.filter_by(email=domainowner).first().account_balance += 0.00003
     db.session.commit()
     if len(file.fileurl) > 4:
