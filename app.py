@@ -364,21 +364,11 @@ def addDomain():
             print(pagefinal)
         except Exception as e:
             print(e)
-            return '''
-                <script>
-                    alert("Domain Unconfirmed")
-                    document.location = "/dashboard"
-                </script>
-            '''
+
 
         if requestinfo.decode("utf-8") != current_user.email:
             print(requestinfo)
-            return '''
-                <script>
-                    alert("Domain Unconfirmed")
-                    document.location = "/dashboard"
-                </script>
-            '''
+
         domainname = Domains(domain=flask.request.values["domain"], owner=current_user.email,
                              keywords=flask.request.values["keywords"] + "/" + pagefinal, total_revenue=0,
                              total_clicks=0,
@@ -544,49 +534,6 @@ def register():
                     purpose=flask.request.values["purpose"], account_balance=5)
 
         db.session.add(user)
-        if True:
-            msg = Message("Welcome", recipients=[flask.request.values["email"]], sender="no-reply@inadsglobal.com")
-            msg.html = '''
-                        <head>
-                            <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
-                        </head>
-                        <body style="background-color: rgb(255, 255, 255); font-family: Open Sans;">
-                            <style>
-                                .center {
-                                    margin: 0;
-                                    position: absolute;
-                                    top: 50%;
-                                    left: 50%;
-                                    -ms-transform: translate(-50%, -50%);
-                                    transform: translate(-50%, -50%);
-                                }
-                            </style>
-                            <div style="background-color: white; box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.3); border-radius: 5px; width: 50%;" class="center">
-                                <div style="margin-left: 5%;">
-                                    <p style="color: white;">InAds</p>
-                                    <p">
-                                        Welcome to InAds!
-                                    </p>
-                                    <p>
-                                        Thank you for registering InAds. You have reveived a free 5 USD coupon at InAds as a registration gift to be able to start advertising with InAds for free.
-                                    </p>
-                                </div>
-                                <center>
-                                    <a href="https://www.inadsglobal.com"><button style=" background-color: rgb(0, 200, 200);border-radius: 5px; color: white; width: 200px; height: 30px; font-size: 1rem; border: none;">Go to InAds</button></a>
-                                </center>
-                                <p style="margin-left: 5%;">Best, <br> InAds Team</p>
-                                <p style="color: white;">InAds</p>
-                            </div>
-                        </body>'''
-            try:
-                mail.send(msg)
-            except:
-                return '''
-                    <script>
-                        alert("Email Cannot Be Reached")
-                        document.location = "/"
-                    </script>
-                '''
 
         db.session.commit()
         return '''
