@@ -1052,6 +1052,11 @@ def docs():
     return flask.render_template("docs.html")
 
 
+@app.route("/corporate")
+def corporate():
+    return flask.render_template("corporate.html")
+
+
 @app.route('/favicon.ico')
 def favicon():
     return flask.send_file("favicon.ico")
