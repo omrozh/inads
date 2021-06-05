@@ -519,6 +519,11 @@ def main_page():
     return flask.render_template("index.html")
 
 
+@app.route("/mobile")
+def main_page_mobile():
+    return flask.render_template("mobileindex.html")
+
+
 @app.route("/plans")
 def plans():
     return flask.render_template("plans.html")

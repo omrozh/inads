@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="yandex-verification" content="6b0368c975b5c0cb" />
+    <title>InAds</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
+</head>
+<body style="width: 100%; height: 100%; font-family: Open Sans; font-size: 12; line-height: 1.5;  padding: 0; margin: 0; outline: 0; border: 0">
+    <link rel="stylesheet" type="text/css" href="/styles">
+    <style>
+        html,body{
+          font-family: 'Source Sans Pro', sans-serif;
+          margin: 0;
+          padding: 0;
+        }
+        .graph-cont{
+          width: calc(100% - 40px);
+          width: 100%;
+          max-width: 800px;
+          margin: 0 auto;
+        }
+        h1{
+          text-align: center;
+          color: #34495e;
+        }
+        .bar{
+          height: 30px;
+          max-width: 800px;
+          margin: 0 auto 10px auto;
+          line-height: 30px;
+          font-size: 16px;
+          color: light-blue;
+          padding: 0 0 0 10px;
+          position: relative;
+        }
+        .bar::before{
+          content: '';
+          width: 100%;
+          position: absolute;
+          left: 0;
+          height: 30px;
+          top: 0;
+          z-index: -2;
+          background: #ecf0f1;
+        }
+        .bar::after{
+          content: '';
+          background: #2ecc71;
+          height: 30px;
+          transition: 0.7s;
+          display: block;
+          width: 100%;
+          -webkit-animation: bar-before 1 1.8s;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: -1;
+        }
+        .bar1::after{
+          max-width: 2%
+        }
+        .bar2::after{
+          max-width: 80%;
+        }
+        @-webkit-keyframes bar-before{
+          0%{
+            width: 0px;
+          }
+          100%{
+            width: 100%;
+          }
+        }
+
+        .how-cont{
+          width: calc(100% - 40px);
+          width: 100%;
+          max-width: 800px;
+          margin: 0 auto;
+        }
+        code {
+          padding: 5px;
+          background: #ecf0f1;
+          display: block;
+        }
+        pre{
+          padding: 0;
+          margin: 0;
+        }
+    </style>
+    <div>
+        <div style="width: 100%; color: gray; margin-top: 1%; margin-bottom: 0%">
+            <img src="https://firebasestorage.googleapis.com/v0/b/file-store-6094b.appspot.com/o/files%2F9130410?alt=media&token=709b6728-023d-4c7e-b118-d459bc2794c3" style="height: 5%; width: 5%; margin-left: 3%; vertical-align: middle; display:inline-block;">
+            <div id="myNav" class="overlay">
+
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+          <div class="overlay-content">
+            <a href="/docs">Docs</a>
+            <a href="/estimated_earnings">Estimated Earnings</a>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+          </div>
+
+        </div>
+
+        <span onclick="openNav()">open</span>
+
+        </div>
+        <hr style="opacity: 0">
+        <img id="titleimage" src="/logos/title.png" alt=""  style="height: 95vh; width: 100%">
+        <br>
+    </div>
+    <div class="graph-cont">
+        <h1>Avg. InAds CPC vs. Avg. Other Networks CPC</h1>
+        InAds: <div class="bar bar1">0.005 USD</div>
+        Other Networks <div class="bar bar2">0.2 USD</div>
+    </div>
+    <div id="infoDiv" style="margin-left: 100px; margin-top: 4%;">
+        <center style="width: 250px; box-shadow: 0px 0px 0px 3px rgba(0,0,0,0.3); border-radius: 3px; float: left; margin-left: 120px; margin-top: 25px">
+            <h2 style="margin-top: 5%;">Cheapest possible</h2>
+            <h3 style="opacity: 0.5;">Our no commission policy allows us to offer the cheapest price in the market to our customers.</h3>
+            <a href="/plans"><button style="background-color: gray; color: white; border-radius: 3px; width: 40%; height: 20px; padding: 0; border: none; margin-bottom: 5%; opacity: 0.7; margin-top: 25%">Learn More</button></a>
+        </center>
+        <center style="width: 250px; box-shadow: 0px 0px 0px 3px rgba(0,0,0,0.3); border-radius: 3px; float: left; margin-left: 120px; margin-top: 25px">
+            <h2 style="margin-top: 5%">Targeted ads</h2>
+            <h3 style="opacity: 0.5;">Our powerful network enables our advertisers to advertise directly to their target audience.
+                Through picking keywords and interests.</h3>
+            <a href="/register"><button style="background-color: gray; color: white; border-radius: 3px; width: 40%; height: 20px; padding: 0; border: none; margin-bottom: 5%; opacity: 0.7; margin-top: 5%">Learn More</button></a>
+        </center>
+        <center style="width: 250px; box-shadow: 0px 0px 0px 3px rgba(0,0,0,0.3); border-radius: 3px; float: left; margin-left: 120px; margin-top: 25px">
+            <h2 style="margin-top: 5%">You control your content</h2>
+            <h3 style="opacity: 0.5;">You can customise the shape and place of the ads on your website and receive feedback on your advertised content.</h3>
+            <a href="/register"><button style="background-color: gray; color: white; border-radius: 3px; width: 40%; height: 20px; padding: 0; border: none; margin-bottom: 5%; opacity: 0.7">Learn More</button></a>
+        </center>
+    </div>
+    <br style="clear: both">
+
+
+    <center style="background-color: rgb(230, 230, 235); height: 40%; margin-top: 15%">
+        <p style="opacity: 0">InAds</p>
+        <h4 style="margin-top: 3%">SKYROCKET YOUR INCOME</h4>
+        <h1 style="margin-top: 3%">Calculate your estimated income</h1>
+        <button class="buttonGray" onclick="document.location = '/estimated_earnings'">Calculate</button>
+        <p style="opacity: 0; margin-top: 3%">InAds</p>
+    </center>
+    <div>
+        <h1>Why InAds?</h1>
+        <br>
+        <h1>100M+ Traffic Monthly Traffic | Show your ads to over 100 million people.</h1>
+        <br>
+        <img style="float: right; margin-right: 5%" src="/logos/exampleone.jpg" alt="">
+        <h1 style="margin-top: 5%;%">Make money from your website</h1>
+        <p style="margin-left: 10%; margin-right: 25%;">Unlike many advertising networks, InAds adopts a no commission policy.
+            With no commission or extra fees on your income you can enjoy the staggering increase in your revenue.
+            Your income will skyrocket after switching to InAds.</p>
+        <br>
+        <img style="float: left; margin-left: 5%; margin-top: 15%; clear: both; margin-right: 5%;" src="/logos/advertising2.png" alt="">
+        <h1 style="margin-top: 20%; margin-left: 2%">Cheaper Cost of Advertising</h1>
+        <p style="margin-right: 10%;">Thanks to our unique no commission model,
+            advertisers pay less and enjoy the same benefits for a lower price. Also, instead of paying
+            an advertisement network your are directly supporting online content creators.</p>
+        <br>
+        <img style="float: right; margin-left: 5%; margin-top: 15%; clear: both; margin-right: 5%;" src="/logos/js-logo.png" alt="">
+        <h1 style="margin-top: 20%; margin-left: 2%">Easy Integration, Secure Payments</h1>
+        <p style="margin-right: 10%; margin-left: 10%;">
+            Through copy-pasting a single line of code you connect to the InAds global network and start monetizing your content.
+            Through adding simple HTML elements you can have unlimited customisation over the size and place of the advertisements on your webpage.
+        </p>
+        <br>
+        <img style="float: left; margin-left: 5%; margin-top: 15%; clear: both; margin-right: 5%;" src="/logos/adblock.jpg" alt="">
+        <h1 style="margin-top: 20%; margin-left: 2%">Cannot be blocked by ad blockers</h1>
+        <p style="margin-right: 10%; margin-left: 10%;">
+            So you are ready to monetize your web page through ads however many people today are using ad blockers which makes it impossible for you to generate advertising revenue.
+            However, InAds has your back its unique ad insertion policy makes it impossible for ad blockers to detect ads and thus makes ads impossible to block.
+        </p>
+        <br>
+        <img style="float: right; margin-left: 5%; margin-top: 15%; clear: both; margin-right: 5%;" src="/logos/webexample.png" alt="">
+        <h1 style="margin-top: 20%; margin-left: 2%">Number of ads matter</h1>
+        <p style="margin-right: 10%; margin-left: 10%;">Unlike other ad networks' "A page view is what is counted in your reports every time a user views a page displaying ads. We will count one page view regardless of the number of ads displayed on that page." policy your website generates income for every single ad on your web page.</p>
+    </div>
+    <center style="margin-top: 10%; margin-left: 20%; margin-right: 20%; clear: both">
+        <h1>Copy and paste a single line of code and place the ads on your website to 5x your income.</h1>
+        <button style="margin-top: 5%; margin-bottom: 5%" class="buttonBlue" onclick="document.location = '/register'">Start Now</button>
+    </center>
+    <br>
+    <center style="background-color: rgb(50, 50, 50); color: gray">
+        <strong>2021, InGames, Inc. New Castle, Delaware</strong>
+        <a style="margin-left: 20%" class="navbarElement" href="mailto: contact@inadsglobal.com">Contact</a>
+    </center>
+
+    <script>
+        if(window.innerWidth < window.innerHeight){
+            document.getElementById("infoDiv").style.marginLeft = "25px";
+            document.getElementById("titleimage").setAttribute('src', "/logos/titlemobile.png");
+        }
+        function openNav() {
+          document.getElementById("myNav").style.width = "100%";
+        }
+
+        function closeNav() {
+          document.getElementById("myNav").style.width = "0%";
+        }
+    </script>
+    <script async id="slcLiveChat" src="https://widget.sonetel.com/SonetelWidget.min.js" data-account-id="207713366"></script>
+</body>
+</html>
