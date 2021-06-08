@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="/styles">
 </head>
-<body style="font-family: open sans">
+<body style="font-family: open sans; background: linear-gradient(90deg, white 0%, rgb(0, 200, 220) 60%); padding: 0; margin: 0; outline: 0; border: 0">
 
     <div style="width: 100%; color: gray; margin-top: 1%; margin-bottom: 1%">
         <img src="/logos/webicon.png" style="height: 5%; width: 5%; margin-left: 3%; vertical-align: middle; display:inline-block;">
@@ -16,18 +16,26 @@
         <a class="navbarElement" href="/docs"><small>Docs</small></a>
     </div>
 
-    <h1 style="margin-left: 5%">Calculate your estimated earnings with InAds</h1>
-    <br>
-    <input style="margin-left: 5%" onchange="calculate()" type="number" id="monthlyvis" class="mainForm" placeholder="Number of monthly visitors">
-    <hr style="margin-left: 5%; margin-right: 70%">
-    <br>
-    <h1 style="font-size: 4rem; margin-left: 5%" id="outcome"></h1>
+    <div  style="margin-left: 5%; background-color: white; border-radius: 5px; width: 40%; float: left">
+        <div style="margin-left: 5%">
+            <h1>Estimated earnings with InAds</h1>
+            <br>
+            <input onchange="calculate()" type="number" id="monthlyvis" class="mainForm" placeholder="Number of monthly visitors">
+            <hr style="margin-right: 70%">
+            <input onchange="calculate()" type="text" id="websiteurl" class="mainForm" placeholder="Website URL">
+            <hr style="margin-right: 70%">
+            <br>
+            <h1 style="font-size: 2rem;" id="outcome"></h1>
+        </div>
+    </div>
+    <iframe src="" style="width: 300px; height: 600px; float: right; margin-right: 5%" id="websiteFrame" frameborder="0"></iframe>
 
     <script>
         function calculate(){
             if(document.getElementById("monthlyvis").value < 10000){
                 document.getElementById("monthlyvis").value = 10000
             }
+            document.getElementById("websiteFrame").src = document.getElementById("websiteurl").value
             var revestimate = document.getElementById("monthlyvis").value * 0.00003 * 32
             var revestimate2 = -1 * (revestimate * 0,2)
             var frev = parseFloat((revestimate + revestimate2) * 3 * 12)
