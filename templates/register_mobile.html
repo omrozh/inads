@@ -7,7 +7,86 @@
     <link rel="stylesheet" type="text/css" href="/styles">
 </head>
 <body style="font-family: open sans; width: 100%; height: 100%; background-color: white; padding: 0; margin: 0; outline: 0; border: 0">
+    <style>
+        html,body{
+          font-family: 'Source Sans Pro', sans-serif;
+          margin: 0;
+          padding: 0;
+        }
+        .graph-cont{
+          width: calc(100% - 40px);
+          width: 100%;
+          max-width: 800px;
+          margin: 0 auto;
+        }
+        h1{
+          text-align: center;
+          color: #34495e;
+        }
+        .bar{
+          height: 30px;
+          max-width: 800px;
+          margin: 0 auto 10px auto;
+          line-height: 30px;
+          font-size: 16px;
+          color: light-blue;
+          padding: 0 0 0 10px;
+          position: relative;
+        }
+        .bar::before{
+          content: '';
+          width: 100%;
+          position: absolute;
+          left: 0;
+          height: 30px;
+          top: 0;
+          z-index: -2;
+          background: #ecf0f1;
+        }
+        .bar::after{
+          content: '';
+          background: #2ecc71;
+          height: 30px;
+          transition: 0.7s;
+          display: block;
+          width: 100%;
+          -webkit-animation: bar-before 1 1.8s;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: -1;
+        }
+        .bar1::after{
+          max-width: 2%
+        }
+        .bar2::after{
+          max-width: 80%;
+        }
+        @-webkit-keyframes bar-before{
+          0%{
+            width: 0px;
+          }
+          100%{
+            width: 100%;
+          }
+        }
 
+        .how-cont{
+          width: calc(100% - 40px);
+          width: 100%;
+          max-width: 800px;
+          margin: 0 auto;
+        }
+        code {
+          padding: 5px;
+          background: #ecf0f1;
+          display: block;
+        }
+        pre{
+          padding: 0;
+          margin: 0;
+        }
+    </style>
     <div style="margin-top: 0">
         <form method=post enctype=multipart/form-data style="background-color: white; width: 100%;">
             <div id="form-mail-registration">
@@ -38,5 +117,14 @@
     </div>
 
     <br>
+    <script>
+         function openNav() {
+          document.getElementById("myNav").style.width = "100%";
+        }
+
+        function closeNav() {
+          document.getElementById("myNav").style.width = "0%";
+        }
+    </script>
 </body>
 </html>

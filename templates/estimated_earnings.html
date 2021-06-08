@@ -8,13 +8,22 @@
 </head>
 <body style="font-family: open sans; background: linear-gradient(90deg, white 0%, rgb(0, 200, 220) 60%); padding: 0; margin: 0; outline: 0; border: 0">
 
-    <div style="width: 100%; color: gray; margin-top: 1%; margin-bottom: 1%">
-        <img src="/logos/webicon.png" style="height: 5%; width: 5%; margin-left: 3%; vertical-align: middle; display:inline-block;">
-        <a class="navbarElement" style="margin-left: 4%;" href="/"><small>Home Page</small></a>
-        <a class="navbarElement" href="/plans"><small>Plans</small></a>
-        <a class="navbarElement" href="/estimated_earnings"><small>Estimated Earnings</small></a>
-        <a class="navbarElement" href="/docs"><small>Docs</small></a>
-    </div>
+    <div style="width: 100%; color: gray; margin-top: 1%; margin-bottom: 0%">
+            <span class="navbarElement" style="margin-left: 3%; font-size: 50px" onclick="openNav()">InAds</span>
+            <div id="myNav" class="overlay">
+
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+          <div class="overlay-content">
+            <a href="/docs"><h2>Docs</h2></a>
+            <a href="/estimated_earnings"><h2>Estimated Earnings</h2></a>
+            <a href="/login"><h2>Login</h2></a>
+            <a href="/register"><h2>Register</h2></a>
+          </div>
+
+        </div>
+
+        <span onclick="openNav()" class="navbarElement" style="float: right; margin-right: 5%; font-size: 50px">&#9776;</span>
 
     <div  style="margin-left: 5%; background-color: white; border-radius: 5px; width: 40%; float: left" id="mainFormDiv">
         <div style="margin-left: 5%">
