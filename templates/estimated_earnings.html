@@ -27,8 +27,8 @@
 
     <script>
         function calculate(){
-            var revestimate = document.getElementById("monthlyvis").value * 0.00003 * 12
-            var revestimate2 = document.getElementById("monthlyvis").value * 0.01 * 0.01 * 12
+            var revestimate = document.getElementById("monthlyvis").value * 0.00003 * 32
+            var revestimate2 = 0
             var frev = parseFloat((revestimate + revestimate2) * 3 * 12)
             document.getElementById("outcome").innerHTML = frev.toFixed(2)  + " $ annually";
         }
