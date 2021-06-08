@@ -12,28 +12,42 @@
     </script>
 </head>
 <body style="font-family: open sans">
-    <div style="width: 100%; color: gray; margin-top: 1%; margin-bottom: 1%; position: fixed">
-        <img src="/logos/webicon.png" style="height: 5%; width: 5%; margin-left: 3%; vertical-align: middle; display:inline-block;">
-        <a class="navbarElement" style="margin-left: 4%;" href="/"><small>Home Page</small></a>
-        <a class="navbarElement" href="/plans"><small>Plans</small></a>
-        <a class="navbarElement" href="/estimated_earnings"><small>Estimated Earnings</small></a>
-        <a class="navbarElement" href=""><small>Docs</small></a>
-    </div>
-    <center>
-        <img src="https://firebasestorage.googleapis.com/v0/b/file-store-6094b.appspot.com/o/files%2F9130410?alt=media&token=709b6728-023d-4c7e-b118-d459bc2794c3" style="width: 15%; height: 20%; margin-top: 15%" alt="">
-    </center>
+    <style>
+        .loginButton{
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        .loginInput{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+    </style>
     <div style="margin-top: 3%">
-        <form id="form-id" method=post enctype=multipart/form-data>
+        <form id="form-id" method=post enctype=multipart/form-data style="margin-top: 18vh; background-color: white; width: 30%; float: right; margin-right: 34%; border-radius: 5px; border: none">
             <div id="form-credit-registration">
-                <input style="margin-left: 40%; margin-right:35%; float: left" class="mainForm" type=number inputmode="numeric" pattern="[0-9\s]{13,19}" name=credit placeholder="Card Number">
-                <hr style="margin-left: 40%; margin-right:35%">
-                <input style="margin-left: 40%; margin-right:35%; float: left" class="mainForm" type=number name=cvc placeholder="CVC">
-                <hr style="margin-left: 40%; margin-right:35%">
-                <input style="margin-left: 40%; margin-right:0%; float: left; width: 12.5%" class="mainForm" type=number name=month placeholder="Month">
-                <input style="margin-right:0%; float: left; width: 12.5%" class="mainForm" type=number name=year placeholder="Year">
-                <hr style="margin-left: 40%; margin-right:35%">
+                <h1>InAds - Add Card Info</h1>
                 <br>
-                <input class="buttonGray" style="margin-left: 40%; margin-top: 1%" type=submit value="Add Pay">
+                <span>Card Number</span>
+                <br>
+                <input style="width: 98%" class="loginInput"  type=number inputmode="numeric" pattern="[0-9\s]{13,19}" name=credit>
+                <br>
+                <span>CVC</span>
+                <br>
+                <input style="width: 98%" class="loginInput" type=number name=cvc placeholder="CVC">
+                <br>
+                <input style="width: 49%" class="loginInput" type=number name=month placeholder="Month">
+                <input style="width: 49%" class="loginInput"  type=number name=year placeholder="Year">
+
+                <input class="loginButton" style="margin-top: 1%" type=submit value="Add Info">
             </div>
         </form>
     </div>
