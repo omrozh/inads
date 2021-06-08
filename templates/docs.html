@@ -7,14 +7,109 @@
 </head>
 <body style="width: 100%; height: 100%; font-family: Open Sans; font-size: 12; line-height: 1.5">
     <link rel="stylesheet" type="text/css" href="/styles">
+    <style>
+        html,body{
+          font-family: 'Source Sans Pro', sans-serif;
+          margin: 0;
+          padding: 0;
+        }
+        .graph-cont{
+          width: calc(100% - 40px);
+          width: 100%;
+          max-width: 800px;
+          margin: 0 auto;
+        }
+        h1{
+          text-align: center;
+          color: #34495e;
+        }
+        .bar{
+          height: 30px;
+          max-width: 800px;
+          margin: 0 auto 10px auto;
+          line-height: 30px;
+          font-size: 16px;
+          color: light-blue;
+          padding: 0 0 0 10px;
+          position: relative;
+        }
+        .bar::before{
+          content: '';
+          width: 100%;
+          position: absolute;
+          left: 0;
+          height: 30px;
+          top: 0;
+          z-index: -2;
+          background: #ecf0f1;
+        }
+        .bar::after{
+          content: '';
+          background: #2ecc71;
+          height: 30px;
+          transition: 0.7s;
+          display: block;
+          width: 100%;
+          -webkit-animation: bar-before 1 1.8s;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: -1;
+        }
+        .bar1::after{
+          max-width: 2%
+        }
+        .bar2::after{
+          max-width: 80%;
+        }
+        @-webkit-keyframes bar-before{
+          0%{
+            width: 0px;
+          }
+          100%{
+            width: 100%;
+          }
+        }
 
-        <div style="width: 100%; color: gray; margin-top: 1%; margin-bottom: 1%">
+        .how-cont{
+          width: calc(100% - 40px);
+          width: 100%;
+          max-width: 800px;
+          margin: 0 auto;
+        }
+        code {
+          padding: 5px;
+          background: #ecf0f1;
+          display: block;
+        }
+        pre{
+          padding: 0;
+          margin: 0;
+        }
+    </style>
+
+        <div style="width: 100%; color: gray; margin-top: 1%; margin-bottom: 1%" id="desktop-nav">
             <img src="/logos/webicon.png" style="height: 5%; width: 5%; margin-left: 3%; vertical-align: middle; display:inline-block;">
             <a class="navbarElement" style="margin-left: 4%;" href="/"><small>Home Page</small></a>
             <a class="navbarElement" href="/plans"><small>Plans</small></a>
             <a class="navbarElement" href="/estimated_earnings"><small>Estimated Earnings</small></a>
             <a class="navbarElement" href="/docs"><small>Docs</small></a>
             <a class="navbarElement" style="float: right; margin-right: 5%" id="langelement" onclick="InAdsLanguage()">TR</a>
+        </div>
+        <div style="width: 100%; color: gray; margin-top: 1%; margin-bottom: 0%" id="mobile-nav" hidden>
+            <span class="navbarElement" style="margin-left: 3%; font-size: 50px" onclick="openNav()">InAds</span>
+            <div id="myNav" class="overlay">
+
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+          <div class="overlay-content">
+            <a href="/docs"><h2>Docs</h2></a>
+            <a href="/estimated_earnings"><h2>Estimated Earnings</h2></a>
+            <a href="/login"><h2>Login</h2></a>
+            <a href="/register"><h2>Register</h2></a>
+          </div>
+
+        </div>
         </div>
     <hr style="opacity: .3">
     <div style="margin-left: 5%" id="en">
@@ -114,6 +209,17 @@
     </div>
     <center><button class="buttonBlue" style="margin-left: 5%; margin-top: 10%" onclick="document.location = '/register'">Start Now</button></center>
     <script>
+        function openNav() {
+            document.getElementById("myNav").style.width = "100%";
+        }
+
+        function closeNav() {
+            document.getElementById("myNav").style.width = "0%";
+        }
+        if(window.innerWidth < window.innerHeight){
+            document.getElementById("desktop-nav").hidden = "true"
+            document.getElementById("mobile-nav").hidden = "false"
+         }
         function InAdsUnity(){
             document.getElementById("InAdsUnity").hidden = !document.getElementById("InAdsUnity").hidden;
             document.getElementById("InAdsUnityTR").hidden = !document.getElementById("InAdsUnityTR").hidden;

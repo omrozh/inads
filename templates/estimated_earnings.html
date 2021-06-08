@@ -8,7 +8,15 @@
 </head>
 <body style="font-family: open sans; background: linear-gradient(90deg, white 0%, rgb(0, 200, 220) 60%); padding: 0; margin: 0; outline: 0; border: 0">
 
-    <div style="width: 100%; color: gray; margin-top: 1%; margin-bottom: 0%">
+    <div style="width: 100%; color: gray; margin-top: 1%; margin-bottom: 1%" id="desktop-nav">
+            <img src="/logos/webicon.png" style="height: 5%; width: 5%; margin-left: 3%; vertical-align: middle; display:inline-block;">
+            <a class="navbarElement" style="margin-left: 4%;" href="/"><small>Home Page</small></a>
+            <a class="navbarElement" href="/plans"><small>Plans</small></a>
+            <a class="navbarElement" href="/estimated_earnings"><small>Estimated Earnings</small></a>
+            <a class="navbarElement" href="/docs"><small>Docs</small></a>
+            <a class="navbarElement" style="float: right; margin-right: 5%" id="langelement" onclick="InAdsLanguage()">TR</a>
+        </div>
+        <div style="width: 100%; color: gray; margin-top: 1%; margin-bottom: 0%" id="mobile-nav" hidden>
             <span class="navbarElement" style="margin-left: 3%; font-size: 50px" onclick="openNav()">InAds</span>
             <div id="myNav" class="overlay">
 
@@ -22,9 +30,7 @@
           </div>
 
         </div>
-
-        <span onclick="openNav()" class="navbarElement" style="float: right; margin-right: 5%; font-size: 50px">&#9776;</span>
-    </div>
+        </div>
     <div  style="margin-left: 5%; background-color: white; border-radius: 5px; width: 40%; float: left" id="mainFormDiv">
         <div style="margin-left: 5%">
             <h1>Estimated earnings with InAds</h1>
@@ -57,6 +63,9 @@
             document.getElementById("websiteFrame").style.clear = "both"
             document.getElementById("websiteFrame").style.width = "100vw"
             document.getElementById("websiteFrame").style.height = "100vh"
+
+            document.getElementById("desktop-nav").hidden = "true"
+            document.getElementById("mobile-nav").hidden = "false"
          }
         function calculate(){
             if(document.getElementById("monthlyvis").value < 10000){
