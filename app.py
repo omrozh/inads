@@ -560,6 +560,25 @@ def register():
     return flask.render_template("register.html")
 
 
+@app.route("/register/mobile", methods=["GET", "POST"])
+def register():
+    user = ""
+    if flask.request.method == "POST":
+        user = User(email=flask.request.values["email"], password=flask.request.values["password"],
+                    purpose=flask.request.values["purpose"], account_balance=0)
+
+        db.session.add(user)
+
+        db.session.commit()
+        return '''
+            <script>
+                alert("Registered")
+                document.location = "/"
+            </script>
+        '''
+    return flask.render_template("register_mobile.html")
+
+
 @app.route("/login", methods=["POST", "GET"])
 def loginUser():
     if current_user.is_authenticated:
@@ -572,6 +591,20 @@ def loginUser():
                 return flask.redirect("/dashboard")
 
     return flask.render_template("login.html")
+
+
+@app.route("/login/mobile", methods=["POST", "GET"])
+def loginUser():
+    if current_user.is_authenticated:
+        return flask.redirect("/dashboard")
+    if flask.request.method == "POST":
+        user = User.query.filter_by(email=flask.request.values['email']).first()
+        if user:
+            if user.password == flask.request.values["password"]:
+                login_user(user, remember=True)
+                return flask.redirect("/dashboard")
+
+    return flask.render_template("login-mobile.html")
 
 
 @app.route("/load_money", methods=["POST", "GET"])
