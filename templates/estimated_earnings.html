@@ -24,7 +24,7 @@
         </div>
 
         <span onclick="openNav()" class="navbarElement" style="float: right; margin-right: 5%; font-size: 50px">&#9776;</span>
-
+    </div>
     <div  style="margin-left: 5%; background-color: white; border-radius: 5px; width: 40%; float: left" id="mainFormDiv">
         <div style="margin-left: 5%">
             <h1>Estimated earnings with InAds</h1>
@@ -40,6 +40,15 @@
     <iframe src="" style="width: 300px; height: 600px; float: right; margin-right: 5%" id="websiteFrame" frameborder="0"></iframe>
 
     <script>
+
+         function openNav() {
+          document.getElementById("myNav").style.width = "100%";
+        }
+
+        function closeNav() {
+          document.getElementById("myNav").style.width = "0%";
+        }
+
          if(window.innerWidth < window.innerHeight){
             document.getElementById("mainFormDiv").style.width = "100%"
             document.getElementById("mainFormDiv").style.marginLeft = "0"
