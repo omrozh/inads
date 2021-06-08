@@ -561,7 +561,7 @@ def register():
 
 
 @app.route("/register/mobile", methods=["GET", "POST"])
-def register():
+def register_mobile():
     user = ""
     if flask.request.method == "POST":
         user = User(email=flask.request.values["email"], password=flask.request.values["password"],
@@ -594,7 +594,7 @@ def loginUser():
 
 
 @app.route("/login/mobile", methods=["POST", "GET"])
-def loginUser():
+def loginUser_mobile():
     if current_user.is_authenticated:
         return flask.redirect("/dashboard")
     if flask.request.method == "POST":
