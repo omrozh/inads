@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="/styles">
 </head>
 <body style="font-family: open sans; width: 100%; height: 100%; padding: 0; margin: 0; outline: 0; border: 0">
+    <div class="alertbox" hidden="true" id="alert-box">Passwords do not match</div>
+    <div class="alertbox" hidden="true" id="alert-form">You need to fill all the fields bellow to submit the form</div>
     <style>
         .loginButton{
             background-color: #04AA6D;
@@ -62,6 +64,24 @@
         if(window.innerWidth < window.innerHeight){
             document.location = "/login/mobile"
         }
+        function validator(){
+            const formElements = document.getElementsByTagName("input")
+
+            for(let i = 0; i < formElements.length; i++){
+                if(formElements[i].value.length < 3){
+                    document.getElementById("alert-form").hidden = false;
+                    return;
+                }
+            }
+
+            const passOrigin = document.getElementById("passOrigin").value
+            const passAgain = document.getElementById("passAgain").value
+            if(passAgain != passOrigin){
+                document.getElementById("alert-box").hidden = false;
+                return;
+            }
+
+            document.getElementById("form-id").submit()
     </script>
     <script async id="slcLiveChat" src="https://widget.sonetel.com/SonetelWidget.min.js" data-account-id="207713366"></script>
 </body>
