@@ -6,7 +6,26 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="/styles">
 </head>
-<body style="font-family: open sans; background: linear-gradient(90deg, white 0%, rgb(0, 200, 220) 60%); padding: 0; margin: 0; outline: 0; border: 0">
+<body style="font-family: open sans; padding: 0; margin: 0; outline: 0; border: 0">
+    <style>
+        .loginButton{
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        .loginInput{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+    </style>
 
     <div style="width: 100%; color: gray; margin-top: 1%; margin-bottom: 1%" id="desktop-nav">
             <img src="/logos/webicon.png" style="height: 5%; width: 5%; margin-left: 3%; vertical-align: middle; display:inline-block;">
@@ -36,10 +55,9 @@
         <div style="margin-left: 5%">
             <h1>Estimated earnings with InAds</h1>
             <br>
-            <input onchange="calculate()" type="number" id="monthlyvis" class="mainForm" placeholder="Number of monthly visitors">
-            <hr style="margin-right: 70%">
-            <input onchange="calculate()" type="text" id="websiteurl" class="mainForm" placeholder="Website URL">
-            <hr style="margin-right: 70%">
+            <input onchange="calculate()" type="number" id="monthlyvis" class="loginInput" placeholder="Number of monthly visitors">
+            <br>
+            <input onchange="calculate()" type="text" id="websiteurl" class="loginInput" placeholder="Website URL" style="margin-top: 5%">
             <br>
             <h1 style="font-size: 2rem;" id="outcome"></h1>
         </div>
@@ -57,7 +75,7 @@
         }
 
          if(window.innerWidth < window.innerHeight){
-            document.getElementById("mainFormDiv").style.width = "100%"
+            document.getElementById("mainFormDiv").style.width = "95%"
             document.getElementById("mainFormDiv").style.marginLeft = "0"
             document.getElementById("websiteFrame").style.marginLeft = "0"
             document.getElementById("websiteFrame").style.marginRight = "0"
