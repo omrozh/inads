@@ -16,7 +16,7 @@
         <a class="navbarElement" href="/docs"><small>Docs</small></a>
     </div>
 
-    <div  style="margin-left: 5%; background-color: white; border-radius: 5px; width: 40%; float: left">
+    <div  style="margin-left: 5%; background-color: white; border-radius: 5px; width: 40%; float: left" id="mainFormDiv">
         <div style="margin-left: 5%">
             <h1>Estimated earnings with InAds</h1>
             <br>
@@ -31,6 +31,15 @@
     <iframe src="" style="width: 300px; height: 600px; float: right; margin-right: 5%" id="websiteFrame" frameborder="0"></iframe>
 
     <script>
+         if(window.innerWidth < window.innerHeight){
+            document.getElementById("mainFormDiv").style.width = "100%"
+            document.getElementById("mainFormDiv").style.marginLeft = "0"
+            document.getElementById("websiteFrame").style.marginLeft = "0"
+            document.getElementById("websiteFrame").style.marginRight = "0"
+            document.getElementById("websiteFrame").style.clear = "both"
+            document.getElementById("websiteFrame").style.width = "100vw"
+            document.getElementById("websiteFrame").style.height = "100vh"
+         }
         function calculate(){
             if(document.getElementById("monthlyvis").value < 10000){
                 document.getElementById("monthlyvis").value = 10000
