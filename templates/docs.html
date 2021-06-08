@@ -96,7 +96,7 @@
             <a class="navbarElement" href="/docs"><small>Docs</small></a>
             <a class="navbarElement" style="float: right; margin-right: 5%" id="langelement" onclick="InAdsLanguage()">TR</a>
         </div>
-        <div style="width: 100%; color: gray; margin-top: 1%; margin-bottom: 0%" id="mobile-nav" hidden="true">
+        <div style="width: 100%; color: gray; margin-top: 1%; margin-bottom: 0%; display: none" id="mobile-nav">
             <span class="navbarElement" style="margin-left: 3%; font-size: 50px" onclick="openNav()">InAds</span>
             <div id="myNav" class="overlay">
 
@@ -217,8 +217,8 @@
             document.getElementById("myNav").style.width = "0%";
         }
         if(window.innerWidth < window.innerHeight){
-            document.getElementById("desktop-nav").hidden = "true"
-            document.getElementById("mobile-nav").hidden = "false"
+            document.getElementById("desktop-nav").style.display = "none"
+            document.getElementById("mobile-nav").style.display = "block"
          }
         function InAdsUnity(){
             document.getElementById("InAdsUnity").hidden = !document.getElementById("InAdsUnity").hidden;
