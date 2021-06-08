@@ -6,23 +6,45 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="/styles">
 </head>
-<body style="font-family: open sans; width: 100%; height: 100%; background: linear-gradient(90deg, white 0%, rgb(0, 200, 220) 60%); padding: 0; margin: 0; outline: 0; border: 0">
+<body style="font-family: open sans; width: 100%; height: 100%; padding: 0; margin: 0; outline: 0; border: 0">
+    <style>
+        .loginButton{
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        .loginInput{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+    </style>
 
-    <img style="float: left; margin: 0px; padding: 0px; outline: 0px; border: 0px; height: 250px; width: 250px; margin-top: 30vh; margin-left: 15%" src="/logos/loginBG.png" alt="">
     <div style="margin-top: 0">
-        <form method=post enctype=multipart/form-data style="margin-top: 38vh; background-color: white; width: 30%; float: right; margin-right: 12%; border-radius: 5px; border: none">
+        <form method=post enctype=multipart/form-data style="margin-top: 25vh; background-color: white; width: 30%; float: right; margin-right: 34%; border-radius: 5px; border: none">
+            <h1>InAds - Login</h1>
             <br>
-            <input style="margin-left: 5%; margin-right:35%; width: 60%" class="mainForm" type=text name=email placeholder="Email">
-            <hr style="margin-left: 5%; margin-right:35%">
-            <input style="margin-left: 5%; margin-right:35%; width: 60%"  class="mainForm" type=password name=password placeholder="Password">
-            <hr style="margin-left: 5%; margin-right:35%">
-            <input class="buttonGray" style="margin-left: 5%; width: 50%;" type=submit value="Login">
+            <span>Email</span>
             <br>
-            <div style="margin-left: 5%; margin-top: 5%">Do not have an account? <a href="/register" class="navbarElement">Register</a></div>
+            <input style="width: 98%" class="loginInput" type=text name=email>
+            <br>
+            <span style="margin-top: 5%">Password</span>
+            <br>
+            <input style="width: 98%;"  class="loginInput" type=password name=password>
+            <input class="loginButton" type=submit value="Login">
+            <br>
+            <div style="margin-top: 5%">Do not have an account? <a href="/register" class="navbarElement">Register</a></div>
             <br>
         </form>
     </div>
-    <h1 style="font-family: open sans; clear:both; margin-left: 15%; font-size:40px; background: -webkit-linear-gradient(rgb(0, 150, 180), rgb(0, 120, 150)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">InAds - Login</h1>
+
     <br>
     <script>
         if(window.innerWidth < window.innerHeight){
