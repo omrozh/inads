@@ -13,7 +13,6 @@ import base64
 import time
 from flask_cors import CORS, cross_origin
 from flask_mail import Mail, Message
-from bs4 import BeautifulSoup
 from flask_login import LoginManager, UserMixin, current_user, logout_user, login_required, login_user
 
 app = flask.Flask(__name__)
