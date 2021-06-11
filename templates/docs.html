@@ -94,7 +94,7 @@
             <a class="navbarElement" href="/plans"><small>Plans</small></a>
             <a class="navbarElement" href="/estimated_earnings"><small>Estimated Earnings</small></a>
             <a class="navbarElement" href="/docs"><small>Docs</small></a>
-            <a class="navbarElement" style="float: right; margin-right: 5%; font-size: 50px" id="langelement" onclick="InAdsLanguage()">EN</a>
+            <a class="navbarElement" style="float: right; margin-right: 5%;" id="langelementdesk" onclick="InAdsLanguage()">EN</a>
         </div>
         <div style="width: 100%; color: gray; margin-top: 1%; margin-bottom: 0%; display: none" id="mobile-nav">
             <span class="navbarElement" style="margin-left: 3%; font-size: 50px" onclick="openNav()">InAds</span>
@@ -112,7 +112,7 @@
 
             </div>
             <span onclick="openNav()" class="navbarElement" style="float: right; margin-right: 5%; font-size: 50px">&#9776;</span>
-
+            <a class="navbarElement" style="float: right; margin-right: 5%; font-size: 50px" id="langelement" onclick="InAdsLanguage()">TR</a>
         </div>
     <hr style="opacity: .3">
     <div style="margin-left: 5%" id="en">
@@ -232,6 +232,11 @@
                 document.getElementById("langelement").innerHTML = "TR"
             else
                 document.getElementById("langelement").innerHTML = "EN"
+
+            if(document.getElementById("langelementdesk").innerHTML == "EN")
+                document.getElementById("langelementdesk").innerHTML = "TR"
+            else
+                document.getElementById("langelementdesk").innerHTML = "EN"
 
             document.getElementById("tr").hidden = !document.getElementById("tr").hidden
             document.getElementById("en").hidden = !document.getElementById("en").hidden
