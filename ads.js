@@ -133,6 +133,13 @@ if(adElements.length == 0){
     adElements = document.getElementsByClassName("inads");
 }
 
+
+let adGroupsHorizontal = document.getElementsByClassName("inadsgrouphorizontal");
+
+for(var i = 0; i < adGroupsHorizontal.length; i++){
+    adGroupCreateHorizontal(adGroupsHorizontal[i]);
+}
+
 for(var i = 0; i < adElements.length; i++) {
   createAds(adElements[i], i);
 }
