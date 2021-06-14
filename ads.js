@@ -134,10 +134,10 @@ if(adElements.length == 0){
 }
 
 
-let adGroupsHorizontal = document.getElementsByClassName("inadsgrouphorizontal");
+let adGroupsHorizontal2 = document.getElementsByClassName("inadsgrouphorizontal");
 
 for(var i = 0; i < adGroupsHorizontal.length; i++){
-    adGroupCreateHorizontal(adGroupsHorizontal[i]);
+    adGroupCreateHorizontal(adGroupsHorizontal2[i]);
 }
 
 for(var i = 0; i < adElements.length; i++) {
