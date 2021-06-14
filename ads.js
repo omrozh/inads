@@ -43,7 +43,7 @@ function createAds(element, index){
   .then(res=>{adname = res.url.substring(res.url.lastIndexOf("/") + 1); element.setAttribute('onclick', "inadsclick(" + adname + ", this)"); return res.text()})
   .then(blob=>{
 
-    console.log(blob)
+    console.log("%c Adverts by InAds ", "background:rgb(0, 255, 255); color: white")
 
     if(!(blob.includes("data"))){
         element.hidden = true;
