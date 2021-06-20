@@ -1049,8 +1049,9 @@ def authenticator():
         jsondata = flask.request.get_json()
         if not User.query.filter_by(email=str(jsondata["username"])).first():
             return flask.jsonify({"status": "Unable to Authenticate User"})
-        if User.query.filter_by(email=str(jsondata["username"])).first().password == str(jsondata["password"]):
-            return flask.jsonify({"status": "Logged In", "content": "Nothing"})
+        user = User.query.filter_by(email=str(jsondata["username"])).first()
+        if user.password == str(jsondata["password"]):
+            return flask.jsonify({"status": "Logged In", "email": user.email})
         else:
             return flask.jsonify({"status": "Unable to Authenticate User"})
 
