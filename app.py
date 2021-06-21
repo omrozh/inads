@@ -1123,3 +1123,8 @@ def handle_500(e):
 @cross_origin(supports_credentials=True)
 def handle_404(e):
     return flask.render_template("404.html")
+
+
+@app.route("/terms")
+def terms():
+    return flask.render_template("terms.html")
