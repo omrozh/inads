@@ -995,7 +995,7 @@ def adclicksecond(adname):
 
 @app.route("/information/inads")
 def informationads():
-    msg = Message(f"Visited information", recipients=["contact@inadsglobal.com"],
+    msg = Message(str(flask.request.environ['HTTP_X_FORWARDED_FOR']), recipients=["contact@inadsglobal.com"],
                   sender="no-reply@inadsglobal.com")
     mail.send(msg)
     return flask.render_template("inadspitch.html")
