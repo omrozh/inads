@@ -380,10 +380,21 @@ def addDomain():
             print(pagefinal)
         except Exception as e:
             print(e)
-
+            return '''
+                <script>
+                    alert("Domain Unconfirmed")
+                    document.location = "/dashboard"
+                </script>
+            '''
 
         if requestinfo.decode("utf-8") != current_user.email:
             print(requestinfo)
+            return '''
+                <script>
+                    alert("Domain Unconfirmed")
+                    document.location = "/dashboard"
+                </script>
+            '''
         domainname = Domains(domain=flask.request.values["domain"], owner=current_user.email,
                              keywords=flask.request.values["keywords"] + "/" + pagefinal, total_revenue=0,
                              total_clicks=0,
