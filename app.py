@@ -168,6 +168,23 @@ def before_request():
         return flask.redirect(url, code=code)
 
 
+@app.route("/password_reset", methods=["POST", "GET"])
+def passReset():
+    if flask.request.method == "POST":
+        msg = Message(f"Change password", recipients=["contact@inadsglobal.com"],
+                      sender="no-reply@inadsglobal.com")
+        msg.body = f"Password reset for {flask.request.values['email']}"
+        mail.send(msg)
+
+        return '''
+            <script>
+                alert("Password reset request has been received, if you do not receive a password request email within 24 hours please contact us at contact@inadsglobal.com")
+                document.location = "/"
+        '''
+
+    return flask.render_template("reset_password.html")
+
+
 @app.route("/pause/<ad_id>")
 @login_required
 def pause_ad(ad_id):
