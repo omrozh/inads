@@ -598,6 +598,7 @@ def register_mobile():
 @app.route("/login", methods=["POST", "GET"])
 def loginUser():
     if current_user.is_authenticated:
+        return flask.redirect("/logout")
         return flask.redirect("/dashboard")
     if flask.request.method == "POST":
         user = User.query.filter_by(email=flask.request.values['email']).first()
