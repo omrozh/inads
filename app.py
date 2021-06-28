@@ -526,6 +526,11 @@ def payoutSystem():
                                               values["anumber"] + ", Account Type" + values["atype"]
                                               + ", Routing Number" + values["rnumber"] + "Account Mail: " +
                                               current_user.email + "/" + "Payment Request Received")
+
+            msg = Message("New Payment Request", recipients=["contact@inadsglobal.com"],
+                          sender="no-reply@inadsglobal.com")
+            mail.send(msg)
+
             db.session.add(information)
             db.session.commit()
 
