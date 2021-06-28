@@ -64,11 +64,14 @@
     <div style="float: left; width: 75%; margin-left: 25%">
         {% if status_track == "Payment Request Received" %}
             <div class="eCircle"><br><div style="margin-left: 25px" class="loader"></div></div>
-        {% elif status_track == "Pending payment processor payment" %}
+        {% endif %}
+        {% if status_track == "Pending payment processor payment" %}
             <div class="eCircle"><br><br><div style="margin-left: 40px; font-size: 7rem; color: #04AA6D" class="fa fa-credit-card"></div></div>
-        {% elif status_track == "Payments received from processor, completing direct deposit %}
+        {% endif %}
+        {% if status_track == "Payments received from processor, completing direct deposit %}
             <div class="eCircle"><br><br><div style="margin-left: 40px; font-size: 7rem; color: #04AA6D" class="fa fa-money"></div></div>
-        {% elif status_track == "Bank transfer completed, pending bank confirmation" %}
+        {% endif %}
+        {% if status_track == "Bank transfer completed, pending bank confirmation" %}
             <div class="eCircle"><br><span style="margin-left: 60px; color: green; font-size: 7rem;">&check;</span></div>
         {% endif %}
         <h1>Current payment status: {{ status_track }}</h1>
