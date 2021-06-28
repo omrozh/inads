@@ -519,14 +519,18 @@ def adinfo(adid):
 def payoutSystem():
     if flask.request.method == "POST" and current_user.account_balance > 150:
         values = flask.request.values
-        information = Payouts(information=values["name"] + ", Address Personal:" + values["paddress"] +
-                                          ", Name Bank: " + values["namebank"] + ", Address Bank: " +
-                                          values["baddress"] + ", Account Number: " +
-                                          values["anumber"] + ", Account Type" + values["atype"]
-                                          + ", Routing Number" + values["rnumber"] + "Account Mail: " +
-                                          current_user.email)
-        db.session.add(information)
-        db.session.commit()
+        if len(values["track_id"]) < 1:
+            information = Payouts(information=values["name"] + ", Address Personal:" + values["paddress"] +
+                                              ", Name Bank: " + values["namebank"] + ", Address Bank: " +
+                                              values["baddress"] + ", Account Number: " +
+                                              values["anumber"] + ", Account Type" + values["atype"]
+                                              + ", Routing Number" + values["rnumber"] + "Account Mail: " +
+                                              current_user.email + "/" + "Payment Request Received")
+            db.session.add(information)
+            db.session.commit()
+        elif len(values["track_id"]) >= 1:
+            status_track = Payouts.query.get(int(flask.request.values["track_id"])).information.split("/")[1]
+            return flask.render_template("payout_status.html", status_track=status_track)
     return flask.render_template("payout.html", user=current_user)
 
 
