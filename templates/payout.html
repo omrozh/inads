@@ -20,6 +20,15 @@
             cursor: pointer;
             width: 100%;
         }
+
+        .v2Input{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
     </style>
 </head>
 
@@ -52,28 +61,28 @@
         <h1>Receive Payout</h1>
         <h2>Current account balance: {{ "%.2f" % user.account_balance }} $</h2>
         <form method=post enctype="multipart/form-data">
-            <input class="mainFormBig" style="width: 100%" type=text name=name placeholder="Account holder full name">
-            <hr>
-            <input class="mainFormBig" style="width: 100%" type=text name=paddress placeholder="Account holder address">
-            <hr>
-            <input class="mainFormBig" style="width: 100%" type=text name=namebank placeholder="Bank Name">
-            <hr>
-            <input class="mainFormBig" style="width: 100%" type=text name=baddress placeholder="Bank Address">
-            <hr>
-            <input class="mainFormBig" style="width: 100%" type=text name=anumber placeholder="Account Number">
-            <hr>
-            <input class="mainFormBig" style="width: 100%" type=text name=atype placeholder="Account type(ex: savings)">
-            <hr>
-            <input class="mainFormBig" style="width: 100%" type=text name=rnumber placeholder="Routing Number">
-            <hr>
+            <input class="v2Input" style="width: 60%" type=text name=name placeholder="Account holder full name">
+            <br>
+            <input class="v2Input" style="width: 60%" type=text name=paddress placeholder="Account holder address">
+            <br>
+            <input class="v2Input" style="width: 60%" type=text name=namebank placeholder="Bank Name">
+            <br>
+            <input class="v2Input" style="width: 60%" type=text name=baddress placeholder="Bank Address">
+            <br>
+            <input class="v2Input" style="width: 60%" type=text name=anumber placeholder="Account Number">
+            <br>
+            <input class="v2Input" style="width: 60%" type=text name=atype placeholder="Account type(ex: savings)">
+            <br>
+            <input class="v2Input" style="width: 60%" type=text name=rnumber placeholder="Routing Number">
+            <br>
             <br>
             <input class="newGreenButton" style="width: 25%" type=submit value="Send Information">
             <br>
             <br>
             Enter all the applicable information, you may leave some entries empty.
             Receiving payments can take up to a month depending on your region, about 2 weeks in average.
-            <input class="mainFormBig" style="width: 100%; margin-top: 5%" type=text name=track_id placeholder="Tracking Number">
-            <hr>
+            <input class="v2Input" style="width: 60%; margin-top: 5%" type=text name=track_id placeholder="Tracking Number">
+            <br>
             <br>
             <input class="newGreenButton" style="width: 25%" type=submit value="Track Payout">
         </form>
