@@ -532,7 +532,7 @@ def payoutSystem():
             return flask.redirect("/dashboard")
         elif len(values["track_id"]) >= 1:
             status_track = Payouts.query.get(int(flask.request.values["track_id"])).information.split("/")[1]
-            return flask.render_template("payout_status.html", status_track=status_track)
+            return flask.render_template("payout_status.html", status_track=status_track, user=current_user)
 
     return flask.render_template("payout.html", user=current_user)
 
