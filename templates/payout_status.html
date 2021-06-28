@@ -11,6 +11,15 @@
             document.location = "/dashboard"
         }
     </script>
+    <style>
+        .eCircle {
+            border: 5px solid #04AA6D;
+            border-radius: 200px;
+            height:200px;
+            width:200px;
+            margin-top: 5%
+        }
+    </style>
 </head>
 
 <body style="font-family: open sans; margin: 0;">
@@ -39,6 +48,7 @@
     </div>
 
     <div style="float: left; width: 75%; margin-left: 25%">
+        <div class="eCircle"><br><span style="margin-left: 60px; color: green; font-size: 7rem;">&check;</span></div>
         <h1>Current payment status: {{ status_track }}</h1>
         <h2>Current account balance: {{ "%.2f" % user.account_balance }} $</h2>
     </div>
