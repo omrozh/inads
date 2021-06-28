@@ -11,7 +11,21 @@
             document.location = "/dashboard"
         }
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
+        .loader {
+          border: 16px solid #f3f3f3;
+          border-top: 16px solid #04AA6D;
+          border-radius: 50%;
+          width: 120px;
+          height: 120px;
+          animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
         .eCircle {
             border: 5px solid #04AA6D;
             border-radius: 200px;
@@ -48,7 +62,14 @@
     </div>
 
     <div style="float: left; width: 75%; margin-left: 25%">
-        <div class="eCircle"><br><span style="margin-left: 60px; color: green; font-size: 7rem;">&check;</span></div>
+        {% if status_track == "Payment Request Received" %}
+            <div class="eCircle"><br><div style="margin-left: 25px" class="loader"></div></div>
+        {% elif status_track == "Pending payment processor payment" %}
+            <div class="eCircle"><br><br><div style="margin-left: 40px; font-size: 7rem; color: #04AA6D" class="fa fa-credit-card"></div></div>
+        {% elif status_track == "Payments received from processor, completing direct deposit %}
+        <div class="eCircle"><br><br><div style="margin-left: 40px; font-size: 7rem; color: #04AA6D" class="fa fa-money"></div></div>
+        {% elif status_track == "Payment sent, pending bank confirmation"%}
+            <div class="eCircle"><br><span style="margin-left: 60px; color: green; font-size: 7rem;">&check;</span></div>
         <h1>Current payment status: {{ status_track }}</h1>
         <h2>Current account balance: {{ "%.2f" % user.account_balance }} $</h2>
     </div>
