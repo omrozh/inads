@@ -18,7 +18,7 @@ from flask_login import LoginManager, UserMixin, current_user, logout_user, logi
 app = flask.Flask(__name__)
 app.config["UPLOAD_FOLDER"] = ""
 app.config["SECRET_KEY"] = "MAKEMEBILLIONAIRE"
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_URL']
+app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///site.db'
 
 app.config['MAIL_SERVER'] = 'smtp.yandex.com'
 app.config['MAIL_PORT'] = 465
