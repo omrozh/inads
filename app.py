@@ -160,14 +160,6 @@ def makePayment(credit, month, year, cvc, create_subscription):
     return customer.stripe_id, subscribeid
 
 
-@app.before_request
-def before_request():
-    if not flask.request.is_secure:
-        url = flask.request.url.replace("http://", "https://", 1)
-        code = 301
-        return flask.redirect(url, code=code)
-
-
 @app.route("/password_reset", methods=["POST", "GET"])
 def passReset():
     if flask.request.method == "POST":
